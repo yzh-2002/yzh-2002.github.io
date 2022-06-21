@@ -1,82 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>扬州候</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link href="https://fonts.googleapis.com/css?family=Rubik:300,500,700" rel="stylesheet" />
-    <style>
-        body {
-            font-family: 'Rubik', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-                Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue',
-                sans-serif;
-            font-size: calc(10px + 0.33vw);
-            -webkit-font-smoothing: antialiased;
-            padding: 5vh 10vw;
-            color: #121314;
-        }
-
-        h1 {
-            font-size: 4.5em;
-            font-weight: 500;
-            margin-bottom: 0;
-        }
-
-        p {
-            font-size: 1.6em;
-            font-weight: 300;
-            line-height: 1.4;
-            max-width: 28em;
-        }
-
-        a {
-            text-decoration: none;
-            color: #121314;
-            position: relative;
-        }
-
-        a:after {
-            content: '';
-            position: absolute;
-            z-index: -1;
-            top: 60%;
-            left: -0.1em;
-            right: -0.1em;
-            bottom: 0;
-            transition: top 200ms cubic-bezier(0, 0.8, 0.13, 1);
-            background-color: rgba(79, 192, 141, 0.5);
-        }
-
-        a:hover:after {
-            top: 0%;
-        }
-    </style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>3DAnimation</title>
 </head>
-
 <body>
-    <h1>你好！</h1>
-    <p style="font-weight: 500; font-size: 2.2em">我是扬州候（中二网名）</p>
-    <p>
-        是一名就读于成都电子科技大学软件工程学院的大二学生，也是一名在前端道路不断爬行向前的小白。<br />
-        <a href="https://github.com/yzh-2002" target="_blank">GitHub</a>. 我会在github上面发布
-        一些练手的小项目，同时也希望有一天能够为前端开源社区做些贡献。<br />
-        <a href="https://juejin.cn/user/4367678641813688" target="_blank">掘金</a>
-        这是我在掘金的账号，上面记录了我学习时总结的一些知识点，欢迎来访，交流讨论<br />
-        <a href="https://yzh1sblog.xyz" target="_blank">个人博客</a>
-        这是大一暑假搭建的个人博客，不过现在我基本不在上面写文章了，服务器今年暑假也要到期了...
-    </p>
-    <p>
-        如果想要和我探讨一些前端或者学习上的一些问题，我的联系方式有：
-        <a href="javascript:void(0);" target="_blank">QQ:2039143115</a> and
-        <a href="javascript:void(0);" target="_blank">wechat:yzh20020717</a>.
-    </p>
-    <p>
-        除了前端，我还接触网络相关的知识，对于SDN领域抱有很大的热情，同时这学期也在接触机器学习相关的知识<br />
-        另外，还是一名steam上的生存游戏爱好者，森林，七日杀，饥荒，漫漫长夜都玩了很久，想要一起耍游戏的朋友
-        可以联系我哦。
-    </p>
-</body>
+    <section class="main-structure">
+        <header>
+            <a href="#">
+                <div class="logo">LaLaLa!!!</div>
+            </a>
+            <div class="menu-logo"></dic>
+        </header>
+        <div class="content">
+            <video class="active" src="/src/videos/Pexels Videos 1739010.mp4" autoplay muted loop></video>
+            <video src="/src/videos/pexels-arvin-latifi-6466763.mp4" autoplay muted loop></video>
+            <video src="/src/videos/pexels-yan-6209960.mp4" autoplay muted loop></video>
+            <video src="/src/videos/pexels-yaroslav-shuraev-5562986.mp4" autoplay muted loop></video>
+            <video src="/src/videos/production ID_4717657.mp4" autoplay muted loop></video>
+            <div class="video-overlay"></div>
 
+            <section class="text-description">
+                <h1></h1>
+                <h2></h2>
+                <p></p>
+                <a href="#"></a>
+            </section>
+        </div>
+        <footer>
+            <a href="https://github.com/yzh-2002"><img src="/src/icons/github-fill.svg" alt=""></a>
+            <a href="https://user.qzone.qq.com/2039143115"><img src="/src/icons/qq-fill.svg" alt=""></a>
+            <a href="https://juejin.cn/user/4367678641813688"><img src="/src/icons/juejin.svg" alt=""></a>
+        </footer>
+    </section>
+    <section class="aside-menu">
+        <a href="#"><span>Intro</span></a>
+        <a href="#"><span>GitHub</span></a>
+        <a href="#"><span>JueJin</span></a>
+        <a href="#"><span>QQ</span></a>
+        <a href="#"><span>Steam</span></a>
+    </section>
+    <script src="./src/data/content.js"></script>
+    <script src="./script.js"></script>
+</body>
 </html>
