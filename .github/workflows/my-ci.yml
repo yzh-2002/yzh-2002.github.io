@@ -13,8 +13,8 @@ jobs:
     - name: Install dependency 
       # install dependencies of hexo
       run: npm install
-      with:
-        node-version: "16"
+      # with:
+        # node-version: "16"
 
     - name: Build and Deploy
       run: hexo generate
