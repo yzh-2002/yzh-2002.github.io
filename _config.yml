@@ -108,4 +108,4 @@ deploy:
   type: ''
 
 netlify_cms:
-  config_file: netlify.yaml
+  config_file: netlify.yml
