@@ -13,13 +13,13 @@ jobs:
     - name: Install dependency 
       # install dependencies of hexo
       run: | 
-        npm install hexo-cli
+        npm install hexo
         npm install
       # with:
         # node-version: "16"
 
     - name: Build and Deploy
-      run: hexo generate
+      run: npx hexo generate
       env:
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         BRANCH: gh-pages
