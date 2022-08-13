@@ -106,3 +106,6 @@ theme: next
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
   type: ''
+
+netlify_cms:
+  config_file: netlify.yaml
