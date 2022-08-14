@@ -9,4 +9,4 @@ categories:
 comments: true
 ---
 # First Title
-![本地图片测试](source/images/logo.jpg)
+![本地图片测试](/source/images/logo.jpg)
