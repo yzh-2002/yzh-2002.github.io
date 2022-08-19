@@ -20,18 +20,20 @@
     var CONFIG = {"hostname":"yzh-2002.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="新学期到了，为了工作室招新决定临时搭建一个招新网站，本来是想手撸的，但是8月上旬开发组都有私事给耽搁了，下旬又有其他事情，遂决定基于wordpress搭建个网站先用着，也就有了这篇文章（又水一篇真爽）….">
+  <meta name="description" content="又是新学期，为了便于工作室招新决定临时搭建招新网站，本来是想手撸的，但是8月上旬开发组都有私事给耽搁了，下旬又有其他事情，遂决定基于wordpress搭建个网站先用着，折腾了两天，也接触了许多之前不知道的知识，特此记录（每水一篇博客都能带来极大的满足）….">
 <meta property="og:type" content="article">
 <meta property="og:title" content="记录一次wordpress建站经历">
 <meta property="og:url" content="https://yzh-2002.github.io/2022/08/17/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1wordpress%E5%BB%BA%E7%AB%99%E7%BB%8F%E5%8E%86/index.html">
 <meta property="og:site_name" content="Yzh2002&#39;s Blog">
-<meta property="og:description" content="新学期到了，为了工作室招新决定临时搭建一个招新网站，本来是想手撸的，但是8月上旬开发组都有私事给耽搁了，下旬又有其他事情，遂决定基于wordpress搭建个网站先用着，也就有了这篇文章（又水一篇真爽）….">
+<meta property="og:description" content="又是新学期，为了便于工作室招新决定临时搭建招新网站，本来是想手撸的，但是8月上旬开发组都有私事给耽搁了，下旬又有其他事情，遂决定基于wordpress搭建个网站先用着，折腾了两天，也接触了许多之前不知道的知识，特此记录（每水一篇博客都能带来极大的满足）….">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://p.qlogo.cn/hy_personal/3e28f14aa051684246f1880463f96828ede812c43ca3df848ad3ff84f9b337d9/0.png">
 <meta property="og:image" content="https://p.qlogo.cn/hy_personal/3e28f14aa051684246f1880463f96828f61d88719a65cf83a94dceebe0877a6e/0.png">
+<meta property="og:image" content="https://p.qlogo.cn/hy_personal/3e28f14aa0516842b97c6e325e363a68efb4c5a3656e44b80af71b1e13fb590a/0.pnghttps://p.qlogo.cn/hy_personal/3e28f14aa0516842b97c6e325e363a68efb4c5a3656e44b80af71b1e13fb590a/0.png">
+<meta property="og:image" content="https://p.qlogo.cn/hy_personal/3e28f14aa051684281e9349d20d9f45552eba43a556e5f1dc37cce007d01abe7/0.png">
 <meta property="og:image" content="https://p.qlogo.cn/hy_personal/3e28f14aa051684246f1880463f96828d049fded43e92ff606ccb734c4897e66/0.png">
 <meta property="article:published_time" content="2022-08-17T08:42:36.000Z">
-<meta property="article:modified_time" content="2022-08-18T23:32:00.309Z">
+<meta property="article:modified_time" content="2022-08-19T12:56:24.806Z">
 <meta property="article:author" content="Yzh2002">
 <meta property="article:tag" content="docker">
 <meta property="article:tag" content="nginx">
@@ -197,7 +199,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-19 07:32:00" itemprop="dateModified" datetime="2022-08-19T07:32:00+08:00">2022-08-19</time>
+                <time title="修改时间：2022-08-19 20:56:24" itemprop="dateModified" datetime="2022-08-19T20:56:24+08:00">2022-08-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -234,50 +236,106 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>新学期到了，为了工作室招新决定临时搭建一个招新网站，本来是想手撸的，但是8月上旬开发组都有私事给耽搁了，下旬又有其他事情，遂决定基于wordpress搭建个网站先用着，也就有了这篇文章（<del>又水一篇真爽</del>）….</p>
+        <p>又是新学期，为了便于工作室招新决定临时搭建招新网站，本来是想手撸的，但是8月上旬开发组都有私事给耽搁了，下旬又有其他事情，遂决定基于wordpress搭建个网站先用着，折腾了两天，也接触了许多之前不知道的知识，特此记录（<del>每水一篇博客都能带来极大的满足</del>）….</p>
 <span id="more"></span>
 
-<h2 id="docker"><a href="#docker" class="headerlink" title="docker ??"></a>docker ??</h2><p><img src="https://p.qlogo.cn/hy_personal/3e28f14aa051684246f1880463f96828ede812c43ca3df848ad3ff84f9b337d9/0.png" alt="为什么用docker？？"></p>
-<p>上一篇博客提过，21年暑假搭建个人博客时，由于对于linux不是很熟悉，所以就使用宝塔面板一键安装LNMP环境，有一说一，确实好用，对于小白特别友好。</p>
-<p>但一方面师兄说宝塔风评不好（虽然也没指出到底哪不好），另一方面想着身为科班学生，还是要学会折腾一些东西的，于是就采用docker部署了（其实docker部署相比于自己搞NMP环境也很方便了，但是在此之前完全没接触过docker，因此还是费了点时间了解了一下…）</p>
-<h3 id="docker-in-windows"><a href="#docker-in-windows" class="headerlink" title="docker in windows"></a>docker in windows</h3><blockquote>
-<p>电脑性能不好，虚拟机用起来总是感觉卡卡的，也不愿重装linux系统（<del>windows还要用来打游戏呢</del>），更没钱重新买一台linux的电脑，于是就想着在windows系统上面操作docker了</p>
+<h2 id="初遇-Docker"><a href="#初遇-Docker" class="headerlink" title="初遇 Docker"></a>初遇 Docker</h2><p><img src="https://p.qlogo.cn/hy_personal/3e28f14aa051684246f1880463f96828ede812c43ca3df848ad3ff84f9b337d9/0.png" alt="为什么用docker？？"></p>
+<p>上一篇博客提过，21年暑假搭建个人博客时，由于对linux不熟悉，所以就使用宝塔面板一键安装LNMP环境，有一说一，确实好用，对于小白特别友好。</p>
+<p>但一方面师兄说宝塔风评不好（<del>虽然也没指出到底哪不好</del>），另一方面想着作为科班学生，还是要乐于学习新事物（<del>对我来说</del>），乐于折腾新东西的，于是就尝试采用docker部署</p>
+<h3 id="Windows下使用Docker"><a href="#Windows下使用Docker" class="headerlink" title="Windows下使用Docker"></a>Windows下使用Docker</h3><blockquote>
+<p>为了便于更好的探索docker，所以想在本机上用一用（电脑性能不好，虚拟机总是感觉卡卡的，也不愿重装linux系统<del>windows还要用来打游戏呢</del>，更没钱重新买一台linux的电脑<del>vps也买不起，暑假没生活费好惨</del>）…</p>
 </blockquote>
-<p>怎么操作网上很多指导教程，这里主要记录一下我遇到的关键问题，以及大概流程</p>
+<p><a target="_blank" rel="noopener" href="https://dockerdocs.cn/docker-for-windows/install/index.html">指导教程</a>，下面记录一下我遇到的关键问题，以及大概流程</p>
 <ul>
-<li>windows系统需升级到专业版（一般来说都是家庭版的，但是升级之后就需要重新激活了….）</li>
-<li>需要开启Hyper-v服务（只有专业版windows才有该服务）<ul>
-<li>这里遇到一个问题：开启该服务重新电脑总是在最后提示：无法实现相关功能，正在撤销更新（大概）</li>
-<li>解决办法：<a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/software-download/windows10">修复windows10</a>，过程大概需要2~3小时</li>
+<li>windows系统需升级到专业版（一般来说都是家庭版的，升级之后需要重新激活….）</li>
+<li>开启Hyper-v服务（前提是升级到windows专业版）<ul>
+<li>这里遇到一个困扰我近半个小时的问题：开启该服务重启电脑总是在最后提示<em>无法实现相关功能，正在撤销更新</em></li>
+<li>解决办法：<a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/software-download/windows10">修复windows10</a>（过程大概需要2~3小时）</li>
 </ul>
 </li>
 <li>安装wsl2<ul>
-<li>具体安装过程网上很多，最后输入<code>wsl -l -v</code></li>
+<li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/wsl/install">安装过程</a></li>
+<li>验证是否安装成功：</li>
 <li><img src="https://p.qlogo.cn/hy_personal/3e28f14aa051684246f1880463f96828f61d88719a65cf83a94dceebe0877a6e/0.png" alt="wsl2是否安装成功"></li>
 </ul>
 </li>
 <li>安装Docker Desktop<ul>
-<li>前面都ok的话，这里基本没有什么问题…</li>
+<li>前面都可行的话，这一步我没有遇到问题：</li>
+<li><img src="https://p.qlogo.cn/hy_personal/3e28f14aa0516842b97c6e325e363a68efb4c5a3656e44b80af71b1e13fb590a/0.pnghttps://p.qlogo.cn/hy_personal/3e28f14aa0516842b97c6e325e363a68efb4c5a3656e44b80af71b1e13fb590a/0.png" alt="Docker安装成功的话"></li>
 </ul>
 </li>
 </ul>
-<h3 id="use-docker"><a href="#use-docker" class="headerlink" title="use docker"></a>use docker</h3><blockquote>
-<p>目前在本地安装docker还没干什么事情，只是自己写了几个demo练习一哈，下面就直接如何在服务器使用docker部署wordpress了</p>
+<h3 id="Docker知识补充"><a href="#Docker知识补充" class="headerlink" title="Docker知识补充"></a>Docker知识补充</h3><blockquote>
+<p>docker的出现解决了软件开发部署过程中的环境一致性问题（docker的应用场景应该不止这些，但是笔者目前接触有限，仅从这方面谈一谈…）</p>
 </blockquote>
+<h4 id="为什么使用Docker-？"><a href="#为什么使用Docker-？" class="headerlink" title="为什么使用Docker ？"></a>为什么使用Docker ？</h4><p>软件的运行环境一般有两方面：</p>
 <ul>
-<li>拉取镜像  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker pull wordpress</span><br><span class="line">docker pull mysql</span><br></pre></td></tr></table></figure></li>
-<li>新建并启动mysql容器  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker container run \</span><br><span class="line">- d \ #后台运行</span><br><span class="line">--rm \ #停止运行后，自动删除容器文件</span><br><span class="line">--name wordpressdb \ #容器命名</span><br><span class="line">--env MYSQL_ROOT_PASSWORD=123456 \ #给容器进程传递一个环境变量</span><br><span class="line">--env MYSQL_DATABASE=wordpress \</span><br><span class="line">mysql</span><br></pre></td></tr></table></figure></li>
-<li>新建并启动wordpress容器  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">docker container run \</span><br><span class="line">-d \</span><br><span class="line">-p 8080:80 \ #端口映射</span><br><span class="line">--rm \</span><br><span class="line">--name wordpress \</span><br><span class="line">--env WORDPRESS_DB_PASSWORD=123456 \</span><br><span class="line">--link wordpressdb:mysql \ #连接数据库（师兄说这种写法已经过时，现在都是用网桥和别名，这个找时间学习学习）</span><br><span class="line">--volume &quot;$PWD/wordpress&quot;:/var/www/html \ #存储卷映射，更改wordpress下的文件等价于修改/var/www/html下的文件</span><br><span class="line">wordpress</span><br></pre></td></tr></table></figure></li>
-<li>修改wordpress/wp-config.php<ul>
-<li>使用vim修改</li>
-<li>默认没有修改权限，需要手动添加  <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod a+w wordpress/wp-config.php</span><br></pre></td></tr></table></figure>
-至此，访问ip:8080就可以进入wordpress站点的设置页面了…</li>
+<li>操作系统内核（Kernel）提供</li>
+<li>各种运行库（Runtime Library）提供<ul>
+<li>关于运行库，不同于前端开发时的各种第三方依赖包（比如：npm包，通过package-lock.json就能很好的统一管理），而是指nodejs等软件中脚本的运行时…</li>
 </ul>
 </li>
 </ul>
-<h2 id="nginx"><a href="#nginx" class="headerlink" title="nginx ??"></a>nginx ??</h2><p><img src="https://p.qlogo.cn/hy_personal/3e28f14aa051684246f1880463f96828d049fded43e92ff606ccb734c4897e66/0.png" alt="接着忙喽..."></p>
-<p>忙活半天部署好之后，又被师兄发现一大堆问题，想要解决这些问题，就要使用另一个工具–nginx（<del>之前为了解决跨域问题使用nginx做了反向代理，但没有系统学习过…</del>）</p>
-<h2 id="to-be-contniued"><a href="#to-be-contniued" class="headerlink" title="to be contniued"></a>to be contniued</h2><p>先去吃饭，回头再补充….</p>
+<p>下面举几个例子进而说明docker的作用：</p>
+<ol>
+<li>软件开发时的系统是Ubuntu，但是生产环境的系统是CentOS，那么部署就可能出问题？（比如某个在Ubuntu运行正常的数据库在CentOS上运行报错）…</li>
+<li>php开发的网站与java开发的网站依赖环境不同，将其部署于一个服务器上可能会造成冲突（比如两者使用的web server分别是IIS和Apache，那么就可能存在端口访问冲突）…</li>
+</ol>
+<p>Docker是通过怎样的手段解决了上述问题呢？？</p>
+<p>Docker利用了linux的namespace隔离技术为基础，通过<strong>共享Linux内核</strong>实现的</p>
+<blockquote>
+<p>插一句题外话：linux和windows系统既支持X86，也支持ARM（当然不同架构下内核代码肯定有区别），而X86和ARM是CPU设计的不同 <del>操作系统该复习了…</del></p>
+</blockquote>
+<p>无论是Ubuntu还是CentOS，都使用linux内核，区别仅在于添加了不同的工具软件（GUI，函数库，软件包管理工具(yum/apt-get)等…）,Docker技术主要使用了两个内核模块：</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Linux_namespaces">namespace</a><ul>
+<li>容器隔离：PID Namespace使得容器中的进程无法感知宿主机以及其他容器中的进程。</li>
+</ul>
+</li>
+<li><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-cn/Cgroups">Cgroups</a><ul>
+<li>容器资源控制：限制容器所使用的内存大小或者CPU个数</li>
+</ul>
+</li>
+</ol>
+<p>因此在CentOS上运行基于Ubuntu镜像的容器时, 容器使用了<strong>CentOS主机的内核以及Ubuntu镜像</strong>, Ubuntu镜像中安装了Ubuntu的各种软件。</p>
+<h4 id="Docker-基本概念"><a href="#Docker-基本概念" class="headerlink" title="Docker 基本概念"></a>Docker 基本概念</h4><p>Docker最重要的两个概念：镜像（Image）和容器（Container），其中Image是多层存储，每一层是在前一层的基础上进行的修改；而容器同样也是多层存储，是在以镜像为基础层，<strong>在其基础上加一层作为容器运行时的存储层。</strong></p>
+<p>以nginx为例：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">docker run --name NginxTest -d -p 80:80 nginx</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">本地访问localhost就可以看到Nginx默认的欢迎页面</span></span><br><span class="line">docker exec -it NginxTest bash</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进入NginxTest容器，并开启一个shell</span></span><br><span class="line">echo &#x27;&lt;h1&gt;Hello, Docker!&lt;/h1&gt;&#x27; &gt; /usr/share/nginx/html/index.html</span><br><span class="line">exit</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">退出容器再访问localhost发现内容被更改</span></span><br><span class="line"></span><br><span class="line">docker diff</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">查看容器内文件哪些被修改</span></span><br></pre></td></tr></table></figure>
+
+<p>上述的更改均保存在容器运行时的存储层内（在内存中，不能持久化存储），因此如果直接结束容器运行，这些更改就会消失，想要将这些更改保存到镜像里，可以使用<code>docker commit</code>命令（但是慎用，最好不要用…）</p>
+<p>每当一个docker容器运行时，会生成一个sha-256值（前6位就是container ID），然后在宿主机的/var/lib/docker目录下的container文件夹下会生成一个与container ID相同名字的文件夹，此文件夹就是该容器运行的数据所在</p>
+<p><img src="https://p.qlogo.cn/hy_personal/3e28f14aa051684281e9349d20d9f45552eba43a556e5f1dc37cce007d01abe7/0.png" alt="docker容器根目录"></p>
+<p>可以看到熟悉的目录结构</p>
+<hr>
+<p>下面讲讲数据卷？</p>
+<blockquote>
+<p>(个人理解)一方面是实现数据的持久性存储（<del>便于其他容器共享和重用这一点由于使用经验较少还没感受到</del>），另一方面就是便于运维人员操作容器内的文件，操作数据卷等价于操作容器内被挂载的文件（不需要进入容器内部更改数据文件了）</p>
+</blockquote>
+<p>常见的是两种方式：</p>
+<p>volumes由docker创建，非Docker应用程序不能改动这一位置的数据。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">docker volume create XXXX</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建一个名为XXXX的数据卷，存储在宿主机的/var/lib/docker/volumes目录下</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将该数据卷挂载到某一容器的相应目录</span></span><br><span class="line">docker run -d -P \</span><br><span class="line">--name VolumeTest1 \</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-v XXXX:/usr/share/nginx/index.html \</span></span><br><span class="line"><span class="language-bash">--mount <span class="built_in">source</span>=XXX,target=/usr/share/nginx/index.html \</span></span><br><span class="line"><span class="language-bash">nginx</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>volumes就是宿主机的某个文件夹（或者新建的文件夹），手动挂载</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -P \</span><br><span class="line">--name VolumeTest2 \</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-v /src/webapp:/usr/share/nginx/html \</span></span><br><span class="line"><span class="language-bash">--mount <span class="built_in">type</span>=<span class="built_in">bind</span>,<span class="built_in">source</span>=/src/webapp,target=/usr/share、nginx/html \</span></span><br><span class="line"><span class="language-bash">nginx</span></span><br></pre></td></tr></table></figure>
+<hr>
+<blockquote>
+<p>自己尝试部署WordPress时，容器互联还在使用<code>--link</code>命令，师兄提醒我这已经过时了，于是就学习了通过自定义的docker网络来连接多个容器….</p>
+</blockquote>
+<p>先说一下传统的通过<code>--link</code>连接的方式：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动mysql容器</span></span><br><span class="line">docker run --name mysqlTest -d mysql</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动wordpress并连接mysql容器</span></span><br><span class="line">docker run --name wordpressTest \</span><br><span class="line">--link mysqlTest:mysql \</span><br><span class="line">-d </span><br><span class="line">wordpress</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">怎么确定建立连接了呢？</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<h3 id="部署WordPress"><a href="#部署WordPress" class="headerlink" title="部署WordPress"></a>部署WordPress</h3><h2 id="再遇-Nginx"><a href="#再遇-Nginx" class="headerlink" title="再遇 Nginx"></a>再遇 Nginx</h2><p><img src="https://p.qlogo.cn/hy_personal/3e28f14aa051684246f1880463f96828d049fded43e92ff606ccb734c4897e66/0.png" alt="接着忙喽..."></p>
+<p>学习半天docker，部署好之后，又被师兄发现一大堆问题，想要解决这些问题，就要使用另一个工具—-nginx（<del>之前为了解决跨域问题使用nginx做了反向代理，但还没有系统学习过…</del>）</p>
+<h3 id="Nginx前置知识"><a href="#Nginx前置知识" class="headerlink" title="Nginx前置知识"></a>Nginx前置知识</h3><p>上面提到在服务器部署项目时通常需要LNMP环境，也就是linux+nginx+mysql+php，有时是LAMP，也就是nginx-&gt;apache，这里的nginx和apache都是web server（也有区分，比如前者是web服务器，后者是应用服务器）</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nginx是web服务器，我们平时在各大厂商购买的vps也是服务器，这两个服务器有什么区别呢？（下面说一下个人理解）</span><br><span class="line"></span><br><span class="line">vps（Vitural private server）其实就是一台电脑（各厂商基于虚拟化技术虚拟出来的电脑），而nginx可以看作在这台电脑上运行的服务，帮助我们实现网络连接，路径寻找和会话管理等功能，所以nginx才是真正意义上为客户端提供服务的设备（当然其提供的资源存储在vps上...）</span><br></pre></td></tr></table></figure>
+
+<h3 id="Nginx-配置"><a href="#Nginx-配置" class="headerlink" title="Nginx 配置"></a>Nginx 配置</h3><h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://answers.microsoft.com/zh-hans/windows/forum/all/win10-%E5%BC%80%E5%90%AFhyper-v/238eeaa4-9fcc-432d-8d4b-4e83614f5f13">windows开启Hyper-v服务失败</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lxgbky/p/12973931.html">Docker如何能在CentOS下运行Ubuntu容器</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/392508816">docker容器技术基础之联合文件系统OverlayFS</a></li>
+<li><a target="_blank" rel="noopener" href="https://blog.csdn.net/vchy_zhao/article/details/70239605">docker之容器互联的作用</a></li>
+<li><a href=""></a></li>
+</ol>
 
     </div>
 
@@ -361,7 +419,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#docker"><span class="nav-number">1.</span> <span class="nav-text">docker ??</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-in-windows"><span class="nav-number">1.1.</span> <span class="nav-text">docker in windows</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#use-docker"><span class="nav-number">1.2.</span> <span class="nav-text">use docker</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nginx"><span class="nav-number">2.</span> <span class="nav-text">nginx ??</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#to-be-contniued"><span class="nav-number">3.</span> <span class="nav-text">to be contniued</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%9D%E9%81%87-Docker"><span class="nav-number">1.</span> <span class="nav-text">初遇 Docker</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Windows%E4%B8%8B%E4%BD%BF%E7%94%A8Docker"><span class="nav-number">1.1.</span> <span class="nav-text">Windows下使用Docker</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85"><span class="nav-number">1.2.</span> <span class="nav-text">Docker知识补充</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8Docker-%EF%BC%9F"><span class="nav-number">1.2.1.</span> <span class="nav-text">为什么使用Docker ？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Docker-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.2.2.</span> <span class="nav-text">Docker 基本概念</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2WordPress"><span class="nav-number">1.3.</span> <span class="nav-text">部署WordPress</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%8D%E9%81%87-Nginx"><span class="nav-number">2.</span> <span class="nav-text">再遇 Nginx</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="nav-number">2.1.</span> <span class="nav-text">Nginx前置知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Nginx-%E9%85%8D%E7%BD%AE"><span class="nav-number">2.2.</span> <span class="nav-text">Nginx 配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">3.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
