@@ -12,14 +12,14 @@ categories:
 又是新学期，为了便于工作室招新决定临时搭建招新网站，本来是想手撸的，但是8月上旬开发组都有私事给耽搁了，下旬又有其他事情，遂决定基于wordpress搭建个网站先用着，折腾了两天，也接触了许多之前不知道的知识，特此记录（~~每水一篇博客都能带来极大的满足~~）....
 <!--more-->
 
-## 初遇 Docker
+# 初遇 Docker
 ![为什么用docker？？](https://p.qlogo.cn/hy_personal/3e28f14aa051684246f1880463f96828ede812c43ca3df848ad3ff84f9b337d9/0.png)
 
 上一篇博客提过，21年暑假搭建个人博客时，由于对linux不熟悉，所以就使用宝塔面板一键安装LNMP环境，有一说一，确实好用，对于小白特别友好。
 
 但一方面师兄说宝塔风评不好（~~虽然也没指出到底哪不好~~），另一方面想着作为科班学生，还是要乐于学习新事物（~~对我来说~~），乐于折腾新东西的，于是就尝试采用docker部署
 
-### Windows下使用Docker
+## Windows下使用Docker
 > 为了便于更好的探索docker，所以想在本机上用一用（电脑性能不好，虚拟机总是感觉卡卡的，也不愿重装linux系统~~windows还要用来打游戏呢~~，更没钱重新买一台linux的电脑~~vps也买不起，暑假没生活费好惨~~）...
 
 [指导教程](https://dockerdocs.cn/docker-for-windows/install/index.html)，下面记录一下我遇到的关键问题，以及大概流程
@@ -36,10 +36,10 @@ categories:
     - 前面都可行的话，这一步我没有遇到问题：
     - ![Docker安装成功的话](https://p.qlogo.cn/hy_personal/3e28f14aa0516842b97c6e325e363a68efb4c5a3656e44b80af71b1e13fb590a/0.pnghttps://p.qlogo.cn/hy_personal/3e28f14aa0516842b97c6e325e363a68efb4c5a3656e44b80af71b1e13fb590a/0.png)
 
-### Docker知识补充
+## Docker知识补充
 > docker的出现解决了软件开发部署过程中的环境一致性问题（docker的应用场景应该不止这些，但是笔者目前接触有限，仅从这方面谈一谈...）
 
-#### 为什么使用Docker ？
+### 为什么使用Docker ？
 软件的运行环境一般有两方面：
 - 操作系统内核（Kernel）提供
 - 各种运行库（Runtime Library）提供
@@ -66,7 +66,7 @@ Docker利用了linux的namespace隔离技术为基础，通过**共享Linux内�
 
 因此在CentOS上运行基于Ubuntu镜像的容器时, 容器使用了**CentOS主机的内核以及Ubuntu镜像**, Ubuntu镜像中安装了Ubuntu的各种软件。
 
-#### Docker 基本概念
+### Docker 基本概念
 Docker最重要的两个概念：镜像（Image）和容器（Container），其中Image是多层存储，每一层是在前一层的基础上进行的修改；而容器同样也是多层存储，是在以镜像为基础层，**在其基础上加一层作为容器运行时的存储层。**
 
 以nginx为例：
@@ -135,15 +135,15 @@ wordpress
 ```
 
 
-### 部署WordPress
+## 部署WordPress
 
 
-## 再遇 Nginx
+# 再遇 Nginx
 ![接着忙喽...](https://p.qlogo.cn/hy_personal/3e28f14aa051684246f1880463f96828d049fded43e92ff606ccb734c4897e66/0.png)
 
 学习半天docker，部署好之后，又被师兄发现一大堆问题，想要解决这些问题，就要使用另一个工具----nginx（~~之前为了解决跨域问题使用nginx做了反向代理，但还没有系统学习过...~~）
 
-### Nginx前置知识
+## Nginx前置知识
 上面提到在服务器部署项目时通常需要LNMP环境，也就是linux+nginx+mysql+php，有时是LAMP，也就是nginx->apache，这里的nginx和apache都是web server（也有区分，比如前者是web服务器，后者是应用服务器）
 
 ```text
@@ -152,14 +152,14 @@ nginx是web服务器，我们平时在各大厂商购买的vps也是服务器，
 vps（Vitural private server）其实就是一台电脑（各厂商基于虚拟化技术虚拟出来的电脑），而nginx可以看作在这台电脑上运行的服务，帮助我们实现网络连接，路径寻找和会话管理等功能，所以nginx才是真正意义上为客户端提供服务的设备（当然其提供的资源存储在vps上...）
 ```
 
-### Nginx 配置
+## Nginx 配置
 
 
 
 
 
 
-## 参考链接
+# 参考链接
 
 1. [windows开启Hyper-v服务失败](https://answers.microsoft.com/zh-hans/windows/forum/all/win10-%E5%BC%80%E5%90%AFhyper-v/238eeaa4-9fcc-432d-8d4b-4e83614f5f13)
 2. [Docker如何能在CentOS下运行Ubuntu容器](https://www.cnblogs.com/lxgbky/p/12973931.html)
