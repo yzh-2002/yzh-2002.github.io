@@ -31,9 +31,15 @@
 <meta property="og:image" content="https://p.qlogo.cn/hy_personal/3e28f14aa051684246f1880463f96828f61d88719a65cf83a94dceebe0877a6e/0.png">
 <meta property="og:image" content="https://p.qlogo.cn/hy_personal/3e28f14aa0516842b97c6e325e363a68efb4c5a3656e44b80af71b1e13fb590a/0.pnghttps://p.qlogo.cn/hy_personal/3e28f14aa0516842b97c6e325e363a68efb4c5a3656e44b80af71b1e13fb590a/0.png">
 <meta property="og:image" content="https://p.qlogo.cn/hy_personal/3e28f14aa051684281e9349d20d9f45552eba43a556e5f1dc37cce007d01abe7/0.png">
+<meta property="og:image" content="https://p.qlogo.cn/hy_personal/3e28f14aa05168428b211a36cb44028539af13ac0bb3d31fe6ae22f4d9b27120/0.png">
+<meta property="og:image" content="https://p.qlogo.cn/hy_personal/3e28f14aa05168428b211a36cb4402852092e5429ca85182a6d6bb9bd0ecf726/0.png">
+<meta property="og:image" content="https://p.qlogo.cn/hy_personal/3e28f14aa05168428b211a36cb4402852d89dca432dda835e532e642bc3cac35/0.png">
+<meta property="og:image" content="https://p.qlogo.cn/hy_personal/3e28f14aa05168428b211a36cb4402858fcdb44a4fc7421d41dcf9276826ff92/0.png">
+<meta property="og:image" content="https://p.qlogo.cn/hy_personal/3e28f14aa0516842533164f8e26a595961ea8e77e9502daad85cb5088470cb40/0.png">
+<meta property="og:image" content="https://p.qlogo.cn/hy_personal/3e28f14aa0516842533164f8e26a59599ef1540126622a98932a5d274f0e8dd5/0.png">
 <meta property="og:image" content="https://p.qlogo.cn/hy_personal/3e28f14aa051684246f1880463f96828d049fded43e92ff606ccb734c4897e66/0.png">
 <meta property="article:published_time" content="2022-08-17T08:42:36.000Z">
-<meta property="article:modified_time" content="2022-08-19T13:17:08.922Z">
+<meta property="article:modified_time" content="2022-08-20T05:29:26.253Z">
 <meta property="article:author" content="Yzh2002">
 <meta property="article:tag" content="docker">
 <meta property="article:tag" content="nginx">
@@ -199,7 +205,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-19 21:17:08" itemprop="dateModified" datetime="2022-08-19T21:17:08+08:00">2022-08-19</time>
+                <time title="修改时间：2022-08-20 13:29:26" itemprop="dateModified" datetime="2022-08-20T13:29:26+08:00">2022-08-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -315,21 +321,60 @@
 <p>volumes由docker创建，非Docker应用程序不能改动这一位置的数据。</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">docker volume create XXXX</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建一个名为XXXX的数据卷，存储在宿主机的/var/lib/docker/volumes目录下</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将该数据卷挂载到某一容器的相应目录</span></span><br><span class="line">docker run -d -P \</span><br><span class="line">--name VolumeTest1 \</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-v XXXX:/usr/share/nginx/index.html \</span></span><br><span class="line"><span class="language-bash">--mount <span class="built_in">source</span>=XXX,target=/usr/share/nginx/index.html \</span></span><br><span class="line"><span class="language-bash">nginx</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <p>volumes就是宿主机的某个文件夹（或者新建的文件夹），手动挂载</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -P \</span><br><span class="line">--name VolumeTest2 \</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-v /src/webapp:/usr/share/nginx/html \</span></span><br><span class="line"><span class="language-bash">--mount <span class="built_in">type</span>=<span class="built_in">bind</span>,<span class="built_in">source</span>=/src/webapp,target=/usr/share、nginx/html \</span></span><br><span class="line"><span class="language-bash">nginx</span></span><br></pre></td></tr></table></figure>
-<hr>
-<blockquote>
-<p>自己尝试部署WordPress时，容器互联还在使用<code>--link</code>命令，师兄提醒我这已经过时了，于是就学习了通过自定义的docker网络来连接多个容器….</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -P \</span><br><span class="line">--name VolumeTest2 \</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-v /src/webapp:/usr/share/nginx/html \</span></span><br><span class="line"><span class="language-bash">--mount <span class="built_in">type</span>=<span class="built_in">bind</span>,<span class="built_in">source</span>=/src/webapp,target=/usr/share/nginx/html \</span></span><br><span class="line"><span class="language-bash">nginx</span></span><br></pre></td></tr></table></figure>
+<h3 id="Docker-容器网络"><a href="#Docker-容器网络" class="headerlink" title="Docker 容器网络"></a>Docker 容器网络</h3><blockquote>
+<p>自己尝试部署WordPress时，容器互联还在使用<code>--link</code>命令，师兄提醒我这已经过时了，于是就学习了通过docker的容器网络来连接多个容器….</p>
 </blockquote>
-<p>先说一下传统的通过<code>--link</code>连接的方式：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动mysql容器</span></span><br><span class="line">docker run --name mysqlTest -d mysql</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">启动wordpress并连接mysql容器</span></span><br><span class="line">docker run --name wordpressTest \</span><br><span class="line">--link mysqlTest:mysql \</span><br><span class="line">-d </span><br><span class="line">wordpress</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">怎么确定建立连接了呢？</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-<h2 id="部署WordPress"><a href="#部署WordPress" class="headerlink" title="部署WordPress"></a>部署WordPress</h2><h1 id="再遇-Nginx"><a href="#再遇-Nginx" class="headerlink" title="再遇 Nginx"></a>再遇 Nginx</h1><p><img src="https://p.qlogo.cn/hy_personal/3e28f14aa051684246f1880463f96828d049fded43e92ff606ccb734c4897e66/0.png" alt="接着忙喽..."></p>
+<p>Docker是通过Docker Network来实现容器之间互相访问的，它是一个虚拟网，可以通过bridge组建或overlay实现，通过<code>docker network ls</code>可以查看宿主机当前运行的docker网络<br><img src="https://p.qlogo.cn/hy_personal/3e28f14aa05168428b211a36cb44028539af13ac0bb3d31fe6ae22f4d9b27120/0.png" alt="docker network"></p>
+<p>如图所示，有三大网络模式，分别是bridge，host和none，除此之外还有一个自定义的网络wp，下面主要介绍一下bridge模式（默认模式）</p>
+<p>在宿主机上执行<code>ip address</code><br><img src="https://p.qlogo.cn/hy_personal/3e28f14aa05168428b211a36cb4402852092e5429ca85182a6d6bb9bd0ecf726/0.png" alt="ip address"></p>
+<p>可以看到docker0的网络，默认通过该网络实现宿主机与docker容器之间的网络通信，结构图如下：<br><img src="https://p.qlogo.cn/hy_personal/3e28f14aa05168428b211a36cb4402852d89dca432dda835e532e642bc3cac35/0.png" alt="Docker Network结构图"></p>
+<p>进入nginx容器，查看hosts文件，可以看到该服务的内网IP，在宿主机上测试，可以通信<br><img src="https://p.qlogo.cn/hy_personal/3e28f14aa05168428b211a36cb4402858fcdb44a4fc7421d41dcf9276826ff92/0.png" alt="ping"></p>
+<p>但是值得注意的是，<strong>宿主机的网络上一个名为<code>br-66d0daa...</code>的网络</strong>，是我们自定义的bridge类型的网络，我们在宿主机上运行的docker服务会连接到该网桥上，看上图下面的几个veth对也可看出…</p>
+<hr>
+<p>下面讲一下docker 容器之间的通信，从上面的结构图可知，容器之间可以通过docker0这个网桥进行通信，但是只能通过IP进行通信，不能通过服务名称进行通信，docker容器的IP是动态分配的，如果一个容器重新启动可能就会分配不同的ip，那么就很有可能出现问题…</p>
+<p>如何解决这个问题呢？</p>
+<ol>
+<li>通过 –link指定<ul>
+<li>不推荐使用，<a target="_blank" rel="noopener" href="https://dockerdocs.cn/network/links/">原因</a></li>
+</ul>
+</li>
+<li>修改容器内<code>/etc/hosts</code>文件<ul>
+<li>不推荐使用，<a target="_blank" rel="noopener" href="https://www.cnblogs.com/YatHo/p/7866018.html">原因</a></li>
+</ul>
+</li>
+<li>使用用户自定义网桥（而不是docker0）<ul>
+<li>Docker文档目前也支持这种方式实现容器互联</li>
+</ul>
+</li>
+</ol>
+<p>相关网桥写文章之前已经搭建完毕，这里查看一下其信息：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker network inspect wp #wp为自定义网桥名称</span><br></pre></td></tr></table></figure>
+<p><img src="https://p.qlogo.cn/hy_personal/3e28f14aa0516842533164f8e26a595961ea8e77e9502daad85cb5088470cb40/0.png" alt="docker containers IP"></p>
+<p>进入wordpress容器测试能否ping通nginx：<br><img src="https://p.qlogo.cn/hy_personal/3e28f14aa0516842533164f8e26a59599ef1540126622a98932a5d274f0e8dd5/0.png"></p>
+<h2 id="部署WordPress"><a href="#部署WordPress" class="headerlink" title="部署WordPress"></a>部署WordPress</h2><blockquote>
+<p>上面补充的docker知识已经足够完成搭建任务了，下面给出部署过程</p>
+</blockquote>
+<ol>
+<li>拉取镜像</li>
+</ol>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker pull wordpress</span><br><span class="line">docker pull mysql</span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>创建自定义网桥<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker network create -d bridge wp</span><br></pre></td></tr></table></figure></li>
+<li>启动wordpress容器<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker run --name wordpress \</span><br><span class="line">--network wp \ #连接到自定义网桥</span><br><span class="line">--mount source=&quot;$PWD/wordpress&quot;,target=/var/www/html \</span><br><span class="line">-e WORDPRESS_DB_PASSWORD=XXXX \</span><br><span class="line">-p 8080:80 \</span><br><span class="line">-d \</span><br><span class="line">wordpress</span><br></pre></td></tr></table></figure></li>
+<li>启动mysql容器<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker run --name mysql \</span><br><span class="line">--network wp \</span><br><span class="line">--mount source=&quot;$PWD/mysql&quot;,target=&quot;/var/lib/mysql&quot; \</span><br><span class="line">-e MYSQL_DATABASE=wordpressDB \</span><br><span class="line">-e MYSQL_ROOT_PASSWORD=XXXX \</span><br><span class="line">-p 3306:3306 \</span><br><span class="line">-d \</span><br><span class="line">mysql</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>至此访问<code>[ip]:[port]</code>即可进入wordpress安装设置页…</p>
+<h1 id="再遇-Nginx"><a href="#再遇-Nginx" class="headerlink" title="再遇 Nginx"></a>再遇 Nginx</h1><p><img src="https://p.qlogo.cn/hy_personal/3e28f14aa051684246f1880463f96828d049fded43e92ff606ccb734c4897e66/0.png" alt="接着忙喽..."></p>
 <p>学习半天docker，部署好之后，又被师兄发现一大堆问题，想要解决这些问题，就要使用另一个工具—-nginx（<del>之前为了解决跨域问题使用nginx做了反向代理，但还没有系统学习过…</del>）</p>
 <h2 id="Nginx前置知识"><a href="#Nginx前置知识" class="headerlink" title="Nginx前置知识"></a>Nginx前置知识</h2><p>上面提到在服务器部署项目时通常需要LNMP环境，也就是linux+nginx+mysql+php，有时是LAMP，也就是nginx-&gt;apache，这里的nginx和apache都是web server（也有区分，比如前者是web服务器，后者是应用服务器）</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">nginx是web服务器，我们平时在各大厂商购买的vps也是服务器，这两个服务器有什么区别呢？（下面说一下个人理解）</span><br><span class="line"></span><br><span class="line">vps（Vitural private server）其实就是一台电脑（各厂商基于虚拟化技术虚拟出来的电脑），而nginx可以看作在这台电脑上运行的服务，帮助我们实现网络连接，路径寻找和会话管理等功能，所以nginx才是真正意义上为客户端提供服务的设备（当然其提供的资源存储在vps上...）</span><br></pre></td></tr></table></figure>
-
-<h2 id="Nginx-配置"><a href="#Nginx-配置" class="headerlink" title="Nginx 配置"></a>Nginx 配置</h2><h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ol>
+<blockquote>
+<p>nginx是web服务器，我们平时在各大厂商购买的vps也是服务器，这两个服务器有什么区别呢？（下面说一下个人理解）</p>
+</blockquote>
+<p>vps（Vitural private server）其实就是一台电脑（各厂商基于虚拟化技术虚拟出来的电脑），而nginx可以看作在这台电脑上运行的服务，帮助我们实现网络连接，路径寻找和会话管理等功能，所以nginx才是真正意义上为客户端提供服务的设备（当然其提供的资源存储在vps上…）</p>
+<h2 id="Nginx-配置"><a href="#Nginx-配置" class="headerlink" title="Nginx 配置"></a>Nginx 配置</h2><blockquote>
+</blockquote>
+<h2 id="Nginx-配置脚本"><a href="#Nginx-配置脚本" class="headerlink" title="Nginx 配置脚本"></a>Nginx 配置脚本</h2><h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ol>
 <li><a target="_blank" rel="noopener" href="https://answers.microsoft.com/zh-hans/windows/forum/all/win10-%E5%BC%80%E5%90%AFhyper-v/238eeaa4-9fcc-432d-8d4b-4e83614f5f13">windows开启Hyper-v服务失败</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lxgbky/p/12973931.html">Docker如何能在CentOS下运行Ubuntu容器</a></li>
 <li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/392508816">docker容器技术基础之联合文件系统OverlayFS</a></li>
@@ -419,7 +464,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9D%E9%81%87-Docker"><span class="nav-number">1.</span> <span class="nav-text">初遇 Docker</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows%E4%B8%8B%E4%BD%BF%E7%94%A8Docker"><span class="nav-number">1.1.</span> <span class="nav-text">Windows下使用Docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85"><span class="nav-number">1.2.</span> <span class="nav-text">Docker知识补充</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8Docker-%EF%BC%9F"><span class="nav-number">1.2.1.</span> <span class="nav-text">为什么使用Docker ？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.2.2.</span> <span class="nav-text">Docker 基本概念</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2WordPress"><span class="nav-number">1.3.</span> <span class="nav-text">部署WordPress</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%8D%E9%81%87-Nginx"><span class="nav-number">2.</span> <span class="nav-text">再遇 Nginx</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="nav-number">2.1.</span> <span class="nav-text">Nginx前置知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx-%E9%85%8D%E7%BD%AE"><span class="nav-number">2.2.</span> <span class="nav-text">Nginx 配置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">3.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9D%E9%81%87-Docker"><span class="nav-number">1.</span> <span class="nav-text">初遇 Docker</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows%E4%B8%8B%E4%BD%BF%E7%94%A8Docker"><span class="nav-number">1.1.</span> <span class="nav-text">Windows下使用Docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85"><span class="nav-number">1.2.</span> <span class="nav-text">Docker知识补充</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8Docker-%EF%BC%9F"><span class="nav-number">1.2.1.</span> <span class="nav-text">为什么使用Docker ？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.2.2.</span> <span class="nav-text">Docker 基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker-%E5%AE%B9%E5%99%A8%E7%BD%91%E7%BB%9C"><span class="nav-number">1.2.3.</span> <span class="nav-text">Docker 容器网络</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2WordPress"><span class="nav-number">1.3.</span> <span class="nav-text">部署WordPress</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%8D%E9%81%87-Nginx"><span class="nav-number">2.</span> <span class="nav-text">再遇 Nginx</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="nav-number">2.1.</span> <span class="nav-text">Nginx前置知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx-%E9%85%8D%E7%BD%AE"><span class="nav-number">2.2.</span> <span class="nav-text">Nginx 配置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx-%E9%85%8D%E7%BD%AE%E8%84%9A%E6%9C%AC"><span class="nav-number">2.3.</span> <span class="nav-text">Nginx 配置脚本</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">3.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
