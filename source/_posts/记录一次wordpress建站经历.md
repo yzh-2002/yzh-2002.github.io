@@ -212,10 +212,101 @@ mysql
 vps（Vitural private server）其实就是一台电脑（各厂商基于虚拟化技术虚拟出来的电脑），而nginx可以看作在这台电脑上运行的服务，帮助我们实现网络连接，路径寻找和会话管理等功能，所以nginx才是真正意义上为客户端提供服务的设备（当然其提供的资源存储在vps上...）
 
 ## Nginx 配置
-> 
+> Nginx的配置是按照配置块来组织的，最外一层是mainn控制块，它是一个全局配置的区域，main配置块内有events(配置工作模式...)和http配置块，http内又有upstream(配置负载均衡)和server（配置虚拟主机...）配置块，server里面有location(URL匹配块...)等配置块...
 
+下面主要讲一下http模块的配置：
+
+### Server配置快
+> server 配置块是用来配置虚拟主机的信息的，可以在这里配置虚拟主机监听的端口，域名，URL 重定向等。
+
+```nginx
+server {
+    listen 8080;
+    server_name localhost 192.168.12.10 www.nginx.learning.com;
+    root /var/www;
+    index index.php index.html;
+    charset utf-8;
+    access_log  usr/local/var/log/host.access.log  main;
+    error_log  usr/local/var/log/host.error.log  error;
+}
+```
+
+1. listen:设置虚拟主机监听的端口
+2. server_name:设置虚拟主机的域名，中间使用空格隔开
+3. root:设置虚拟主机目录
+4. index:访问路径无指定文件时默认访问文件
+5. charset:指定特定的字符集到响应头部"Content-Type" 首部。
+
+### locatiion配置块
+> 针对指定的URL进行配置
+```nginx
+server {
+    location / {
+        root   /var/www/;
+        index  index.php index.html index.htm;
+    }
+}
+```
+
+root和index的含义同server配置块，两者的区别在于location仅对其匹配的URL起效，server对所有URL起效。
 
 ## Nginx 配置脚本
+> 下面给出配置脚本并进行相关说明
+
+```nginx
+server {
+    #监听443端口
+    listen 443 ssl;
+    #对应的域名
+    server_name synx.tech www.synx.tech;
+    # 配置ssl证书
+    ssl_certificate /etc/sslcert/synx.tech.pem;
+    ssl_certificate_key /etc/sslcert/synx.tech.key;
+    ssl_session_timeout 5m;
+    ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+    ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;
+    ssl_prefer_server_ciphers on;
+    
+    #反向代理：访问synx.tech =>访问wordpress:80 
+    location / {
+	  proxy_set_header Host $host;
+	  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_pass http://wordpress:80;
+   }
+}
+
+# 通过80端口访问时相关设置
+server{ 
+   listen 80;
+   server_name synx.tech www.synx.tech;
+   #把http的域名请求转成https
+   rewrite ^(.*)$ https://$host$1; 
+   #将所有HTTP请求通过rewrite指令重定向到HTTPS。
+
+   location / {
+      proxy_set_header Host $host;
+	  proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      proxy_pass http://wordpress:80;
+   }
+}
+
+# 通过ip地址访问时直接返回444错误
+server {
+    listen      80 default_server;
+    listen      [::]:80 default_server;
+    server_name "";
+    return      444;
+}
+
+server {
+    listen      443 default_server;
+    listen      [::]:443 default_server;
+    server_name "";
+    return      444;
+    ssl_certificate /etc/sslcert/synx.tech.pem;
+    ssl_certificate_key /etc/sslcert/synx.tech.key;
+}
+```
 
 
 # 参考链接
@@ -224,5 +315,5 @@ vps（Vitural private server）其实就是一台电脑（各厂商基于虚拟�
 2. [Docker如何能在CentOS下运行Ubuntu容器](https://www.cnblogs.com/lxgbky/p/12973931.html)
 3. [docker容器技术基础之联合文件系统OverlayFS](https://zhuanlan.zhihu.com/p/392508816)
 4. [docker之容器互联的作用](https://blog.csdn.net/vchy_zhao/article/details/70239605)
-5. []()
+5. [Nginx入门指南](https://juejin.cn/post/6844904129987526663)
 
