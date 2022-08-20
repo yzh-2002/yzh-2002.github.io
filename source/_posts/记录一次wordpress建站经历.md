@@ -115,28 +115,88 @@ volumes就是宿主机的某个文件夹（或者新建的文件夹），手动�
 docker run -d -P \
 --name VolumeTest2 \
 # -v /src/webapp:/usr/share/nginx/html \
---mount type=bind,source=/src/webapp,target=/usr/share、nginx/html \
+--mount type=bind,source=/src/webapp,target=/usr/share/nginx/html \
 nginx
 ```
+### Docker 容器网络
+> 自己尝试部署WordPress时，容器互联还在使用`--link`命令，师兄提醒我这已经过时了，于是就学习了通过docker的容器网络来连接多个容器....
+
+Docker是通过Docker Network来实现容器之间互相访问的，它是一个虚拟网，可以通过bridge组建或overlay实现，通过`docker network ls`可以查看宿主机当前运行的docker网络
+![docker network](https://p.qlogo.cn/hy_personal/3e28f14aa05168428b211a36cb44028539af13ac0bb3d31fe6ae22f4d9b27120/0.png)
+
+如图所示，有三大网络模式，分别是bridge，host和none，除此之外还有一个自定义的网络wp，下面主要介绍一下bridge模式（默认模式）
+
+在宿主机上执行`ip address`
+![ip address](https://p.qlogo.cn/hy_personal/3e28f14aa05168428b211a36cb4402852092e5429ca85182a6d6bb9bd0ecf726/0.png)
+
+可以看到docker0的网络，默认通过该网络实现宿主机与docker容器之间的网络通信，结构图如下：
+![Docker Network结构图](https://p.qlogo.cn/hy_personal/3e28f14aa05168428b211a36cb4402852d89dca432dda835e532e642bc3cac35/0.png)
+
+
+进入nginx容器，查看hosts文件，可以看到该服务的内网IP，在宿主机上测试，可以通信
+![ping](https://p.qlogo.cn/hy_personal/3e28f14aa05168428b211a36cb4402858fcdb44a4fc7421d41dcf9276826ff92/0.png)
+
+但是值得注意的是，**宿主机的网络上一个名为`br-66d0daa...`的网络**，是我们自定义的bridge类型的网络，我们在宿主机上运行的docker服务会连接到该网桥上，看上图下面的几个veth对也可看出...
+
 ---
-> 自己尝试部署WordPress时，容器互联还在使用`--link`命令，师兄提醒我这已经过时了，于是就学习了通过自定义的docker网络来连接多个容器....
+下面讲一下docker 容器之间的通信，从上面的结构图可知，容器之间可以通过docker0这个网桥进行通信，但是只能通过IP进行通信，不能通过服务名称进行通信，docker容器的IP是动态分配的，如果一个容器重新启动可能就会分配不同的ip，那么就很有可能出现问题...
 
-先说一下传统的通过`--link`连接的方式：
+如何解决这个问题呢？
+
+1. 通过 --link指定
+    - 不推荐使用，[原因](https://dockerdocs.cn/network/links/)
+2. 修改容器内`/etc/hosts`文件
+    - 不推荐使用，[原因](https://www.cnblogs.com/YatHo/p/7866018.html)
+3. 使用用户自定义网桥（而不是docker0）
+    - Docker文档目前也支持这种方式实现容器互联
+ 
+相关网桥写文章之前已经搭建完毕，这里查看一下其信息：
+
 ```shell
-# 启动mysql容器
-docker run --name mysqlTest -d mysql
-# 启动wordpress并连接mysql容器
-docker run --name wordpressTest \
---link mysqlTest:mysql \
--d 
-wordpress
-# 怎么确定建立连接了呢？
-
+docker network inspect wp #wp为自定义网桥名称
 ```
+![docker containers IP](https://p.qlogo.cn/hy_personal/3e28f14aa0516842533164f8e26a595961ea8e77e9502daad85cb5088470cb40/0.png)
+
+进入wordpress容器测试能否ping通nginx：
+![](https://p.qlogo.cn/hy_personal/3e28f14aa0516842533164f8e26a59599ef1540126622a98932a5d274f0e8dd5/0.png)
 
 
 ## 部署WordPress
+> 上面补充的docker知识已经足够完成搭建任务了，下面给出部署过程
 
+1. 拉取镜像
+
+```shell
+docker pull wordpress
+docker pull mysql
+```
+2. 创建自定义网桥
+```shell
+docker network create -d bridge wp
+```
+3. 启动wordpress容器
+```shell
+docker run --name wordpress \
+--network wp \ #连接到自定义网桥
+--mount source="$PWD/wordpress",target=/var/www/html \
+-e WORDPRESS_DB_PASSWORD=XXXX \
+-p 8080:80 \
+-d \
+wordpress
+```
+4. 启动mysql容器
+```shell
+docker run --name mysql \
+--network wp \
+--mount source="$PWD/mysql",target="/var/lib/mysql" \
+-e MYSQL_DATABASE=wordpressDB \
+-e MYSQL_ROOT_PASSWORD=XXXX \
+-p 3306:3306 \
+-d \
+mysql
+```
+
+至此访问`[ip]:[port]`即可进入wordpress安装设置页...
 
 # 再遇 Nginx
 ![接着忙喽...](https://p.qlogo.cn/hy_personal/3e28f14aa051684246f1880463f96828d049fded43e92ff606ccb734c4897e66/0.png)
@@ -146,17 +206,16 @@ wordpress
 ## Nginx前置知识
 上面提到在服务器部署项目时通常需要LNMP环境，也就是linux+nginx+mysql+php，有时是LAMP，也就是nginx->apache，这里的nginx和apache都是web server（也有区分，比如前者是web服务器，后者是应用服务器）
 
-```text
-nginx是web服务器，我们平时在各大厂商购买的vps也是服务器，这两个服务器有什么区别呢？（下面说一下个人理解）
+
+> nginx是web服务器，我们平时在各大厂商购买的vps也是服务器，这两个服务器有什么区别呢？（下面说一下个人理解）
 
 vps（Vitural private server）其实就是一台电脑（各厂商基于虚拟化技术虚拟出来的电脑），而nginx可以看作在这台电脑上运行的服务，帮助我们实现网络连接，路径寻找和会话管理等功能，所以nginx才是真正意义上为客户端提供服务的设备（当然其提供的资源存储在vps上...）
-```
 
 ## Nginx 配置
+> 
 
 
-
-
+## Nginx 配置脚本
 
 
 # 参考链接
