@@ -195,9 +195,9 @@ docker run --name mysql \
 -d \
 mysql
 ```
-
 至此访问`[ip]:[port]`即可进入wordpress安装设置页...
 
+> 补充一下：可能会有人困惑于建立数据卷及映射时容器内目录怎么来的(~~没错是本人~~)？询问师兄后得到回复：去docker hub的相应镜像仓库下面看文档....
 # 再遇 Nginx
 ![接着忙喽...](https://p.qlogo.cn/hy_personal/3e28f14aa051684246f1880463f96828d049fded43e92ff606ccb734c4897e66/0.png)
 

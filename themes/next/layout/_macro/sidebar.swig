@@ -43,8 +43,11 @@
           <span>0%</span>
         </div>
       {%- endif %}
+      
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="//music.163.com/outchain/player?type=0&id=5250295093&auto=1&height=90"></iframe>
 
     </div>
   </aside>
   <div id="sidebar-dimmer"></div>
 {% endmacro %}
+
