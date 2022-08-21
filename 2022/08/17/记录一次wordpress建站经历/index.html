@@ -20,12 +20,12 @@
     var CONFIG = {"hostname":"yzh-2002.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":300,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="又是新学期，为了便于工作室招新决定临时搭建招新网站，本来是想手撸的，但是8月上旬开发组都有私事给耽搁了，下旬又有其他事情，遂决定基于wordpress搭建个网站先用着，折腾了两天，也接触了许多之前不知道的知识，特此记录（每水一篇博客都能带来极大的满足）….">
+  <meta name="description" content="又是新学期，为了便于工作室招新决定临时搭建招新网站，本来是想手撸的，但是8月上旬开发组都有私事给耽搁了，下旬又有其他事情，遂决定基于wordpress搭建个网站先用着，折腾了两天，也接触了许多之前不知道的知识，特此记录（每水一篇博客都能带来极大的满足）....">
 <meta property="og:type" content="article">
 <meta property="og:title" content="记录一次wordpress建站经历">
 <meta property="og:url" content="https://yzh-2002.github.io/2022/08/17/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1wordpress%E5%BB%BA%E7%AB%99%E7%BB%8F%E5%8E%86/index.html">
 <meta property="og:site_name" content="Yzh2002&#39;s Blog">
-<meta property="og:description" content="又是新学期，为了便于工作室招新决定临时搭建招新网站，本来是想手撸的，但是8月上旬开发组都有私事给耽搁了，下旬又有其他事情，遂决定基于wordpress搭建个网站先用着，折腾了两天，也接触了许多之前不知道的知识，特此记录（每水一篇博客都能带来极大的满足）….">
+<meta property="og:description" content="又是新学期，为了便于工作室招新决定临时搭建招新网站，本来是想手撸的，但是8月上旬开发组都有私事给耽搁了，下旬又有其他事情，遂决定基于wordpress搭建个网站先用着，折腾了两天，也接触了许多之前不知道的知识，特此记录（每水一篇博客都能带来极大的满足）....">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://p.qlogo.cn/hy_personal/3e28f14aa051684246f1880463f96828ede812c43ca3df848ad3ff84f9b337d9/0.png">
 <meta property="og:image" content="https://p.qlogo.cn/hy_personal/3e28f14aa051684246f1880463f96828f61d88719a65cf83a94dceebe0877a6e/0.png">
@@ -39,7 +39,7 @@
 <meta property="og:image" content="https://p.qlogo.cn/hy_personal/3e28f14aa0516842533164f8e26a59599ef1540126622a98932a5d274f0e8dd5/0.png">
 <meta property="og:image" content="https://p.qlogo.cn/hy_personal/3e28f14aa051684246f1880463f96828d049fded43e92ff606ccb734c4897e66/0.png">
 <meta property="article:published_time" content="2022-08-17T08:42:36.000Z">
-<meta property="article:modified_time" content="2022-08-21T08:58:43.973Z">
+<meta property="article:modified_time" content="2022-08-21T12:29:43.326Z">
 <meta property="article:author" content="Yzh2002">
 <meta property="article:tag" content="docker">
 <meta property="article:tag" content="nginx">
@@ -205,7 +205,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-21 16:58:43" itemprop="dateModified" datetime="2022-08-21T16:58:43+08:00">2022-08-21</time>
+                <time title="修改时间：2022-08-21 20:29:43" itemprop="dateModified" datetime="2022-08-21T20:29:43+08:00">2022-08-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -242,168 +242,159 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p>又是新学期，为了便于工作室招新决定临时搭建招新网站，本来是想手撸的，但是8月上旬开发组都有私事给耽搁了，下旬又有其他事情，遂决定基于wordpress搭建个网站先用着，折腾了两天，也接触了许多之前不知道的知识，特此记录（<del>每水一篇博客都能带来极大的满足</del>）….</p>
-<span id="more"></span>
-
-<h1 id="初遇-Docker"><a href="#初遇-Docker" class="headerlink" title="初遇 Docker"></a>初遇 Docker</h1><p><img src="https://p.qlogo.cn/hy_personal/3e28f14aa051684246f1880463f96828ede812c43ca3df848ad3ff84f9b337d9/0.png" alt="为什么用docker？？"></p>
+        <p>又是新学期，为了便于工作室招新决定临时搭建招新网站，本来是想手撸的，但是8月上旬开发组都有私事给耽搁了，下旬又有其他事情，遂决定基于wordpress搭建个网站先用着，折腾了两天，也接触了许多之前不知道的知识，特此记录（<del>每水一篇博客都能带来极大的满足</del>）.... <span id="more"></span></p>
+<h1 id="初遇-docker">初遇 Docker</h1>
+<figure>
+<img src="https://p.qlogo.cn/hy_personal/3e28f14aa051684246f1880463f96828ede812c43ca3df848ad3ff84f9b337d9/0.png" alt="为什么用docker？？" /><figcaption aria-hidden="true">为什么用docker？？</figcaption>
+</figure>
 <p>上一篇博客提过，21年暑假搭建个人博客时，由于对linux不熟悉，所以就使用宝塔面板一键安装LNMP环境，有一说一，确实好用，对于小白特别友好。</p>
 <p>但一方面师兄说宝塔风评不好（<del>虽然也没指出到底哪不好</del>），另一方面想着作为科班学生，还是要乐于学习新事物（<del>对我来说</del>），乐于折腾新东西的，于是就尝试采用docker部署</p>
-<h2 id="Windows下使用Docker"><a href="#Windows下使用Docker" class="headerlink" title="Windows下使用Docker"></a>Windows下使用Docker</h2><blockquote>
-<p>为了便于更好的探索docker，所以想在本机上用一用（电脑性能不好，虚拟机总是感觉卡卡的，也不愿重装linux系统<del>windows还要用来打游戏呢</del>，更没钱重新买一台linux的电脑<del>vps也买不起，暑假没生活费好惨</del>）…</p>
+<h2 id="windows下使用docker">Windows下使用Docker</h2>
+<blockquote>
+<p>为了便于更好的探索docker，所以想在本机上用一用（电脑性能不好，虚拟机总是感觉卡卡的，也不愿重装linux系统<del>windows还要用来打游戏呢</del>，更没钱重新买一台linux的电脑<del>vps也买不起，暑假没生活费好惨</del>）...</p>
 </blockquote>
 <p><a target="_blank" rel="noopener" href="https://dockerdocs.cn/docker-for-windows/install/index.html">指导教程</a>，下面记录一下我遇到的关键问题，以及大概流程</p>
 <ul>
-<li>windows系统需升级到专业版（一般来说都是家庭版的，升级之后需要重新激活….）</li>
-<li>开启Hyper-v服务（前提是升级到windows专业版）<ul>
+<li>windows系统需升级到专业版（一般来说都是家庭版的，升级之后需要重新激活....）</li>
+<li>开启Hyper-v服务（前提是升级到windows专业版）
+<ul>
 <li>这里遇到一个困扰我近半个小时的问题：开启该服务重启电脑总是在最后提示<em>无法实现相关功能，正在撤销更新</em></li>
 <li>解决办法：<a target="_blank" rel="noopener" href="https://www.microsoft.com/en-us/software-download/windows10">修复windows10</a>（过程大概需要2~3小时）</li>
-</ul>
-</li>
-<li>安装wsl2<ul>
+</ul></li>
+<li>安装wsl2
+<ul>
 <li><a target="_blank" rel="noopener" href="https://docs.microsoft.com/zh-cn/windows/wsl/install">安装过程</a></li>
 <li>验证是否安装成功：</li>
-<li><img src="https://p.qlogo.cn/hy_personal/3e28f14aa051684246f1880463f96828f61d88719a65cf83a94dceebe0877a6e/0.png" alt="wsl2是否安装成功"></li>
-</ul>
-</li>
-<li>安装Docker Desktop<ul>
-<li>前面都可行的话，这一步我没有遇到问题：</li>
-<li><img src="https://p.qlogo.cn/hy_personal/3e28f14aa0516842b97c6e325e363a68efb4c5a3656e44b80af71b1e13fb590a/0.pnghttps://p.qlogo.cn/hy_personal/3e28f14aa0516842b97c6e325e363a68efb4c5a3656e44b80af71b1e13fb590a/0.png" alt="Docker安装成功的话"></li>
-</ul>
-</li>
-</ul>
-<h2 id="Docker知识补充"><a href="#Docker知识补充" class="headerlink" title="Docker知识补充"></a>Docker知识补充</h2><blockquote>
-<p>docker的出现解决了软件开发部署过程中的环境一致性问题（docker的应用场景应该不止这些，但是笔者目前接触有限，仅从这方面谈一谈…）</p>
-</blockquote>
-<h3 id="为什么使用Docker-？"><a href="#为什么使用Docker-？" class="headerlink" title="为什么使用Docker ？"></a>为什么使用Docker ？</h3><p>软件的运行环境一般有两方面：</p>
+<li><img src="https://p.qlogo.cn/hy_personal/3e28f14aa051684246f1880463f96828f61d88719a65cf83a94dceebe0877a6e/0.png" title="fig:" alt="wsl2是否安装成功" /></li>
+</ul></li>
+<li>安装Docker Desktop
 <ul>
-<li>操作系统内核（Kernel）提供</li>
-<li>各种运行库（Runtime Library）提供<ul>
-<li>关于运行库，不同于前端开发时的各种第三方依赖包（比如：npm包，通过package-lock.json就能很好的统一管理），而是指nodejs等软件中脚本的运行时…</li>
+<li>前面都可行的话，这一步我没有遇到问题：</li>
+<li><img src="https://p.qlogo.cn/hy_personal/3e28f14aa0516842b97c6e325e363a68efb4c5a3656e44b80af71b1e13fb590a/0.pnghttps://p.qlogo.cn/hy_personal/3e28f14aa0516842b97c6e325e363a68efb4c5a3656e44b80af71b1e13fb590a/0.png" title="fig:" alt="Docker安装成功的话" /></li>
+</ul></li>
 </ul>
-</li>
-</ul>
+<h2 id="docker知识补充">Docker知识补充</h2>
+<blockquote>
+<p>docker的出现解决了软件开发部署过程中的环境一致性问题（docker的应用场景应该不止这些，但是笔者目前接触有限，仅从这方面谈一谈...）</p>
+</blockquote>
+<h3 id="为什么使用docker">为什么使用Docker ？</h3>
+<p>软件的运行环境一般有两方面： - 操作系统内核（Kernel）提供 - 各种运行库（Runtime Library）提供 - 关于运行库，不同于前端开发时的各种第三方依赖包（比如：npm包，通过package-lock.json就能很好的统一管理），而是指nodejs等软件中脚本的运行时...</p>
 <p>下面举几个例子进而说明docker的作用：</p>
-<ol>
-<li>软件开发时的系统是Ubuntu，但是生产环境的系统是CentOS，那么部署就可能出问题？（比如某个在Ubuntu运行正常的数据库在CentOS上运行报错）…</li>
-<li>php开发的网站与java开发的网站依赖环境不同，将其部署于一个服务器上可能会造成冲突（比如两者使用的web server分别是IIS和Apache，那么就可能存在端口访问冲突）…</li>
+<ol type="1">
+<li>软件开发时的系统是Ubuntu，但是生产环境的系统是CentOS，那么部署就可能出问题？（比如某个在Ubuntu运行正常的数据库在CentOS上运行报错）...</li>
+<li>php开发的网站与java开发的网站依赖环境不同，将其部署于一个服务器上可能会造成冲突（比如两者使用的web server分别是IIS和Apache，那么就可能存在端口访问冲突）...</li>
 </ol>
 <p>Docker是通过怎样的手段解决了上述问题呢？？</p>
 <p>Docker利用了linux的namespace隔离技术为基础，通过<strong>共享Linux内核</strong>实现的</p>
 <blockquote>
-<p>插一句题外话：linux和windows系统既支持X86，也支持ARM（当然不同架构下内核代码肯定有区别），而X86和ARM是CPU设计的不同 <del>操作系统该复习了…</del></p>
+<p>插一句题外话：linux和windows系统既支持X86，也支持ARM（当然不同架构下内核代码肯定有区别），而X86和ARM是CPU设计的不同 <del>操作系统该复习了...</del></p>
 </blockquote>
-<p>无论是Ubuntu还是CentOS，都使用linux内核，区别仅在于添加了不同的工具软件（GUI，函数库，软件包管理工具(yum/apt-get)等…）,Docker技术主要使用了两个内核模块：</p>
-<ol>
-<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Linux_namespaces">namespace</a><ul>
+<p>无论是Ubuntu还是CentOS，都使用linux内核，区别仅在于添加了不同的工具软件（GUI，函数库，软件包管理工具(yum/apt-get)等...）,Docker技术主要使用了两个内核模块：</p>
+<ol type="1">
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Linux_namespaces">namespace</a>
+<ul>
 <li>容器隔离：PID Namespace使得容器中的进程无法感知宿主机以及其他容器中的进程。</li>
-</ul>
-</li>
-<li><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-cn/Cgroups">Cgroups</a><ul>
+</ul></li>
+<li><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/zh-cn/Cgroups">Cgroups</a>
+<ul>
 <li>容器资源控制：限制容器所使用的内存大小或者CPU个数</li>
-</ul>
-</li>
+</ul></li>
 </ol>
 <p>因此在CentOS上运行基于Ubuntu镜像的容器时, 容器使用了<strong>CentOS主机的内核以及Ubuntu镜像</strong>, Ubuntu镜像中安装了Ubuntu的各种软件。</p>
-<h3 id="Docker-基本概念"><a href="#Docker-基本概念" class="headerlink" title="Docker 基本概念"></a>Docker 基本概念</h3><p>Docker最重要的两个概念：镜像（Image）和容器（Container），其中Image是多层存储，每一层是在前一层的基础上进行的修改；而容器同样也是多层存储，是在以镜像为基础层，<strong>在其基础上加一层作为容器运行时的存储层。</strong></p>
-<p>以nginx为例：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">docker run --name NginxTest -d -p 80:80 nginx</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">本地访问localhost就可以看到Nginx默认的欢迎页面</span></span><br><span class="line">docker exec -it NginxTest bash</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进入NginxTest容器，并开启一个shell</span></span><br><span class="line">echo &#x27;&lt;h1&gt;Hello, Docker!&lt;/h1&gt;&#x27; &gt; /usr/share/nginx/html/index.html</span><br><span class="line">exit</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">退出容器再访问localhost发现内容被更改</span></span><br><span class="line"></span><br><span class="line">docker diff</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">查看容器内文件哪些被修改</span></span><br></pre></td></tr></table></figure>
-
-<p>上述的更改均保存在容器运行时的存储层内（在内存中，不能持久化存储），因此如果直接结束容器运行，这些更改就会消失，想要将这些更改保存到镜像里，可以使用<code>docker commit</code>命令（但是慎用，最好不要用…）</p>
+<h3 id="docker-基本概念">Docker 基本概念</h3>
+<p>Docker最重要的两个概念：镜像（Image）和容器（Container），其中Image是多层存储，每一层是在前一层的基础上进行的修改；而容器同样也是多层存储，是在以镜像为基础层，<strong>在其基础上加一层作为容器运行时的存储层。</strong></p>
+<p>以nginx为例： <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">docker run --name NginxTest -d -p 80:80 nginx</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">本地访问localhost就可以看到Nginx默认的欢迎页面</span></span><br><span class="line">docker exec -it NginxTest bash</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">进入NginxTest容器，并开启一个shell</span></span><br><span class="line">echo &#x27;&lt;h1&gt;Hello, Docker!&lt;/h1&gt;&#x27; &gt; /usr/share/nginx/html/index.html</span><br><span class="line">exit</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">退出容器再访问localhost发现内容被更改</span></span><br><span class="line"></span><br><span class="line">docker diff</span><br><span class="line"><span class="meta prompt_">#</span><span class="language-bash">查看容器内文件哪些被修改</span></span><br></pre></td></tr></table></figure></p>
+<p>上述的更改均保存在容器运行时的存储层内（在内存中，不能持久化存储），因此如果直接结束容器运行，这些更改就会消失，想要将这些更改保存到镜像里，可以使用<code>docker commit</code>命令（但是慎用，最好不要用...）</p>
 <p>每当一个docker容器运行时，会生成一个sha-256值（前6位就是container ID），然后在宿主机的/var/lib/docker目录下的container文件夹下会生成一个与container ID相同名字的文件夹，此文件夹就是该容器运行的数据所在</p>
-<p><img src="https://p.qlogo.cn/hy_personal/3e28f14aa051684281e9349d20d9f45552eba43a556e5f1dc37cce007d01abe7/0.png" alt="docker容器根目录"></p>
+<figure>
+<img src="https://p.qlogo.cn/hy_personal/3e28f14aa051684281e9349d20d9f45552eba43a556e5f1dc37cce007d01abe7/0.png" alt="docker容器根目录" /><figcaption aria-hidden="true">docker容器根目录</figcaption>
+</figure>
 <p>可以看到熟悉的目录结构</p>
-<hr>
-<p>下面讲讲数据卷？</p>
-<blockquote>
-<p>(个人理解)一方面是实现数据的持久性存储（<del>便于其他容器共享和重用这一点由于使用经验较少还没感受到</del>），另一方面就是便于运维人员操作容器内的文件，操作数据卷等价于操作容器内被挂载的文件（不需要进入容器内部更改数据文件了）</p>
-</blockquote>
+<hr />
+<p>下面讲讲数据卷？ &gt; (个人理解)一方面是实现数据的持久性存储（<del>便于其他容器共享和重用这一点由于使用经验较少还没感受到</del>），另一方面就是便于运维人员操作容器内的文件，操作数据卷等价于操作容器内被挂载的文件（不需要进入容器内部更改数据文件了）</p>
 <p>常见的是两种方式：</p>
-<p>volumes由docker创建，非Docker应用程序不能改动这一位置的数据。</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">docker volume create XXXX</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建一个名为XXXX的数据卷，存储在宿主机的/var/lib/docker/volumes目录下</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将该数据卷挂载到某一容器的相应目录</span></span><br><span class="line">docker run -d -P \</span><br><span class="line">--name VolumeTest1 \</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-v XXXX:/usr/share/nginx/index.html \</span></span><br><span class="line"><span class="language-bash">--mount <span class="built_in">source</span>=XXX,target=/usr/share/nginx/index.html \</span></span><br><span class="line"><span class="language-bash">nginx</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>volumes就是宿主机的某个文件夹（或者新建的文件夹），手动挂载</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -P \</span><br><span class="line">--name VolumeTest2 \</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-v /src/webapp:/usr/share/nginx/html \</span></span><br><span class="line"><span class="language-bash">--mount <span class="built_in">type</span>=<span class="built_in">bind</span>,<span class="built_in">source</span>=/src/webapp,target=/usr/share/nginx/html \</span></span><br><span class="line"><span class="language-bash">nginx</span></span><br></pre></td></tr></table></figure>
-<h3 id="Docker-容器网络"><a href="#Docker-容器网络" class="headerlink" title="Docker 容器网络"></a>Docker 容器网络</h3><blockquote>
-<p>自己尝试部署WordPress时，容器互联还在使用<code>--link</code>命令，师兄提醒我这已经过时了，于是就学习了通过docker的容器网络来连接多个容器….</p>
-</blockquote>
-<p>Docker是通过Docker Network来实现容器之间互相访问的，它是一个虚拟网，可以通过bridge组建或overlay实现，通过<code>docker network ls</code>可以查看宿主机当前运行的docker网络<br><img src="https://p.qlogo.cn/hy_personal/3e28f14aa05168428b211a36cb44028539af13ac0bb3d31fe6ae22f4d9b27120/0.png" alt="docker network"></p>
+<p>volumes由docker创建，非Docker应用程序不能改动这一位置的数据。 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">docker volume create XXXX</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">创建一个名为XXXX的数据卷，存储在宿主机的/var/lib/docker/volumes目录下</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">将该数据卷挂载到某一容器的相应目录</span></span><br><span class="line">docker run -d -P \</span><br><span class="line">--name VolumeTest1 \</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-v XXXX:/usr/share/nginx/index.html \</span></span><br><span class="line"><span class="language-bash">--mount <span class="built_in">source</span>=XXX,target=/usr/share/nginx/index.html \</span></span><br><span class="line"><span class="language-bash">nginx</span></span><br><span class="line"></span><br></pre></td></tr></table></figure> volumes就是宿主机的某个文件夹（或者新建的文件夹），手动挂载 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -P \</span><br><span class="line">--name VolumeTest2 \</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">-v /src/webapp:/usr/share/nginx/html \</span></span><br><span class="line"><span class="language-bash">--mount <span class="built_in">type</span>=<span class="built_in">bind</span>,<span class="built_in">source</span>=/src/webapp,target=/usr/share/nginx/html \</span></span><br><span class="line"><span class="language-bash">nginx</span></span><br></pre></td></tr></table></figure> ### Docker 容器网络 &gt; 自己尝试部署WordPress时，容器互联还在使用<code>--link</code>命令，师兄提醒我这已经过时了，于是就学习了通过docker的容器网络来连接多个容器....</p>
+<p>Docker是通过Docker Network来实现容器之间互相访问的，它是一个虚拟网，可以通过bridge组建或overlay实现，通过<code>docker network ls</code>可以查看宿主机当前运行的docker网络 <img src="https://p.qlogo.cn/hy_personal/3e28f14aa05168428b211a36cb44028539af13ac0bb3d31fe6ae22f4d9b27120/0.png" alt="docker network" /></p>
 <p>如图所示，有三大网络模式，分别是bridge，host和none，除此之外还有一个自定义的网络wp，下面主要介绍一下bridge模式（默认模式）</p>
-<p>在宿主机上执行<code>ip address</code><br><img src="https://p.qlogo.cn/hy_personal/3e28f14aa05168428b211a36cb4402852092e5429ca85182a6d6bb9bd0ecf726/0.png" alt="ip address"></p>
-<p>可以看到docker0的网络，默认通过该网络实现宿主机与docker容器之间的网络通信，结构图如下：<br><img src="https://p.qlogo.cn/hy_personal/3e28f14aa05168428b211a36cb4402852d89dca432dda835e532e642bc3cac35/0.png" alt="Docker Network结构图"></p>
-<p>进入nginx容器，查看hosts文件，可以看到该服务的内网IP，在宿主机上测试，可以通信<br><img src="https://p.qlogo.cn/hy_personal/3e28f14aa05168428b211a36cb4402858fcdb44a4fc7421d41dcf9276826ff92/0.png" alt="ping"></p>
-<p>但是值得注意的是，<strong>宿主机的网络上一个名为<code>br-66d0daa...</code>的网络</strong>，是我们自定义的bridge类型的网络，我们在宿主机上运行的docker服务会连接到该网桥上，看上图下面的几个veth对也可看出…</p>
-<hr>
-<p>下面讲一下docker 容器之间的通信，从上面的结构图可知，容器之间可以通过docker0这个网桥进行通信，但是只能通过IP进行通信，不能通过服务名称进行通信，docker容器的IP是动态分配的，如果一个容器重新启动可能就会分配不同的ip，那么就很有可能出现问题…</p>
+<p>在宿主机上执行<code>ip address</code> <img src="https://p.qlogo.cn/hy_personal/3e28f14aa05168428b211a36cb4402852092e5429ca85182a6d6bb9bd0ecf726/0.png" alt="ip address" /></p>
+<p>可以看到docker0的网络，默认通过该网络实现宿主机与docker容器之间的网络通信，结构图如下： <img src="https://p.qlogo.cn/hy_personal/3e28f14aa05168428b211a36cb4402852d89dca432dda835e532e642bc3cac35/0.png" alt="Docker Network结构图" /></p>
+<p>进入nginx容器，查看hosts文件，可以看到该服务的内网IP，在宿主机上测试，可以通信 <img src="https://p.qlogo.cn/hy_personal/3e28f14aa05168428b211a36cb4402858fcdb44a4fc7421d41dcf9276826ff92/0.png" alt="ping" /></p>
+<p>但是值得注意的是，<strong>宿主机的网络上一个名为<code>br-66d0daa...</code>的网络</strong>，是我们自定义的bridge类型的网络，我们在宿主机上运行的docker服务会连接到该网桥上，看上图下面的几个veth对也可看出...</p>
+<hr />
+<p>下面讲一下docker 容器之间的通信，从上面的结构图可知，容器之间可以通过docker0这个网桥进行通信，但是只能通过IP进行通信，不能通过服务名称进行通信，docker容器的IP是动态分配的，如果一个容器重新启动可能就会分配不同的ip，那么就很有可能出现问题...</p>
 <p>如何解决这个问题呢？</p>
-<ol>
-<li>通过 –link指定<ul>
+<ol type="1">
+<li>通过 --link指定
+<ul>
 <li>不推荐使用，<a target="_blank" rel="noopener" href="https://dockerdocs.cn/network/links/">原因</a></li>
-</ul>
-</li>
-<li>修改容器内<code>/etc/hosts</code>文件<ul>
+</ul></li>
+<li>修改容器内<code>/etc/hosts</code>文件
+<ul>
 <li>不推荐使用，<a target="_blank" rel="noopener" href="https://www.cnblogs.com/YatHo/p/7866018.html">原因</a></li>
-</ul>
-</li>
-<li>使用用户自定义网桥（而不是docker0）<ul>
+</ul></li>
+<li>使用用户自定义网桥（而不是docker0）
+<ul>
 <li>Docker文档目前也支持这种方式实现容器互联</li>
-</ul>
-</li>
+</ul></li>
 </ol>
 <p>相关网桥写文章之前已经搭建完毕，这里查看一下其信息：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker network inspect wp #wp为自定义网桥名称</span><br></pre></td></tr></table></figure>
-<p><img src="https://p.qlogo.cn/hy_personal/3e28f14aa0516842533164f8e26a595961ea8e77e9502daad85cb5088470cb40/0.png" alt="docker containers IP"></p>
-<p>进入wordpress容器测试能否ping通nginx：<br><img src="https://p.qlogo.cn/hy_personal/3e28f14aa0516842533164f8e26a59599ef1540126622a98932a5d274f0e8dd5/0.png"></p>
-<h2 id="部署WordPress"><a href="#部署WordPress" class="headerlink" title="部署WordPress"></a>部署WordPress</h2><blockquote>
+<figure>
+<img src="https://p.qlogo.cn/hy_personal/3e28f14aa0516842533164f8e26a595961ea8e77e9502daad85cb5088470cb40/0.png" alt="docker containers IP" /><figcaption aria-hidden="true">docker containers IP</figcaption>
+</figure>
+<p>进入wordpress容器测试能否ping通nginx： <img src="https://p.qlogo.cn/hy_personal/3e28f14aa0516842533164f8e26a59599ef1540126622a98932a5d274f0e8dd5/0.png" /></p>
+<h2 id="部署wordpress">部署WordPress</h2>
+<blockquote>
 <p>上面补充的docker知识已经足够完成搭建任务了，下面给出部署过程</p>
 </blockquote>
-<ol>
+<ol type="1">
 <li>拉取镜像</li>
 </ol>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">docker pull wordpress</span><br><span class="line">docker pull mysql</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>创建自定义网桥<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker network create -d bridge wp</span><br></pre></td></tr></table></figure></li>
-<li>启动wordpress容器<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker run --name wordpress \</span><br><span class="line">--network wp \ #连接到自定义网桥</span><br><span class="line">--mount source=&quot;$PWD/wordpress&quot;,target=/var/www/html \</span><br><span class="line">-e WORDPRESS_DB_PASSWORD=XXXX \</span><br><span class="line">-p 8080:80 \</span><br><span class="line">-d \</span><br><span class="line">wordpress</span><br></pre></td></tr></table></figure></li>
-<li>启动mysql容器<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker run --name mysql \</span><br><span class="line">--network wp \</span><br><span class="line">--mount source=&quot;$PWD/mysql&quot;,target=&quot;/var/lib/mysql&quot; \</span><br><span class="line">-e MYSQL_DATABASE=wordpressDB \</span><br><span class="line">-e MYSQL_ROOT_PASSWORD=XXXX \</span><br><span class="line">-p 3306:3306 \</span><br><span class="line">-d \</span><br><span class="line">mysql</span><br></pre></td></tr></table></figure>
-至此访问<code>[ip]:[port]</code>即可进入wordpress安装设置页…</li>
+<ol start="2" type="1">
+<li>创建自定义网桥 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker network create -d bridge wp</span><br></pre></td></tr></table></figure></li>
+<li>启动wordpress容器 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker run --name wordpress \</span><br><span class="line">--network wp \ #连接到自定义网桥</span><br><span class="line">--mount source=&quot;$PWD/wordpress&quot;,target=/var/www/html \</span><br><span class="line">-e WORDPRESS_DB_PASSWORD=XXXX \</span><br><span class="line">-p 8080:80 \</span><br><span class="line">-d \</span><br><span class="line">wordpress</span><br></pre></td></tr></table></figure></li>
+<li>启动mysql容器 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">docker run --name mysql \</span><br><span class="line">--network wp \</span><br><span class="line">--mount source=&quot;$PWD/mysql&quot;,target=&quot;/var/lib/mysql&quot; \</span><br><span class="line">-e MYSQL_DATABASE=wordpressDB \</span><br><span class="line">-e MYSQL_ROOT_PASSWORD=XXXX \</span><br><span class="line">-p 3306:3306 \</span><br><span class="line">-d \</span><br><span class="line">mysql</span><br></pre></td></tr></table></figure> 至此访问<code>[ip]:[port]</code>即可进入wordpress安装设置页...</li>
 </ol>
 <blockquote>
-<p>补充一下：可能会有人困惑于建立数据卷及映射时容器内目录怎么来的(<del>没错是本人</del>)？询问师兄后得到回复：去docker hub的相应镜像仓库下面看文档….</p>
+<p>补充一下：可能会有人困惑于建立数据卷及映射时容器内目录怎么来的(<del>没错是本人</del>)？询问师兄后得到回复：去docker hub的相应镜像仓库下面看文档.... # 再遇 Nginx <img src="https://p.qlogo.cn/hy_personal/3e28f14aa051684246f1880463f96828d049fded43e92ff606ccb734c4897e66/0.png" alt="接着忙喽..." /></p>
 </blockquote>
-<h1 id="再遇-Nginx"><a href="#再遇-Nginx" class="headerlink" title="再遇 Nginx"></a>再遇 Nginx</h1><p><img src="https://p.qlogo.cn/hy_personal/3e28f14aa051684246f1880463f96828d049fded43e92ff606ccb734c4897e66/0.png" alt="接着忙喽..."></p>
-<p>学习半天docker，部署好之后，又被师兄发现一大堆问题，想要解决这些问题，就要使用另一个工具—-nginx（<del>之前为了解决跨域问题使用nginx做了反向代理，但还没有系统学习过…</del>）</p>
-<h2 id="Nginx前置知识"><a href="#Nginx前置知识" class="headerlink" title="Nginx前置知识"></a>Nginx前置知识</h2><p>上面提到在服务器部署项目时通常需要LNMP环境，也就是linux+nginx+mysql+php，有时是LAMP，也就是nginx-&gt;apache，这里的nginx和apache都是web server（也有区分，比如前者是web服务器，后者是应用服务器）</p>
+<p>学习半天docker，部署好之后，又被师兄发现一大堆问题，想要解决这些问题，就要使用另一个工具----nginx（<del>之前为了解决跨域问题使用nginx做了反向代理，但还没有系统学习过...</del>）</p>
+<h2 id="nginx前置知识">Nginx前置知识</h2>
+<p>上面提到在服务器部署项目时通常需要LNMP环境，也就是linux+nginx+mysql+php，有时是LAMP，也就是nginx-&gt;apache，这里的nginx和apache都是web server（也有区分，比如前者是web服务器，后者是应用服务器）</p>
 <blockquote>
 <p>nginx是web服务器，我们平时在各大厂商购买的vps也是服务器，这两个服务器有什么区别呢？（下面说一下个人理解）</p>
 </blockquote>
-<p>vps（Vitural private server）其实就是一台电脑（各厂商基于虚拟化技术虚拟出来的电脑），而nginx可以看作在这台电脑上运行的服务，帮助我们实现网络连接，路径寻找和会话管理等功能，所以nginx才是真正意义上为客户端提供服务的设备（当然其提供的资源存储在vps上…）</p>
-<h2 id="Nginx-配置"><a href="#Nginx-配置" class="headerlink" title="Nginx 配置"></a>Nginx 配置</h2><blockquote>
-<p>Nginx的配置是按照配置块来组织的，最外一层是mainn控制块，它是一个全局配置的区域，main配置块内有events(配置工作模式…)和http配置块，http内又有upstream(配置负载均衡)和server（配置虚拟主机…）配置块，server里面有location(URL匹配块…)等配置块…</p>
+<p>vps（Vitural private server）其实就是一台电脑（各厂商基于虚拟化技术虚拟出来的电脑），而nginx可以看作在这台电脑上运行的服务，帮助我们实现网络连接，路径寻找和会话管理等功能，所以nginx才是真正意义上为客户端提供服务的设备（当然其提供的资源存储在vps上...）</p>
+<h2 id="nginx-配置">Nginx 配置</h2>
+<blockquote>
+<p>Nginx的配置是按照配置块来组织的，最外一层是mainn控制块，它是一个全局配置的区域，main配置块内有events(配置工作模式...)和http配置块，http内又有upstream(配置负载均衡)和server（配置虚拟主机...）配置块，server里面有location(URL匹配块...)等配置块...</p>
 </blockquote>
 <p>下面主要讲一下http模块的配置：</p>
-<h3 id="Server配置快"><a href="#Server配置快" class="headerlink" title="Server配置快"></a>Server配置快</h3><blockquote>
+<h3 id="server配置快">Server配置快</h3>
+<blockquote>
 <p>server 配置块是用来配置虚拟主机的信息的，可以在这里配置虚拟主机监听的端口，域名，URL 重定向等。</p>
 </blockquote>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">8080</span>;</span><br><span class="line">    <span class="attribute">server_name</span> localhost <span class="number">192.168.12.10</span> www.nginx.learning.com;</span><br><span class="line">    <span class="attribute">root</span> /var/www;</span><br><span class="line">    <span class="attribute">index</span> index.php index.html;</span><br><span class="line">    <span class="attribute">charset</span> utf-<span class="number">8</span>;</span><br><span class="line">    <span class="attribute">access_log</span>  usr/local/var/log/host.access.log  main;</span><br><span class="line">    <span class="attribute">error_log</span>  usr/local/var/log/host.<span class="literal">error</span>.log  <span class="literal">error</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<ol>
+<ol type="1">
 <li>listen:设置虚拟主机监听的端口</li>
 <li>server_name:设置虚拟主机的域名，中间使用空格隔开</li>
 <li>root:设置虚拟主机目录</li>
 <li>index:访问路径无指定文件时默认访问文件</li>
-<li>charset:指定特定的字符集到响应头部”Content-Type” 首部。</li>
+<li>charset:指定特定的字符集到响应头部"Content-Type" 首部。</li>
 </ol>
-<h3 id="locatiion配置块"><a href="#locatiion配置块" class="headerlink" title="locatiion配置块"></a>locatiion配置块</h3><blockquote>
-<p>针对指定的URL进行配置</p>
+<h3 id="locatiion配置块">locatiion配置块</h3>
+<blockquote>
+<p>针对指定的URL进行配置 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="section">location</span> / &#123;</span><br><span class="line">        <span class="attribute">root</span>   /var/www/;</span><br><span class="line">        <span class="attribute">index</span>  index.php index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 </blockquote>
-<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="section">location</span> / &#123;</span><br><span class="line">        <span class="attribute">root</span>   /var/www/;</span><br><span class="line">        <span class="attribute">index</span>  index.php index.html index.htm;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 <p>root和index的含义同server配置块，两者的区别在于location仅对其匹配的URL起效，server对所有URL起效。</p>
-<h2 id="Nginx-配置脚本"><a href="#Nginx-配置脚本" class="headerlink" title="Nginx 配置脚本"></a>Nginx 配置脚本</h2><blockquote>
+<h2 id="nginx-配置脚本">Nginx 配置脚本</h2>
+<blockquote>
 <p>下面给出配置脚本并进行相关说明</p>
 </blockquote>
 <figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="comment">#监听443端口</span></span><br><span class="line">    <span class="attribute">listen</span> <span class="number">443</span> ssl;</span><br><span class="line">    <span class="comment">#对应的域名</span></span><br><span class="line">    <span class="attribute">server_name</span> synx.tech www.synx.tech;</span><br><span class="line">    <span class="comment"># 配置ssl证书</span></span><br><span class="line">    <span class="attribute">ssl_certificate</span> /etc/sslcert/synx.tech.pem;</span><br><span class="line">    <span class="attribute">ssl_certificate_key</span> /etc/sslcert/synx.tech.key;</span><br><span class="line">    <span class="attribute">ssl_session_timeout</span> <span class="number">5m</span>;</span><br><span class="line">    <span class="attribute">ssl_protocols</span> TLSv1 TLSv1.<span class="number">1</span> TLSv1.<span class="number">2</span>;</span><br><span class="line">    <span class="attribute">ssl_ciphers</span> ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;</span><br><span class="line">    <span class="attribute">ssl_prefer_server_ciphers</span> <span class="literal">on</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#反向代理：访问synx.tech =&gt;访问wordpress:80 </span></span><br><span class="line">    <span class="section">location</span> / &#123;</span><br><span class="line">	  <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line">	  <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">      <span class="attribute">proxy_pass</span> http://wordpress:80;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过80端口访问时相关设置</span></span><br><span class="line">server&#123; </span><br><span class="line">   <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">   <span class="attribute">server_name</span> synx.tech www.synx.tech;</span><br><span class="line">   <span class="comment">#把http的域名请求转成https</span></span><br><span class="line">   <span class="attribute">rewrite</span><span class="regexp"> ^(.*)$</span> https://<span class="variable">$host</span><span class="variable">$1</span>; </span><br><span class="line">   <span class="comment">#将所有HTTP请求通过rewrite指令重定向到HTTPS。</span></span><br><span class="line"></span><br><span class="line">   <span class="section">location</span> / &#123;</span><br><span class="line">      <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line">	  <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">      <span class="attribute">proxy_pass</span> http://wordpress:80;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment"># 通过ip地址访问时直接返回444错误</span></span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span>      <span class="number">80</span> default_server;</span><br><span class="line">    <span class="attribute">listen</span>      [::]:<span class="number">80</span> default_server;</span><br><span class="line">    <span class="attribute">server_name</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="attribute">return</span>      <span class="number">444</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span>      <span class="number">443</span> default_server;</span><br><span class="line">    <span class="attribute">listen</span>      [::]:<span class="number">443</span> default_server;</span><br><span class="line">    <span class="attribute">server_name</span> <span class="string">&quot;&quot;</span>;</span><br><span class="line">    <span class="attribute">return</span>      <span class="number">444</span>;</span><br><span class="line">    <span class="attribute">ssl_certificate</span> /etc/sslcert/synx.tech.pem;</span><br><span class="line">    <span class="attribute">ssl_certificate_key</span> /etc/sslcert/synx.tech.key;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><ol>
+<h1 id="参考链接">参考链接</h1>
+<ol type="1">
 <li><a target="_blank" rel="noopener" href="https://answers.microsoft.com/zh-hans/windows/forum/all/win10-%E5%BC%80%E5%90%AFhyper-v/238eeaa4-9fcc-432d-8d4b-4e83614f5f13">windows开启Hyper-v服务失败</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/lxgbky/p/12973931.html">Docker如何能在CentOS下运行Ubuntu容器</a></li>
 <li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/392508816">docker容器技术基础之联合文件系统OverlayFS</a></li>
@@ -496,7 +487,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9D%E9%81%87-Docker"><span class="nav-number">1.</span> <span class="nav-text">初遇 Docker</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Windows%E4%B8%8B%E4%BD%BF%E7%94%A8Docker"><span class="nav-number">1.1.</span> <span class="nav-text">Windows下使用Docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Docker%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85"><span class="nav-number">1.2.</span> <span class="nav-text">Docker知识补充</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8Docker-%EF%BC%9F"><span class="nav-number">1.2.1.</span> <span class="nav-text">为什么使用Docker ？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.2.2.</span> <span class="nav-text">Docker 基本概念</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Docker-%E5%AE%B9%E5%99%A8%E7%BD%91%E7%BB%9C"><span class="nav-number">1.2.3.</span> <span class="nav-text">Docker 容器网络</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2WordPress"><span class="nav-number">1.3.</span> <span class="nav-text">部署WordPress</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%86%8D%E9%81%87-Nginx"><span class="nav-number">2.</span> <span class="nav-text">再遇 Nginx</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="nav-number">2.1.</span> <span class="nav-text">Nginx前置知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx-%E9%85%8D%E7%BD%AE"><span class="nav-number">2.2.</span> <span class="nav-text">Nginx 配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Server%E9%85%8D%E7%BD%AE%E5%BF%AB"><span class="nav-number">2.2.1.</span> <span class="nav-text">Server配置快</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#locatiion%E9%85%8D%E7%BD%AE%E5%9D%97"><span class="nav-number">2.2.2.</span> <span class="nav-text">locatiion配置块</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Nginx-%E9%85%8D%E7%BD%AE%E8%84%9A%E6%9C%AC"><span class="nav-number">2.3.</span> <span class="nav-text">Nginx 配置脚本</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">3.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%88%9D%E9%81%87-docker"><span class="nav-number">1.</span> <span class="nav-text">初遇 Docker</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#windows%E4%B8%8B%E4%BD%BF%E7%94%A8docker"><span class="nav-number">1.1.</span> <span class="nav-text">Windows下使用Docker</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#docker%E7%9F%A5%E8%AF%86%E8%A1%A5%E5%85%85"><span class="nav-number">1.2.</span> <span class="nav-text">Docker知识补充</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%BD%BF%E7%94%A8docker"><span class="nav-number">1.2.1.</span> <span class="nav-text">为什么使用Docker ？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#docker-%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">1.2.2.</span> <span class="nav-text">Docker 基本概念</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%83%A8%E7%BD%B2wordpress"><span class="nav-number">1.3.</span> <span class="nav-text">部署WordPress</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nginx%E5%89%8D%E7%BD%AE%E7%9F%A5%E8%AF%86"><span class="nav-number">1.4.</span> <span class="nav-text">Nginx前置知识</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nginx-%E9%85%8D%E7%BD%AE"><span class="nav-number">1.5.</span> <span class="nav-text">Nginx 配置</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#server%E9%85%8D%E7%BD%AE%E5%BF%AB"><span class="nav-number">1.5.1.</span> <span class="nav-text">Server配置快</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#locatiion%E9%85%8D%E7%BD%AE%E5%9D%97"><span class="nav-number">1.5.2.</span> <span class="nav-text">locatiion配置块</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#nginx-%E9%85%8D%E7%BD%AE%E8%84%9A%E6%9C%AC"><span class="nav-number">1.6.</span> <span class="nav-text">Nginx 配置脚本</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">2.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -679,6 +670,8 @@ window.addEventListener('pjax:success', () => {
 
 
     <div id="pjax">
+  
+
   
 
   

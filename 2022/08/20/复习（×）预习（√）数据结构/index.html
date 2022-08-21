@@ -20,17 +20,17 @@
     var CONFIG = {"hostname":"yzh-2002.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":300,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="其实本人对算法没什么兴趣，但是担心这学期面试中遭不住气宗面试官的追问（心里没点B树怎么敢投简历） 于是就打算先回顾一下大一下学期学的数据结构，为以后的各种算法打好基础… 图文无关（此OI非彼OI…）">
+  <meta name="description" content="其实本人对算法没什么兴趣，但是担心这学期面试中遭不住气宗面试官的追问（心里没点B树怎么敢投简历） 于是就打算先回顾一下大一下学期学的数据结构，为以后的各种算法打好基础... 图文无关（此OI非彼OI...）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="复习（×）预习（√）数据结构">
 <meta property="og:url" content="https://yzh-2002.github.io/2022/08/20/%E5%A4%8D%E4%B9%A0%EF%BC%88%C3%97%EF%BC%89%E9%A2%84%E4%B9%A0%EF%BC%88%E2%88%9A%EF%BC%89%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.html">
 <meta property="og:site_name" content="Yzh2002&#39;s Blog">
-<meta property="og:description" content="其实本人对算法没什么兴趣，但是担心这学期面试中遭不住气宗面试官的追问（心里没点B树怎么敢投简历） 于是就打算先回顾一下大一下学期学的数据结构，为以后的各种算法打好基础… 图文无关（此OI非彼OI…）">
+<meta property="og:description" content="其实本人对算法没什么兴趣，但是担心这学期面试中遭不住气宗面试官的追问（心里没点B树怎么敢投简历） 于是就打算先回顾一下大一下学期学的数据结构，为以后的各种算法打好基础... 图文无关（此OI非彼OI...）">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://p.qlogo.cn/hy_personal/3e28f14aa051684234e587586c362197fb59b624be421e77a1cf210262f1d932/0.png">
 <meta property="og:image" content="https://p.qlogo.cn/hy_personal/3e28f14aa0516842f0cc93bc32821a4c369c9448aa18876f04ef74a933feed9d/0.png">
 <meta property="article:published_time" content="2022-08-20T10:17:00.000Z">
-<meta property="article:modified_time" content="2022-08-21T08:58:43.973Z">
+<meta property="article:modified_time" content="2022-08-21T12:29:43.326Z">
 <meta property="article:author" content="Yzh2002">
 <meta property="article:tag" content="DataStructure">
 <meta name="twitter:card" content="summary">
@@ -80,7 +80,119 @@
   </style>
 </noscript>
 
-</head>
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -194,7 +306,7 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-08-21 16:58:43" itemprop="dateModified" datetime="2022-08-21T16:58:43+08:00">2022-08-21</time>
+                <time title="修改时间：2022-08-21 20:29:43" itemprop="dateModified" datetime="2022-08-21T20:29:43+08:00">2022-08-21</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -232,60 +344,68 @@
 
       
         <p>其实本人对算法没什么兴趣，但是担心这学期面试中遭不住<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/65560694/answer/2234746955">气宗面试官</a>的追问（<del>心里没点B树怎么敢投简历</del>）</p>
-<p>于是就打算先回顾一下大一下学期学的数据结构，为以后的各种算法打好基础…</p>
-<p>图文无关（此OI非彼OI…）<br><img src="https://p.qlogo.cn/hy_personal/3e28f14aa051684234e587586c362197fb59b624be421e77a1cf210262f1d932/0.png" alt="OI"></p>
+<p>于是就打算先回顾一下大一下学期学的数据结构，为以后的各种算法打好基础...</p>
+<p>图文无关（此OI非彼OI...） <img src="https://p.qlogo.cn/hy_personal/3e28f14aa051684234e587586c362197fb59b624be421e77a1cf210262f1d932/0.png" alt="OI"></p>
 <span id="more"></span>
-
-<h1 id="How-to-Learn"><a href="#How-to-Learn" class="headerlink" title="How to Learn ??"></a>How to Learn ??</h1><blockquote>
+<h1 id="how-to-learn">How to Learn ??</h1>
+<blockquote>
 <p>知乎上有<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/31082722/answer/1928249851">一篇高赞回答</a>，看完之后让我对于数据结构的学习有一种通透的感觉</p>
 </blockquote>
-<p>大一下学期学校开设了数据结构这门专业课，老师讲的怎么样我也不清楚（<del>因为我就貌似去了三节…</del>），但是自己私下学习的时候，对于数据结构本身的思考很少，字符串，栈，队列，链表，树，图，仿佛盘古开天辟地之时就已经存在，是数据结构中最璀璨的几颗明珠，学就完了….</p>
+<p>大一下学期学校开设了数据结构这门专业课，老师讲的怎么样我也不清楚（<del>因为我就貌似去了三节...</del>），但是自己私下学习的时候，对于数据结构本身的思考很少，字符串，栈，队列，链表，树，图，仿佛盘古开天辟地之时就已经存在，是数据结构中最璀璨的几颗明珠，学就完了....</p>
 <p>但实际上，无论哪一种数据结构，都只是某些应用场景下数据表示形式的一种最优解，上面这些名词，只是目前大多数应用场景下提炼出来的一些设计范例。</p>
-<p>因此学习数据结构就是去思考并理解上述设计范例的设计初衷，以及能够应用于哪些场景，最终的目的就是能够使我们因地制宜的设计数据结构解决问题….</p>
-<p>无论是什么数据结构，都是内存中数据的一种组织形式，那么首先就要了解我们平日写的代码中的数据在内存中是如何存储并管理的….</p>
-<h1 id="Secret-of-Memory"><a href="#Secret-of-Memory" class="headerlink" title="Secret of Memory ??"></a><del>Secret</del> of Memory ??</h1><blockquote>
+<p>因此学习数据结构就是去思考并理解上述设计范例的设计初衷，以及能够应用于哪些场景，最终的目的就是能够使我们因地制宜的设计数据结构解决问题....</p>
+<p>无论是什么数据结构，都是内存中数据的一种组织形式，那么首先就要了解我们平日写的代码中的数据在内存中是如何存储并管理的....</p>
+<h1 id="secret-of-memory"><del>Secret</del> of Memory ??</h1>
+<blockquote>
 <p>我们这里说明一下进程的内存分配情况</p>
 </blockquote>
-<p>当我们要运行写好的代码时（先链接编译为可执行的二进制文件过程就不说了…），操作系统会create一个进程，并在内存中为其分配相应的空间。</p>
+<p>当我们要运行写好的代码时（先链接编译为可执行的二进制文件过程就不说了...），操作系统会create一个进程，并在内存中为其分配相应的空间。</p>
 <p>进程由三部分组成：PCB，数据段和程序段。</p>
-<p><img src="https://p.qlogo.cn/hy_personal/3e28f14aa0516842f0cc93bc32821a4c369c9448aa18876f04ef74a933feed9d/0.png" alt="数据段和程序段"></p>
+<figure>
+<img src="https://p.qlogo.cn/hy_personal/3e28f14aa0516842f0cc93bc32821a4c369c9448aa18876f04ef74a933feed9d/0.png" alt="数据段和程序段"><figcaption aria-hidden="true">数据段和程序段</figcaption>
+</figure>
 <p>其中PCB是一个存储在内核空间的<code>task_struct</code>结构体。</p>
 <p>我们平时写代码时，代码段内声明的变量会存放在进程的程序段地址内，其中已经声明了的放在程序段的Data段内，未声明的会放到BSS段内（执行之前会被内核初始化为0或null）</p>
 <p>而代码运行过程中产生的变量等会被存放到数据段，数据段又分为stack和heap两段区域，其中：</p>
-<ol>
+<ol type="1">
 <li>Stack：存储局部、临时变量，函数调用时，存储函数的返回指针，用于控制函数的调用和返回。在程序块开始时自动分配内存,结束时自动释放内存，其操作方式类似于数据结构中的栈。</li>
 <li>Heap：存储动态内存分配,需要程序员手工分配,手工释放（具有内存回收机制的语言不需要手动分配和释放，比如JavaScript）注意它与数据结构中的堆是两回事。</li>
 </ol>
-<h1 id="Basic-Type-of-Data"><a href="#Basic-Type-of-Data" class="headerlink" title="Basic Type of Data"></a>Basic Type of Data</h1><blockquote>
+<h1 id="basic-type-of-data">Basic Type of Data</h1>
+<blockquote>
 <p>先介绍一下基础的数据类型，这里以C语言为例</p>
 </blockquote>
 <p>C语言真正称得上基本类型的是short，int，long，char，float，double。</p>
 <p>这里就简单说一下char类型，占用1 Byte，值是使用<strong>单引号</strong>（<del>Python和JavaScript写多了就容易忽略这一点</del>）包裹的一组字符</p>
 <p>除此之外，还有空类型（void），枚举类型（enum）和派生数据类型（array，struct，union）</p>
-<p>enum:一组整型值的集合，和<strong>宏</strong>很相似，只不过enum在编译阶段将名字替换为对应的值，宏是在预处理阶段将名字替换为对应的值。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Test</span> &#123;</span></span><br><span class="line">    TestValue1,</span><br><span class="line">    TestValue2,</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>array类型其实并不存在（这里只是用该符号说明一种数据类型）</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// define Array: [type] VariableName [ArraySize];</span></span><br><span class="line"><span class="type">int</span> Test[<span class="number">10</span>];</span><br></pre></td></tr></table></figure>
-<p>C语言声明数组必须要确定数组的空间大小（不然会创建失败）,然后会在栈空间分配一段连续的地址，<strong>数组名就的首地址</strong></p>
-<p>JavaScript的数组变量不需要在声明时指定大小，<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/385711203">贺老的回答</a>,里面这样说的：</p>
-<blockquote>
-<p>从这个历史源头来说，JS的数组只是稍微魔改一下的对象，而对象就是一个属性包，并不基于连续存储，也就不存在数组容量概念。</p>
-</blockquote>
+<p>enum:一组整型值的集合，和<strong>宏</strong>很相似，只不过enum在编译阶段将名字替换为对应的值，宏是在预处理阶段将名字替换为对应的值。 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Test</span> {</span></span><br><span class="line">    TestValue1,</span><br><span class="line">    TestValue2,</span><br><span class="line">    ...</span><br><span class="line">}</span><br></pre></td></tr></table></figure> array类型其实并不存在（这里只是用该符号说明一种数据类型） <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// define Array: [type] VariableName [ArraySize];</span></span><br><span class="line"><span class="type">int</span> Test[<span class="number">10</span>];</span><br></pre></td></tr></table></figure> C语言声明数组必须要确定数组的空间大小（不然会创建失败）,然后会在栈空间分配一段连续的地址，<strong>数组名就的首地址</strong></p>
+<p>JavaScript的数组变量不需要在声明时指定大小，<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/385711203">贺老的回答</a>,里面这样说的： &gt; 从这个历史源头来说，JS的数组只是稍微魔改一下的对象，而对象就是一个属性包，并不基于连续存储，也就不存在数组容量概念。</p>
 <p>不过也正因为C语言数组需要预先确定大小，所以无法用于动态增长的数据，也就引入了链表这一结构的出现。</p>
-<h2 id="Struct"><a href="#Struct" class="headerlink" title="Struct"></a>Struct</h2><p>c语言的数组只能存储相同类型的一组变量，struct提供给我们储存各种类型变量的能力。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">StructName</span> &#123;</span></span><br><span class="line">    <span class="type">int</span> TestNumber;</span><br><span class="line">    <span class="type">char</span> TestName;</span><br><span class="line">    ...</span><br><span class="line">&#125; Variable;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 访问结构体成员</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">&quot;%c\n&quot;</span>,Variable.TestName);</span><br></pre></td></tr></table></figure>
-<p>结构体的内存在分配时会遵循<strong>对齐</strong>的规则：</p>
-<ol>
-<li>结构体成员变量的首地址要能被该结构体中最宽的成员的大小整除</li>
-<li>结构体成员相对结构体首地址的偏移量(offset)都是本成员大小的整数倍，如有需要编译器会在成员之间加上填充字节；</li>
-<li>结构体的总大小为结构体最宽成员大小的整数倍，如有需要编译器会在最末一个成员之后加上填充字节</li>
-</ol>
+<h2 id="struct">Struct</h2>
+<p>c语言的数组只能存储相同类型的一组变量，struct提供给我们储存各种类型变量的能力。 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">StructName</span> {</span></span><br><span class="line">    <span class="type">int</span> TestNumber;</span><br><span class="line">    <span class="type">char</span> TestName;</span><br><span class="line">    ...</span><br><span class="line">} Variable;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 访问结构体成员</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%c\n"</span>,Variable.TestName);</span><br></pre></td></tr></table></figure> 结构体的内存在分配时会遵循<strong>对齐</strong>的规则： 1. 结构体成员变量的首地址要能被该结构体中最宽的成员的大小整除 2. 结构体成员相对结构体首地址的偏移量(offset)都是本成员大小的整数倍，如有需要编译器会在成员之间加上填充字节； 3. 结构体的总大小为结构体最宽成员大小的整数倍，如有需要编译器会在最末一个成员之后加上填充字节</p>
 <hr>
-<p>Union类型和Struct很像，不同点在于内存的分配上，struct中的变量均拥有自己的内存（可能会因为对齐规则存在空隙），而Union中的变量共用同一块内存，一个Union变量所占内存大小为最大的成员变量所占内存。（<del>到现在就没有用过Union，也就不多数什么了…</del>）</p>
-<h1 id="LinkList"><a href="#LinkList" class="headerlink" title="LinkList"></a>LinkList</h1><blockquote>
-<p>链表算是入门数据结构的第一个数据结构了….</p>
+<p>Union类型和Struct很像，不同点在于内存的分配上，struct中的变量均拥有自己的内存（可能会因为对齐规则存在空隙），而Union中的变量共用同一块内存，一个Union变量所占内存大小为最大的成员变量所占内存。（<del>到现在就没有用过Union，也就不多数什么了...</del>）</p>
+<h1 id="linklist">LinkList</h1>
+<blockquote>
+<p>链表算是入门数据结构的第一个数据结构了....</p>
 </blockquote>
-<h1 id="To-be-continued"><a href="#To-be-continued" class="headerlink" title="To be continued"></a>To be continued</h1><p>先吃饭，这个文章估计没几天写不完….</p>
+<p>以C语言为例，默认的数据结构无法管理动态的数据，数组所管理的一组数据也必须要事先声明大小。因此，为了管理动态的数据引出了链表的设计。</p>
+<p>所以链表是什么呢？其实就是一串结构体，每个结构体有一部分用来存数据，再设置一个变量存储下一个结构体的内存地址，对于一组动态数据，我们可以通过<code>malloc</code>函数来动态的申请内存然后再将其添加到链表上。</p>
+<p>下面简单演示一下，需要管理的动态数据就是从0开始的自然数，但是到几不知道.... <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明结构体</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span> {</span></span><br><span class="line">    <span class="type">int</span> data; <span class="comment">//需要管理的动态数据</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">next</span>;</span></span><br><span class="line">};</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span>{</span><br><span class="line">    <span class="comment">// 初始化头结点</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">head</span> =</span>(<span class="keyword">struct</span> node *)<span class="built_in">malloc</span>(sizoeof(<span class="keyword">struct</span> node));</span><br><span class="line">    head-&gt;data =<span class="number">0</span>; <span class="comment">//该数字无意义</span></span><br><span class="line">    head-&gt;next=<span class="literal">NULL</span>;</span><br><span class="line">     <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">tail</span> =</span>head;</span><br><span class="line">    <span class="comment">// 初始化链表（该组数初始为0~100）</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;=<span class="number">100</span>;i++){</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">temp</span> =</span>(<span class="keyword">struct</span> node *)<span class="built_in">malloc</span>(sizoeof(<span class="keyword">struct</span> node));</span><br><span class="line">        temp-&gt;data =i;</span><br><span class="line">        temp-&gt;next =<span class="literal">NULL</span>;</span><br><span class="line">        tail-&gt;next =temp;</span><br><span class="line">        tail =temp; <span class="comment">//更新尾节点...</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果数继续往上加，那就申请地址，再挂载到链表上即可</span></span><br><span class="line">     <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">temp</span> =</span>(<span class="keyword">struct</span> node *)<span class="built_in">malloc</span>(sizoeof(<span class="keyword">struct</span> node));</span><br><span class="line">    temp-&gt;data =<span class="number">101</span>;</span><br><span class="line">    temp-&gt;next =<span class="literal">NULL</span>;</span><br><span class="line">    tail-&gt;next =temp;</span><br><span class="line">    tail =temp;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>链表的指针设计？前面说过链表的设计出来是为了管理动态数据，如果仅仅从存储的角度考虑，结构体与结构体之间不需要指针连接，但是怎么管理零散的结构体呢？--使用指针将它们连接起来。</p>
+</blockquote>
+<ol type="1">
+<li>单指针(上述示例)，添加数据还是比较方便的，但是删除数据就比较麻烦了</li>
+<li>双指针，也即一个结构体存储与其相连的两个结构体的地址（前面一个后面一个）</li>
+</ol>
+<p>但是无论是单指针，双指针，我们在进行数据的插入和删除时还是需要遍历寻找指定的插入位置，时间复杂度为O(n) <span class="math display"><mjx-container class="MathJax" jax="SVG" display="true"><svg style="vertical-align: -2.016ex;" xmlns="http://www.w3.org/2000/svg" width="26.17ex" height="5.432ex" role="img" focusable="false" viewBox="0 -1509.9 11567 2400.9"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">测</text></g><g data-mml-node="mi" transform="translate(1000,0)"><text data-variant="normal" transform="scale(1,-1)" font-size="884px" font-family="serif">试</text></g><g data-mml-node="mi" transform="translate(2000,0)"><path data-c="1D43F" d="M228 637Q194 637 192 641Q191 643 191 649Q191 673 202 682Q204 683 217 683Q271 680 344 680Q485 680 506 683H518Q524 677 524 674T522 656Q517 641 513 637H475Q406 636 394 628Q387 624 380 600T313 336Q297 271 279 198T252 88L243 52Q243 48 252 48T311 46H328Q360 46 379 47T428 54T478 72T522 106T564 161Q580 191 594 228T611 270Q616 273 628 273H641Q647 264 647 262T627 203T583 83T557 9Q555 4 553 3T537 0T494 -1Q483 -1 418 -1T294 0H116Q32 0 32 10Q32 17 34 24Q39 43 44 45Q48 46 59 46H65Q92 46 125 49Q139 52 144 61Q147 65 216 339T285 628Q285 635 228 637Z"></path></g><g data-mml-node="mi" transform="translate(2681,0)"><path data-c="1D44E" d="M33 157Q33 258 109 349T280 441Q331 441 370 392Q386 422 416 422Q429 422 439 414T449 394Q449 381 412 234T374 68Q374 43 381 35T402 26Q411 27 422 35Q443 55 463 131Q469 151 473 152Q475 153 483 153H487Q506 153 506 144Q506 138 501 117T481 63T449 13Q436 0 417 -8Q409 -10 393 -10Q359 -10 336 5T306 36L300 51Q299 52 296 50Q294 48 292 46Q233 -10 172 -10Q117 -10 75 30T33 157ZM351 328Q351 334 346 350T323 385T277 405Q242 405 210 374T160 293Q131 214 119 129Q119 126 119 118T118 106Q118 61 136 44T179 26Q217 26 254 59T298 110Q300 114 325 217T351 328Z"></path></g><g data-mml-node="mi" transform="translate(3210,0)"><path data-c="1D461" d="M26 385Q19 392 19 395Q19 399 22 411T27 425Q29 430 36 430T87 431H140L159 511Q162 522 166 540T173 566T179 586T187 603T197 615T211 624T229 626Q247 625 254 615T261 596Q261 589 252 549T232 470L222 433Q222 431 272 431H323Q330 424 330 420Q330 398 317 385H210L174 240Q135 80 135 68Q135 26 162 26Q197 26 230 60T283 144Q285 150 288 151T303 153H307Q322 153 322 145Q322 142 319 133Q314 117 301 95T267 48T216 6T155 -11Q125 -11 98 4T59 56Q57 64 57 83V101L92 241Q127 382 128 383Q128 385 77 385H26Z"></path></g><g data-mml-node="mi" transform="translate(3571,0)"><path data-c="1D452" d="M39 168Q39 225 58 272T107 350T174 402T244 433T307 442H310Q355 442 388 420T421 355Q421 265 310 237Q261 224 176 223Q139 223 138 221Q138 219 132 186T125 128Q125 81 146 54T209 26T302 45T394 111Q403 121 406 121Q410 121 419 112T429 98T420 82T390 55T344 24T281 -1T205 -11Q126 -11 83 42T39 168ZM373 353Q367 405 305 405Q272 405 244 391T199 357T170 316T154 280T149 261Q149 260 169 260Q282 260 327 284T373 353Z"></path></g><g data-mml-node="mi" transform="translate(4037,0)"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path></g><g data-mml-node="mi" transform="translate(4609,0)"><text data-variant="italic" transform="scale(1,-1)" font-size="884px" font-family="serif" font-style="italic">：</text></g><g data-mml-node="mi" transform="translate(5609,0)"><path data-c="1D453" d="M118 -162Q120 -162 124 -164T135 -167T147 -168Q160 -168 171 -155T187 -126Q197 -99 221 27T267 267T289 382V385H242Q195 385 192 387Q188 390 188 397L195 425Q197 430 203 430T250 431Q298 431 298 432Q298 434 307 482T319 540Q356 705 465 705Q502 703 526 683T550 630Q550 594 529 578T487 561Q443 561 443 603Q443 622 454 636T478 657L487 662Q471 668 457 668Q445 668 434 658T419 630Q412 601 403 552T387 469T380 433Q380 431 435 431Q480 431 487 430T498 424Q499 420 496 407T491 391Q489 386 482 386T428 385H372L349 263Q301 15 282 -47Q255 -132 212 -173Q175 -205 139 -205Q107 -205 81 -186T55 -132Q55 -95 76 -78T118 -61Q162 -61 162 -103Q162 -122 151 -136T127 -157L118 -162Z"></path></g><g data-mml-node="mo" transform="translate(6159,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(6548,0)"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path></g><g data-mml-node="mo" transform="translate(7120,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g><g data-mml-node="mo" transform="translate(7786.8,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mfrac" transform="translate(8842.6,0)"><g data-mml-node="msup" transform="translate(857.9,676)"><g data-mml-node="mi"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path></g><g data-mml-node="mn" transform="translate(605,363) scale(0.707)"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g></g><g data-mml-node="mrow" transform="translate(220,-686)"><g data-mml-node="mi"><path data-c="1D465" d="M52 289Q59 331 106 386T222 442Q257 442 286 424T329 379Q371 442 430 442Q467 442 494 420T522 361Q522 332 508 314T481 292T458 288Q439 288 427 299T415 328Q415 374 465 391Q454 404 425 404Q412 404 406 402Q368 386 350 336Q290 115 290 78Q290 50 306 38T341 26Q378 26 414 59T463 140Q466 150 469 151T485 153H489Q504 153 504 145Q504 144 502 134Q486 77 440 33T333 -11Q263 -11 227 52Q186 -10 133 -10H127Q78 -10 57 16T35 71Q35 103 54 123T99 143Q142 143 142 101Q142 81 130 66T107 46T94 41L91 40Q91 39 97 36T113 29T132 26Q168 26 194 71Q203 87 217 139T245 247T261 313Q266 340 266 352Q266 380 251 392T217 404Q177 404 142 372T93 290Q91 281 88 280T72 278H58Q52 284 52 289Z"></path></g><g data-mml-node="mo" transform="translate(794.2,0)"><path data-c="2B" d="M56 237T56 250T70 270H369V420L370 570Q380 583 389 583Q402 583 409 568V270H707Q722 262 722 250T707 230H409V-68Q401 -82 391 -82H389H387Q375 -82 369 -68V230H70Q56 237 56 250Z"></path></g><g data-mml-node="mi" transform="translate(1794.4,0)"><path data-c="1D466" d="M21 287Q21 301 36 335T84 406T158 442Q199 442 224 419T250 355Q248 336 247 334Q247 331 231 288T198 191T182 105Q182 62 196 45T238 27Q261 27 281 38T312 61T339 94Q339 95 344 114T358 173T377 247Q415 397 419 404Q432 431 462 431Q475 431 483 424T494 412T496 403Q496 390 447 193T391 -23Q363 -106 294 -155T156 -205Q111 -205 77 -183T43 -117Q43 -95 50 -80T69 -58T89 -48T106 -45Q150 -45 150 -87Q150 -107 138 -122T115 -142T102 -147L99 -148Q101 -153 118 -160T152 -167H160Q177 -167 186 -165Q219 -156 247 -127T290 -65T313 -9T321 21L315 17Q309 13 296 6T270 -6Q250 -11 231 -11Q185 -11 150 11T104 82Q103 89 103 113Q103 170 138 262T173 379Q173 380 173 381Q173 390 173 393T169 400T158 404H154Q131 404 112 385T82 344T65 302T57 280Q55 278 41 278H27Q21 284 21 287Z"></path></g></g><rect width="2484.4" height="60" x="120" y="220"></rect></g></g></g></svg></mjx-container></span></p>
+<h1 id="binary-tree">Binary tree</h1>
+<blockquote>
+
+</blockquote>
+<h1 id="to-be-continued">To be continued</h1>
+<p>先吃饭，这个文章估计没几天写不完....</p>
 
     </div>
 
@@ -367,7 +487,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#How-to-Learn"><span class="nav-number">1.</span> <span class="nav-text">How to Learn ??</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Secret-of-Memory"><span class="nav-number">2.</span> <span class="nav-text">Secret of Memory ??</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Basic-Type-of-Data"><span class="nav-number">3.</span> <span class="nav-text">Basic Type of Data</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Struct"><span class="nav-number">3.1.</span> <span class="nav-text">Struct</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LinkList"><span class="nav-number">4.</span> <span class="nav-text">LinkList</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#To-be-continued"><span class="nav-number">5.</span> <span class="nav-text">To be continued</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#how-to-learn"><span class="nav-number">1.</span> <span class="nav-text">How to Learn ??</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#secret-of-memory"><span class="nav-number">2.</span> <span class="nav-text">Secret of Memory ??</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#basic-type-of-data"><span class="nav-number">3.</span> <span class="nav-text">Basic Type of Data</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#struct"><span class="nav-number">3.1.</span> <span class="nav-text">Struct</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#linklist"><span class="nav-number">4.</span> <span class="nav-text">LinkList</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#binary-tree"><span class="nav-number">5.</span> <span class="nav-text">Binary tree</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#to-be-continued"><span class="nav-number">6.</span> <span class="nav-text">To be continued</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -551,6 +671,61 @@ window.addEventListener('pjax:success', () => {
 
     <div id="pjax">
   
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
