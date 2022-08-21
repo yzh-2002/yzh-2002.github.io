@@ -12,19 +12,20 @@ jobs:
 
     -name: Install Pandoc
      run: |
-     curl -s -L https://github.com/jgm/pandoc/releases/download/2.9.2/pandoc-2.9.2-linux-amd64.tar.gz | tar xvzf - -C $RUNNER_TOOL_CACHE/
-
+     cd /tmp
+     wget -c https://github.com/jgm/pandoc/releases/download/2.14.0.3/pandoc-2.14.0.3-1-amd64.deb
+     sudo dpkg -i pandoc-2.14.0.3-1-amd64.deb
 
     - name: Install dependency 
       # install dependencies of hexo
-      run: npm install
+      run: |
+      pandoc --version
+      npm install
       # with:
         # node-version: "16"
 
     - name: Build
       run: |
-      export PATH="$PATH:$RUNNER_TOOL_CACHE/pandoc-2.9.2/bin"
-      rm -rf ./public
       npx hexo clean
       npx hexo generate
 
