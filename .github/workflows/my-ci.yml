@@ -7,12 +7,6 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest #github actions运行的虚拟机环境（也可以使用自己的环境）
     steps:
-    - name: Fix Pandoc
-    - uses: docker://pandoc/core:2.9
-      with:
-        args: "--help" # gets appended to pandoc command
-
-
     - name: Checkout #？？不是很明白？？？？
       uses: actions/checkout@v3
 
@@ -23,9 +17,17 @@ jobs:
         npm install
       # with:
         # node-version: "16"
+    
+    -name: Install Pandoc
+     run: |
+     curl -s -L https://github.com/jgm/pandoc/releases/download/2.9.2/pandoc-2.9.2-linux-amd64.tar.gz | tar xvzf - -C $RUNNER_TOOL_CACHE/
 
     - name: Build
-      run: npx hexo generate
+      run: |
+      export PATH="$PATH:$RUNNER_TOOL_CACHE/pandoc-2.9.2/bin"
+      rm -rf ./public
+      npx hexo clean
+      npx hexo generate
 
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@releases/v3
