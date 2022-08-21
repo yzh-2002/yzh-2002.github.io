@@ -7,7 +7,7 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest #github actions运行的虚拟机环境（也可以使用自己的环境）
     steps:
-    - name: Checkout #？？不是很明白？？？？
+    - name: Checkout 
       uses: actions/checkout@v3
 
     -name: Install Pandoc
