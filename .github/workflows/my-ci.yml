@@ -12,22 +12,22 @@ jobs:
 
     -name: Install Pandoc
      run: |
-     cd /tmp
-     wget -c https://github.com/jgm/pandoc/releases/download/2.14.0.3/pandoc-2.14.0.3-1-amd64.deb
-     sudo dpkg -i pandoc-2.14.0.3-1-amd64.deb
+      cd /tmp
+      wget -c https://github.com/jgm/pandoc/releases/download/2.14.0.3/pandoc-2.14.0.3-1-amd64.deb
+      sudo dpkg -i pandoc-2.14.0.3-1-amd64.deb
 
     - name: Install dependency 
       # install dependencies of hexo
       run: |
-      pandoc --version
-      npm install
+        pandoc --version
+        npm install
       # with:
         # node-version: "16"
 
     - name: Build
       run: |
-      npx hexo clean
-      npx hexo generate
+        npx hexo clean
+        npx hexo generate
 
     - name: Deploy
       uses: JamesIves/github-pages-deploy-action@releases/v3
