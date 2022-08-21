@@ -7,6 +7,12 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest #github actions运行的虚拟机环境（也可以使用自己的环境）
     steps:
+    - name: Fix Pandoc
+    - uses: docker://pandoc/core:2.9
+      with:
+        args: "--help" # gets appended to pandoc command
+
+
     - name: Checkout #？？不是很明白？？？？
       uses: actions/checkout@v3
 
