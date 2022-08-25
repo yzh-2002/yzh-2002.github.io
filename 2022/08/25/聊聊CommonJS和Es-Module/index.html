@@ -20,17 +20,20 @@
     var CONFIG = {"hostname":"yzh-2002.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":300,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="categories">
-<meta property="og:url" content="https://yzh-2002.github.io/categories/index.html">
+  <meta name="description" content="今天想写一个GraphQL前后端交互的Demo，平时用Nodejs写服务端模块都使用CommonJS规范，但Nodejs在v13.2版本开始就支持Es Module了，于是尝试了一下，但是在涉及到import()异步加载遇到了些问题，便借此机会系统看看两者的区别。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="聊聊CommonJS和Es Module">
+<meta property="og:url" content="https://yzh-2002.github.io/2022/08/25/%E8%81%8A%E8%81%8ACommonJS%E5%92%8CEs-Module/index.html">
 <meta property="og:site_name" content="Yzh2002&#39;s Blog">
+<meta property="og:description" content="今天想写一个GraphQL前后端交互的Demo，平时用Nodejs写服务端模块都使用CommonJS规范，但Nodejs在v13.2版本开始就支持Es Module了，于是尝试了一下，但是在涉及到import()异步加载遇到了些问题，便借此机会系统看看两者的区别。">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-08-12T23:00:58.000Z">
+<meta property="article:published_time" content="2022-08-25T12:07:06.000Z">
 <meta property="article:modified_time" content="2022-08-25T13:43:38.403Z">
 <meta property="article:author" content="Yzh2002">
+<meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://yzh-2002.github.io/categories/">
+<link rel="canonical" href="https://yzh-2002.github.io/2022/08/25/%E8%81%8A%E8%81%8ACommonJS%E5%92%8CEs-Module/">
 
 
 <script id="page-configurations">
@@ -38,13 +41,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>categories | Yzh2002's Blog
-</title>
+  <title>聊聊CommonJS和Es Module | Yzh2002's Blog</title>
   
 
 
@@ -75,7 +77,119 @@
   </style>
 </noscript>
 
-</head>
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -151,51 +265,136 @@
       <div class="main-inner">
         <div class="content-wrap">
           
-  
-  
 
-          <div class="content page posts-expand">
+          <div class="content post posts-expand">
             
 
     
-    
-    
-    <div class="post-block" lang="zh-CN">
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yzh-2002.github.io/2022/08/25/%E8%81%8A%E8%81%8ACommonJS%E5%92%8CEs-Module/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://q1.qlogo.cn/g?b=qq&nk=2039143115&s=640">
+      <meta itemprop="name" content="Yzh2002">
+      <meta itemprop="description" content="梦想是，开一家猫咖٩( •̀㉨•́ )و !">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yzh2002's Blog">
+    </span>
       <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          聊聊CommonJS和Es Module
+        </h1>
 
-<h1 class="post-title" itemprop="name headline">categories
-</h1>
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
 
-<div class="post-meta">
+              <time title="创建时间：2022-08-25 20:07:06 / 修改时间：21:43:38" itemprop="dateCreated datePublished" datetime="2022-08-25T20:07:06+08:00">2022-08-25</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/develop/" itemprop="url" rel="index"><span itemprop="name">develop</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/08/25/%E8%81%8A%E8%81%8ACommonJS%E5%92%8CEs-Module/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/08/25/%E8%81%8A%E8%81%8ACommonJS%E5%92%8CEs-Module/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
   
 
-</div>
+        </div>
+      </header>
 
-</header>
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-      
-      
-      <div class="post-body">
-          <div class="category-all-page">
-            <div class="category-all-title">
-              目前共计 2 个分类
-            </div>
-            <div class="category-all">
-              <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/develop/">develop</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/">个人成长</a><span class="category-list-count">1</span></li></ul>
-            </div>
-          </div>
-        
-      </div>
-      
-      
-      
+        <p>今天想写一个GraphQL前后端交互的Demo，平时用Nodejs写服务端模块都使用CommonJS规范，但Nodejs在<code>v13.2</code>版本开始就支持Es Module了，于是尝试了一下，但是在涉及到<code>import()</code>异步加载遇到了些问题，便借此机会系统看看两者的区别。</p>
+<span id="more"></span>
+<h2 id="问题复现">问题复现</h2>
+<blockquote>
+<p>提前声明：这个问题本质在于对于ES Module的不熟悉，因此下面的bug可能会让人感觉血压高（<del>我自己重新想一下都感觉我当时是个脑子是坨浆糊</del>） 以至于会有人问：《你干嘛要这样搞？》(<del>我也不知道自己当时咋想的...</del>)</p>
+</blockquote>
+<p>服务端大体结构：</p>
+<ol type="1">
+<li>Mongoose连接数据库在<code>server/mongodb/index.js</code></li>
+<li>Schema注册在<code>server/mongodb/schema/person.js</code></li>
+<li>Schema的数据操作函数在<code>server/controllers/person.js</code></li>
+<li>服务端入口在<code>server/app.js</code></li>
+</ol>
+<p>四个模块均采用ES Module，依赖关系是这样处理的：模块(1)导出<code>ConnectedDB</code>函数，模块(2)无导出，模块(3)导出Schema的<code>addPerson和getPersons</code>两个处理函数，模块(4)引入模块(1)和模块(3)的函数并运行：</p>
+<ol type="1">
+<li>服务器连接MongoDB数据库</li>
+<li>指定路由执行相应的数据处理函数</li>
+</ol>
+<p>关键在于模块(2)并没有将注册的Schema导出，那数据操作函数如何获取注册的Schema呢？</p>
+<blockquote>
+<p>ES6模块输出的是值的拷贝</p>
+</blockquote>
+<p>故<code>import mongoose from "mongoose"</code>中的mongoose理论上在内存上是同一块地址。</p>
+<h2 id="to-be-continued">to be continued</h2>
+<p>今天整理不完了，明早再整理吧（<del>没人看就是随便....</del>）</p>
+<h2 id="参考资料">参考资料</h2>
+<ol type="1">
+<li><a target="_blank" rel="noopener" href="https://es6.ruanyifeng.com/#docs/module-loader">Module的加载实现--阮一峰</a></li>
+<li><a href=""></a></li>
+<li></li>
+</ol>
+
     </div>
-    
 
     
     
     
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/08/17/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1wordpress%E5%BB%BA%E7%AB%99%E7%BB%8F%E5%8E%86/" rel="prev" title="记录一次wordpress建站经历">
+      <i class="fa fa-chevron-left"></i> 记录一次wordpress建站经历
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
 
 
           </div>
@@ -247,6 +446,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%97%AE%E9%A2%98%E5%A4%8D%E7%8E%B0"><span class="nav-number">1.</span> <span class="nav-text">问题复现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#to-be-continued"><span class="nav-number">2.</span> <span class="nav-text">to be continued</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -432,6 +632,59 @@ window.addEventListener('pjax:success', () => {
   
 
   
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
 
   
 
