@@ -47,7 +47,7 @@ https://xxxxx/user/friends
 https://xxxxx/user/profile
 ```
 
-后端的应用程序在处理时，也是关注URL和响应的方法，再给出返回的数据
+后端的应用程序在处理时，也是关注URL和请求的方法，再给出返回的数据
 
 ```js
 import Koa from "koa";
@@ -76,6 +76,113 @@ app.post("/profile",(ctx,next)=>{
 ## GraphQL
 > 不同于REST和HTTP协议的强关联性，GraphQL具有`transport-layer agbostic`的特点，也即客户端与服务端之间的通信协议使用什么都无所谓...
 
+先来大概看一下graphql规范下客户端和服务端的处理过程。
+
+客户端可以选择多种通信协议与服务端进行通信，下面均以HTTP协议为例：
+
+```shell
+curl -X POST \
+-H "Content-Type:application/json" \
+-d "{"query":"{person { name } }"}" \
+http://localhost:4000/graphql
+```
+从上可知，我们向`http://localhost:4000/graphql`发送一个POST请求，传送一个query字符串，不同于REST，url不再对应于一个资源，而是代表graphql应用程序的入口，也即客户端向服务端请求任何数据均通过该URL进行。
+
+服务端应用程序在乎的仅仅只是query字符串。服务端会如何处理该query字符串呢？在服务端眼里，会得到这么一个东西：
+```js
+query {
+    person {
+        name
+    }
+}
+```
+> 每一个 GraphQL 服务端应用的顶层，必有一个类型代表着所有进入 GraphQL API 可能的入口点，我们将它称之为 Root 类型或 Query 类型（此Query不同于上述示例的query，该Query类型包括query，mutation和subscription）。
+
+query下要查询的fields是person，其内部又嵌套了一个name的fields，graphql 服务端应用程序为每一个fields提供了一个resolver函数，用于获取该字段对应的数据库数据
+
+> The execution starts at the query type and goes breadth-first. 
+
+也即我们先执行person的resolver函数，获取之后再进入它的子级字段，执行他们的resolver函数。值得一提的是，如果某个字段的resolver是个异步函数（一般会是一个Promise对象）那么resolver能够感知到Promise的进度，并会等待它执行完返回结果之后才会进行子级字段的查询。（因此这个环节注意异步处理上的优化。）
+
+大概了解之后再来系统说一下GraphQL的优劣，优点：
+
+1. Graphql能够减少网络请求次数（相比于REST），因此速率会更快
+    - 简单来说就是能够聚合多个REST请求为一次网络请求
+2. 适合多系统和微服务结构
+    - 由graphql的设计决定，其可以很容易统一多个服务的接口，并向外暴漏graphql式的接口（做API Gateway）
+3. 不存在over-fetching 和under-fetching的问题
+4. 类型定义（Schema的重要作用，具体见下文），优势可体现在：
+    -   客户端进行请求时，会检测query字符串中数据结构的合理性
+    -   服务端返回数据时，返回的数据结构就是query字符串查询的数据结构（just like SQL），而REST，客户端完全不知道返回的数据结构会如何
+5. 适合项目的快速迭代
+    -  对于REST，需要废弃并更改新增很多接口，同时前端也需要更改相关的业务代码
+    -  对于graphql，只需要后端新定义相关的fields并补充resolvers，前端不需要任何更改
+
+缺点：
+
+1. graphql查询细节问题会很难事先，具体表现在：
+    - 限制客户端的查询层级深度
+    - 权限设置等等
+2. graphql的缓存问题
+    - 这在REST中十分简单（因为HTTP本来就支持对于URL的缓存）
+    - 但在GraphQL中只有一个URL，不能采用原本HTTP的缓存方案
+3. 网络速率限制
+    - REST中可以较为容易的实现一天内对某个URL的访问次数限制
+    - GraphQL中就比较麻烦...
+
+## Koa（GraphQL）
+> 这里主要说一下我认为比较重要的，也就是Schema的定义（对详细代码感兴趣的可以看文章开头的github地址）
+
+Schema是GraphQL的核心，服务器的核心代码就是围绕Schema实现的，它描述了客户端能从服务端获取什么数据（和遵循HATEOAS的REST形成鲜明对比）
+
+`schema.js`（schema定义文件）：
+```js
+const RootQuery =new GraphQLObjectType({
+    name:"RootQueryType",
+    fields:{
+        person:{
+            type:PersonType,
+            args:{},
+            resolve(parent,args){
+                return Person.find({}).then(
+                    res=>{
+                    return res[0];
+                })
+            }
+        }
+    }
+})
+const schema =new GraphQLSchema({
+    query:RootQuery,
+    mutation:RootMutation
+})
+export {schema}
+```
+`app.js`（服务端应用程序入口）:
+```js
+import Koa from "koa"
+import { graphqlHTTP } from "koa-graphql";
+import mount from "koa-mount"
+
+import {schema} from "./graphql/schema.js"
+import { ConnectDB } from "./database/index.js";
+
+const app =new Koa();
+ConnectDB();
+app.on('error',(err)=>{
+    console.log("Server err:",err)
+})
+app.use(mount('/graphql',graphqlHTTP({
+    schema:schema,
+    graphiql:true 
+})))
+app.listen(4000,()=>{
+    console.log("The Server is listening at 4000!!")
+})
+```
+
+## Apollo
+> 找时间学习一下[Apollo](https://www.apollographql.com/docs/).....
 
 ## to be continued 
 吃完饭再写....
@@ -86,4 +193,13 @@ app.post("/profile",(ctx,next)=>{
 
 1. [怎样用通俗的语言解释REST，以及RESTful？--知乎](https://www.zhihu.com/question/28557115/answer/48094438)
 2. [HATEOAS --wikipedia](https://en.wikipedia.org/wiki/HATEOAS)
-3. []()
+3. [Graphql 官网](https://graphql.cn/)
+4. [How to GraphQL](https://www.howtographql.com/)
+5. [GraphQL Advantages and Disadvantages](https://www.javatpoint.com/graphql-advantages-and-disadvantages)
+6. [How to set up a powerful API with GraphQL, Koa, and MongoDB](https://betterprogramming.pub/how-to-setup-a-powerful-api-with-graphql-koa-and-mongodb-339cfae832a1)
+
+### 补充链接
+> 在写这篇文章时，也查阅了一些关于HTTP缓存的知识，特此补充一下
+
+1. [Caching REST API Response](https://restfulapi.net/caching/)
+2. [HTTP缓存机制](https://www.cnblogs.com/ranyonsue/p/8918908.html)
