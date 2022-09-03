@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.2">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yzh-2002.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":300,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="其实本人对算法没什么兴趣，但是担心这学期面试中遭不住气宗面试官的追问（心里没点B树怎么敢投简历） 于是就打算先回顾一下大一下学期学的数据结构，为以后的各种算法打好基础... 图文无关（此OI非彼OI...）">
+<meta property="og:type" content="article">
+<meta property="og:title" content="复习（×）预习（√）数据结构">
+<meta property="og:url" content="https://yzh-2002.github.io/2022/08/20/%E5%A4%8D%E4%B9%A0%EF%BC%88%C3%97%EF%BC%89%E9%A2%84%E4%B9%A0%EF%BC%88%E2%88%9A%EF%BC%89%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/index.html">
+<meta property="og:site_name" content="Yzh2002&#39;s Blog">
+<meta property="og:description" content="其实本人对算法没什么兴趣，但是担心这学期面试中遭不住气宗面试官的追问（心里没点B树怎么敢投简历） 于是就打算先回顾一下大一下学期学的数据结构，为以后的各种算法打好基础... 图文无关（此OI非彼OI...）">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://p.qlogo.cn/hy_personal/3e28f14aa051684234e587586c362197fb59b624be421e77a1cf210262f1d932/0.png">
+<meta property="og:image" content="https://p.qlogo.cn/hy_personal/3e28f14aa0516842f0cc93bc32821a4c369c9448aa18876f04ef74a933feed9d/0.png">
+<meta property="article:published_time" content="2022-08-20T10:17:00.000Z">
+<meta property="article:modified_time" content="2022-09-03T09:34:40.488Z">
+<meta property="article:author" content="Yzh2002">
+<meta property="article:tag" content="DataStructure">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://p.qlogo.cn/hy_personal/3e28f14aa051684234e587586c362197fb59b624be421e77a1cf210262f1d932/0.png">
+
+<link rel="canonical" href="https://yzh-2002.github.io/2022/08/20/%E5%A4%8D%E4%B9%A0%EF%BC%88%C3%97%EF%BC%89%E9%A2%84%E4%B9%A0%EF%BC%88%E2%88%9A%EF%BC%89%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>复习（×）预习（√）数据结构 | Yzh2002's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+<style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Yzh2002's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://yzh-2002.github.io/2022/08/20/%E5%A4%8D%E4%B9%A0%EF%BC%88%C3%97%EF%BC%89%E9%A2%84%E4%B9%A0%EF%BC%88%E2%88%9A%EF%BC%89%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="http://q1.qlogo.cn/g?b=qq&nk=2039143115&s=640">
+      <meta itemprop="name" content="Yzh2002">
+      <meta itemprop="description" content="梦想是，开一家猫咖٩( •̀㉨•́ )و !">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Yzh2002's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          复习（×）预习（√）数据结构
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2022-08-20 18:17:00" itemprop="dateCreated datePublished" datetime="2022-08-20T18:17:00+08:00">2022-08-20</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-09-03 17:34:40" itemprop="dateModified" datetime="2022-09-03T17:34:40+08:00">2022-09-03</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/OI/" itemprop="url" rel="index"><span itemprop="name">OI~</span></a>
+                </span>
+            </span>
+
+          
+  
+  <span class="post-meta-item">
+    
+      <span class="post-meta-item-icon">
+        <i class="fa fa-comment-o"></i>
+      </span>
+      <span class="post-meta-item-text">Valine：</span>
+    
+    <a title="valine" href="/2022/08/20/%E5%A4%8D%E4%B9%A0%EF%BC%88%C3%97%EF%BC%89%E9%A2%84%E4%B9%A0%EF%BC%88%E2%88%9A%EF%BC%89%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/08/20/%E5%A4%8D%E4%B9%A0%EF%BC%88%C3%97%EF%BC%89%E9%A2%84%E4%B9%A0%EF%BC%88%E2%88%9A%EF%BC%89%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" itemprop="commentCount"></span>
+    </a>
+  </span>
+  
+  
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p>其实本人对算法没什么兴趣，但是担心这学期面试中遭不住<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/65560694/answer/2234746955">气宗面试官</a>的追问（<del>心里没点B树怎么敢投简历</del>）</p>
+<p>于是就打算先回顾一下大一下学期学的数据结构，为以后的各种算法打好基础...</p>
+<p>图文无关（此OI非彼OI...） <img src="https://p.qlogo.cn/hy_personal/3e28f14aa051684234e587586c362197fb59b624be421e77a1cf210262f1d932/0.png" alt="OI"></p>
+<span id="more"></span>
+<h1 id="how-to-learn">How to Learn ??</h1>
+<blockquote>
+<p>知乎上有<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/31082722/answer/1928249851">一篇高赞回答</a>，感觉说的挺不错的，分享一下</p>
+</blockquote>
+<p>简单来讲，就是任何数据结构都是在已有数据结构上因为一些新的需求发展起来的，因此学习数据结构时不要割裂不同数据结构之间的关系，多去思考不同的数据结构之间的异同和联系...</p>
+<p>而无论是什么数据结构，都是内存中数据的一种组织形式，那么首先就要了解我们平日写的代码中的数据在内存中是如何存储并管理的....</p>
+<h1 id="secret-of-memory"><del>Secret</del> of Memory ??</h1>
+<blockquote>
+<p>我们这里说明一下进程的内存分配情况</p>
+</blockquote>
+<p>当我们要运行写好的代码时（先链接编译为可执行的二进制文件过程就不说了...），操作系统会create一个进程，并在内存中为其分配相应的空间。</p>
+<p>进程由三部分组成：PCB，数据段和程序段。</p>
+<figure>
+<img src="https://p.qlogo.cn/hy_personal/3e28f14aa0516842f0cc93bc32821a4c369c9448aa18876f04ef74a933feed9d/0.png" alt="数据段和程序段"><figcaption aria-hidden="true">数据段和程序段</figcaption>
+</figure>
+<p>其中PCB是一个存储在内核空间的<code>task_struct</code>结构体。</p>
+<p>我们平时写代码时，代码段内声明的变量会存放在进程的程序段地址内，其中已经声明了的放在程序段的Data段内，未声明的会放到BSS段内（执行之前会被内核初始化为0或null）</p>
+<p>而代码运行过程中产生的变量等会被存放到数据段，数据段又分为stack和heap两段区域，其中：</p>
+<ol type="1">
+<li>Stack：存储局部、临时变量，函数调用时，存储函数的返回指针，用于控制函数的调用和返回。在程序块开始时自动分配内存,结束时自动释放内存，其操作方式类似于数据结构中的栈。</li>
+<li>Heap：存储动态内存分配,需要程序员手工分配,手工释放（具有内存回收机制的语言不需要手动分配和释放，比如JavaScript）注意它与数据结构中的堆是两回事。</li>
+</ol>
+<h1 id="basic-type-of-data">Basic Type of Data</h1>
+<blockquote>
+<p>先介绍一下基础的数据类型，这里以C语言为例</p>
+</blockquote>
+<p>C语言真正称得上基本类型的是short，int，long，char，float，double。</p>
+<p>这里就简单说一下char类型，占用1 Byte，值是使用<strong>单引号</strong>（<del>Python和JavaScript写多了就容易忽略这一点</del>）包裹的一组字符</p>
+<p>除此之外，还有空类型（void），枚举类型（enum）和派生数据类型（array，struct，union）</p>
+<hr>
+<p>enum:一组整型值的集合，和<strong>宏</strong>很相似，只不过:</p>
+<blockquote>
+<p>enum在编译阶段将名字替换为对应的值，宏是在预处理阶段将名字替换为对应的值。</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Test</span> {</span></span><br><span class="line">    TestValue1,</span><br><span class="line">    TestValue2,</span><br><span class="line">    ...</span><br><span class="line">}</span><br></pre></td></tr></table></figure>
+<hr>
+<p>array类型其实并不存在（这里只是用该符号说明一种数据类型） <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// define Array: [type] VariableName [ArraySize];</span></span><br><span class="line"><span class="type">int</span> Test[<span class="number">10</span>];</span><br></pre></td></tr></table></figure> C语言声明数组必须要确定数组的空间大小（不然会创建失败）,然后会在栈空间分配一段连续的地址，<strong>数组名就的首地址</strong></p>
+<p>JavaScript的数组变量不需要在声明时指定大小，<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/385711203">贺老的回答</a>,里面这样说的：</p>
+<blockquote>
+<p>从这个历史源头来说，JS的数组只是稍微魔改一下的对象，而对象就是一个属性包，并不基于连续存储，也就不存在数组容量概念。</p>
+</blockquote>
+<p>不过也正因为C语言数组需要预先确定大小，所以无法用于动态增长的数据，也就引入了链表这一结构的出现。</p>
+<hr>
+<p>c语言的数组只能存储相同类型的一组变量，struct提供给我们储存各种类型变量的能力。 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">StructName</span> {</span></span><br><span class="line">    <span class="type">int</span> TestNumber;</span><br><span class="line">    <span class="type">char</span> TestName;</span><br><span class="line">    ...</span><br><span class="line">} Variable;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 访问结构体成员</span></span><br><span class="line"><span class="built_in">printf</span>(<span class="string">"%c\n"</span>,Variable.TestName);</span><br></pre></td></tr></table></figure> 结构体的内存在分配时会遵循<strong>对齐</strong>的规则：</p>
+<ol type="1">
+<li><p>结构体成员变量的首地址要能被该结构体中最宽的成员的大小整除</p></li>
+<li><p>结构体成员相对结构体首地址的偏移量(offset)都是本成员大小的整数倍，如有需要编译器会在成员之间加上填充字节；</p></li>
+<li><p>结构体的总大小为结构体最宽成员大小的整数倍，如有需要编译器会在最末一个成员之后加上填充字节</p></li>
+</ol>
+<hr>
+<p>Union类型和Struct很像，不同点在于内存的分配上，struct中的变量均拥有自己的内存（可能会因为对齐规则存在空隙），而Union中的变量共用同一块内存，一个Union变量所占内存大小为最大的成员变量所占内存。（<del>到现在就没有用过Union，也就不多数什么了...</del>）</p>
+<h1 id="advanced-type-of-data">Advanced Type of Data</h1>
+<blockquote>
+<p>下面介绍一下在这些基础数据结构上延申出来的数据结构（我自己想叫他们为高级数据结构...）</p>
+</blockquote>
+<h2 id="linklist">LinkList</h2>
+<blockquote>
+<p>链表是这些高级数据结构的基础，其他高级数据结构大多数在链表的基础上进行各种变换演变而来....</p>
+</blockquote>
+<p>以C语言为例，默认的数据结构无法管理动态的数据，数组所管理的一组数据也必须要事先声明大小。因此，为了管理动态的数据引出了链表的设计。</p>
+<p>所以链表是什么呢？其实就是一串结构体，每个结构体有一部分用来存数据，再设置一个变量存储下一个结构体的内存地址，对于一组动态数据，我们可以通过<code>malloc</code>函数来动态的申请内存然后再将其添加到链表上。</p>
+<p>下面简单演示一下，需要管理的动态数据就是从0开始的自然数，但是到几不知道.... <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 声明结构体</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span> {</span></span><br><span class="line">    <span class="type">int</span> data; <span class="comment">//需要管理的动态数据</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">next</span>;</span></span><br><span class="line">};</span><br><span class="line"><span class="type">int</span> <span class="title function_">main</span><span class="params">(<span class="type">void</span>)</span>{</span><br><span class="line">    <span class="comment">// 初始化头结点</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">head</span> =</span>(<span class="keyword">struct</span> node *)<span class="built_in">malloc</span>(sizoeof(<span class="keyword">struct</span> node));</span><br><span class="line">    head-&gt;data =<span class="number">0</span>; <span class="comment">//该数字无意义</span></span><br><span class="line">    head-&gt;next=<span class="literal">NULL</span>;</span><br><span class="line">     <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">tail</span> =</span>head;</span><br><span class="line">    <span class="comment">// 初始化链表（该组数初始为0~100）</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i=<span class="number">0</span>;i&lt;=<span class="number">100</span>;i++){</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">temp</span> =</span>(<span class="keyword">struct</span> node *)<span class="built_in">malloc</span>(sizoeof(<span class="keyword">struct</span> node));</span><br><span class="line">        temp-&gt;data =i;</span><br><span class="line">        temp-&gt;next =<span class="literal">NULL</span>;</span><br><span class="line">        tail-&gt;next =temp;</span><br><span class="line">        tail =temp; <span class="comment">//更新尾节点...</span></span><br><span class="line">    }</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果数继续往上加，那就申请地址，再挂载到链表上即可</span></span><br><span class="line">     <span class="class"><span class="keyword">struct</span> <span class="title">node</span> *<span class="title">temp</span> =</span>(<span class="keyword">struct</span> node *)<span class="built_in">malloc</span>(sizoeof(<span class="keyword">struct</span> node));</span><br><span class="line">    temp-&gt;data =<span class="number">101</span>;</span><br><span class="line">    temp-&gt;next =<span class="literal">NULL</span>;</span><br><span class="line">    tail-&gt;next =temp;</span><br><span class="line">    tail =temp;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">}</span><br></pre></td></tr></table></figure></p>
+<p>这里思考一下链表的指针：</p>
+<blockquote>
+<p>链表的关键就在于通过指针链接分散于内存中各个位置的struct，因此我们只需要链表的头结点的地址，然后就能通过指针管理链表上各个结构体。</p>
+</blockquote>
+<p>链表的出现完美解决了动态数据的管理问题，但是貌似并不是最优的，比如我想要在链表末尾插入一个结构体，就需要先从头遍历到尾再进行 操作，时间复杂度为</p>
+<p><span class="math display"><mjx-container class="MathJax" jax="SVG" display="true"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="4.844ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 2141 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(1152,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(1752,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></svg></mjx-container></span></p>
+<p>解决这个问题可以设置双指针，然后记录头尾结点的地址进行链表的管理。但是对于中间结点的修改和插入仍需要遍历，时间复杂度并没有下降，有没有什么方法能降低时间复杂度呢？</p>
+<p>我们知道无序数组查找某个元素时时间复杂度为O(n)，但是有序数组通过二分法查找时间复杂度就会降低到:</p>
+<p><span class="math display"><mjx-container class="MathJax" jax="SVG" display="true"><svg style="vertical-align: -0.566ex;" xmlns="http://www.w3.org/2000/svg" width="8.682ex" height="2.262ex" role="img" focusable="false" viewBox="0 -750 3837.6 1000"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mi"><path data-c="1D442" d="M740 435Q740 320 676 213T511 42T304 -22Q207 -22 138 35T51 201Q50 209 50 244Q50 346 98 438T227 601Q351 704 476 704Q514 704 524 703Q621 689 680 617T740 435ZM637 476Q637 565 591 615T476 665Q396 665 322 605Q242 542 200 428T157 216Q157 126 200 73T314 19Q404 19 485 98T608 313Q637 408 637 476Z"></path></g><g data-mml-node="mo" transform="translate(763,0)"><path data-c="28" d="M94 250Q94 319 104 381T127 488T164 576T202 643T244 695T277 729T302 750H315H319Q333 750 333 741Q333 738 316 720T275 667T226 581T184 443T167 250T184 58T225 -81T274 -167T316 -220T333 -241Q333 -250 318 -250H315H302L274 -226Q180 -141 137 -14T94 250Z"></path></g><g data-mml-node="mi" transform="translate(1152,0)"><path data-c="1D459" d="M117 59Q117 26 142 26Q179 26 205 131Q211 151 215 152Q217 153 225 153H229Q238 153 241 153T246 151T248 144Q247 138 245 128T234 90T214 43T183 6T137 -11Q101 -11 70 11T38 85Q38 97 39 102L104 360Q167 615 167 623Q167 626 166 628T162 632T157 634T149 635T141 636T132 637T122 637Q112 637 109 637T101 638T95 641T94 647Q94 649 96 661Q101 680 107 682T179 688Q194 689 213 690T243 693T254 694Q266 694 266 686Q266 675 193 386T118 83Q118 81 118 75T117 65V59Z"></path></g><g data-mml-node="mi" transform="translate(1450,0)"><path data-c="1D45C" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z"></path></g><g data-mml-node="msub" transform="translate(1935,0)"><g data-mml-node="mi"><path data-c="1D454" d="M311 43Q296 30 267 15T206 0Q143 0 105 45T66 160Q66 265 143 353T314 442Q361 442 401 394L404 398Q406 401 409 404T418 412T431 419T447 422Q461 422 470 413T480 394Q480 379 423 152T363 -80Q345 -134 286 -169T151 -205Q10 -205 10 -137Q10 -111 28 -91T74 -71Q89 -71 102 -80T116 -111Q116 -121 114 -130T107 -144T99 -154T92 -162L90 -164H91Q101 -167 151 -167Q189 -167 211 -155Q234 -144 254 -122T282 -75Q288 -56 298 -13Q311 35 311 43ZM384 328L380 339Q377 350 375 354T369 368T359 382T346 393T328 402T306 405Q262 405 221 352Q191 313 171 233T151 117Q151 38 213 38Q269 38 323 108L331 118L384 328Z"></path></g><g data-mml-node="TeXAtom" transform="translate(510,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g></g></g><g data-mml-node="mi" transform="translate(2848.6,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="mo" transform="translate(3448.6,0)"><path data-c="29" d="M60 749L64 750Q69 750 74 750H86L114 726Q208 641 251 514T294 250Q294 182 284 119T261 12T224 -76T186 -143T145 -194T113 -227T90 -246Q87 -249 86 -250H74Q66 -250 63 -250T58 -247T55 -238Q56 -237 66 -225Q221 -64 221 250T66 725Q56 737 55 738Q55 746 60 749Z"></path></g></g></g></svg></mjx-container></span></p>
+<p>计算过程： n代表数组长度，k代表循环次数，由于循环结束时的查找区间为1，可知：</p>
+<p><span class="math display"><mjx-container class="MathJax" jax="SVG" display="true"><svg style="vertical-align: -1.674ex;" xmlns="http://www.w3.org/2000/svg" width="16.688ex" height="4.203ex" role="img" focusable="false" viewBox="0 -1118 7376.1 1857.7"><g stroke="currentColor" fill="currentColor" stroke-width="0" transform="scale(1,-1)"><g data-mml-node="math"><g data-mml-node="mfrac"><g data-mml-node="mi" transform="translate(395.7,676)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g><g data-mml-node="msup" transform="translate(220,-739.7)"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g><g data-mml-node="TeXAtom" transform="translate(533,289) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mi"><path data-c="1D458" d="M121 647Q121 657 125 670T137 683Q138 683 209 688T282 694Q294 694 294 686Q294 679 244 477Q194 279 194 272Q213 282 223 291Q247 309 292 354T362 415Q402 442 438 442Q468 442 485 423T503 369Q503 344 496 327T477 302T456 291T438 288Q418 288 406 299T394 328Q394 353 410 369T442 390L458 393Q446 405 434 405H430Q398 402 367 380T294 316T228 255Q230 254 243 252T267 246T293 238T320 224T342 206T359 180T365 147Q365 130 360 106T354 66Q354 26 381 26Q429 26 459 145Q461 153 479 153H483Q499 153 499 144Q499 139 496 130Q455 -11 378 -11Q333 -11 305 15T277 90Q277 108 280 121T283 145Q283 167 269 183T234 206T200 217T182 220H180Q168 178 159 139T145 81T136 44T129 20T122 7T111 -2Q98 -11 83 -11Q66 -11 57 -1T48 16Q48 26 85 176T158 471L195 616Q196 629 188 632T149 637H144Q134 637 131 637T124 640T121 647Z"></path></g></g></g><rect width="1151.4" height="60" x="120" y="220"></rect></g><g data-mml-node="mo" transform="translate(1669.2,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mn" transform="translate(2725,0)"><path data-c="31" d="M213 578L200 573Q186 568 160 563T102 556H83V602H102Q149 604 189 617T245 641T273 663Q275 666 285 666Q294 666 302 660V361L303 61Q310 54 315 52T339 48T401 46H427V0H416Q395 3 257 3Q121 3 100 0H88V46H114Q136 46 152 46T177 47T193 50T201 52T207 57T213 61V578Z"></path></g><g data-mml-node="mspace" transform="translate(3225,0)"></g><g data-mml-node="mi" transform="translate(3225,0)"><path data-c="1D458" d="M121 647Q121 657 125 670T137 683Q138 683 209 688T282 694Q294 694 294 686Q294 679 244 477Q194 279 194 272Q213 282 223 291Q247 309 292 354T362 415Q402 442 438 442Q468 442 485 423T503 369Q503 344 496 327T477 302T456 291T438 288Q418 288 406 299T394 328Q394 353 410 369T442 390L458 393Q446 405 434 405H430Q398 402 367 380T294 316T228 255Q230 254 243 252T267 246T293 238T320 224T342 206T359 180T365 147Q365 130 360 106T354 66Q354 26 381 26Q429 26 459 145Q461 153 479 153H483Q499 153 499 144Q499 139 496 130Q455 -11 378 -11Q333 -11 305 15T277 90Q277 108 280 121T283 145Q283 167 269 183T234 206T200 217T182 220H180Q168 178 159 139T145 81T136 44T129 20T122 7T111 -2Q98 -11 83 -11Q66 -11 57 -1T48 16Q48 26 85 176T158 471L195 616Q196 629 188 632T149 637H144Q134 637 131 637T124 640T121 647Z"></path></g><g data-mml-node="mo" transform="translate(4023.7,0)"><path data-c="3D" d="M56 347Q56 360 70 367H707Q722 359 722 347Q722 336 708 328L390 327H72Q56 332 56 347ZM56 153Q56 168 72 173H708Q722 163 722 153Q722 140 707 133H70Q56 140 56 153Z"></path></g><g data-mml-node="mi" transform="translate(5079.5,0)"><path data-c="1D459" d="M117 59Q117 26 142 26Q179 26 205 131Q211 151 215 152Q217 153 225 153H229Q238 153 241 153T246 151T248 144Q247 138 245 128T234 90T214 43T183 6T137 -11Q101 -11 70 11T38 85Q38 97 39 102L104 360Q167 615 167 623Q167 626 166 628T162 632T157 634T149 635T141 636T132 637T122 637Q112 637 109 637T101 638T95 641T94 647Q94 649 96 661Q101 680 107 682T179 688Q194 689 213 690T243 693T254 694Q266 694 266 686Q266 675 193 386T118 83Q118 81 118 75T117 65V59Z"></path></g><g data-mml-node="mi" transform="translate(5377.5,0)"><path data-c="1D45C" d="M201 -11Q126 -11 80 38T34 156Q34 221 64 279T146 380Q222 441 301 441Q333 441 341 440Q354 437 367 433T402 417T438 387T464 338T476 268Q476 161 390 75T201 -11ZM121 120Q121 70 147 48T206 26Q250 26 289 58T351 142Q360 163 374 216T388 308Q388 352 370 375Q346 405 306 405Q243 405 195 347Q158 303 140 230T121 120Z"></path></g><g data-mml-node="msub" transform="translate(5862.5,0)"><g data-mml-node="mi"><path data-c="1D454" d="M311 43Q296 30 267 15T206 0Q143 0 105 45T66 160Q66 265 143 353T314 442Q361 442 401 394L404 398Q406 401 409 404T418 412T431 419T447 422Q461 422 470 413T480 394Q480 379 423 152T363 -80Q345 -134 286 -169T151 -205Q10 -205 10 -137Q10 -111 28 -91T74 -71Q89 -71 102 -80T116 -111Q116 -121 114 -130T107 -144T99 -154T92 -162L90 -164H91Q101 -167 151 -167Q189 -167 211 -155Q234 -144 254 -122T282 -75Q288 -56 298 -13Q311 35 311 43ZM384 328L380 339Q377 350 375 354T369 368T359 382T346 393T328 402T306 405Q262 405 221 352Q191 313 171 233T151 117Q151 38 213 38Q269 38 323 108L331 118L384 328Z"></path></g><g data-mml-node="TeXAtom" transform="translate(510,-150) scale(0.707)" data-mjx-texclass="ORD"><g data-mml-node="mn"><path data-c="32" d="M109 429Q82 429 66 447T50 491Q50 562 103 614T235 666Q326 666 387 610T449 465Q449 422 429 383T381 315T301 241Q265 210 201 149L142 93L218 92Q375 92 385 97Q392 99 409 186V189H449V186Q448 183 436 95T421 3V0H50V19V31Q50 38 56 46T86 81Q115 113 136 137Q145 147 170 174T204 211T233 244T261 278T284 308T305 340T320 369T333 401T340 431T343 464Q343 527 309 573T212 619Q179 619 154 602T119 569T109 550Q109 549 114 549Q132 549 151 535T170 489Q170 464 154 447T109 429Z"></path></g></g></g><g data-mml-node="mi" transform="translate(6776.1,0)"><path data-c="1D45B" d="M21 287Q22 293 24 303T36 341T56 388T89 425T135 442Q171 442 195 424T225 390T231 369Q231 367 232 367L243 378Q304 442 382 442Q436 442 469 415T503 336T465 179T427 52Q427 26 444 26Q450 26 453 27Q482 32 505 65T540 145Q542 153 560 153Q580 153 580 145Q580 144 576 130Q568 101 554 73T508 17T439 -10Q392 -10 371 17T350 73Q350 92 386 193T423 345Q423 404 379 404H374Q288 404 229 303L222 291L189 157Q156 26 151 16Q138 -11 108 -11Q95 -11 87 -5T76 7T74 17Q74 30 112 180T152 343Q153 348 153 366Q153 405 129 405Q91 405 66 305Q60 285 60 284Q58 278 41 278H27Q21 284 21 287Z"></path></g></g></g></svg></mjx-container></span></p>
+<p><del>计算过程挺简单的，这里主要是测试一下博客的latex渲染...</del>~</p>
+<p>链表可不可以进行类似的改进让其有序，从而进行二分查找以减少遍历的时间复杂度呢？由此引出了二叉排序树。</p>
+<p>上面是从时间的角度优化链表，下面我们从空间的角度考虑一下，链表引入了指针占用了额外的内存，对于一个存储着整形数值的链表来说内存是数组的两倍，如何改进？由此引出了堆。</p>
+<h2 id="binary-tree">Binary tree</h2>
+<blockquote>
+<p>二叉树属于树的特殊结构，每个结点只有两个子节点。</p>
+</blockquote>
+<p>二叉树是一个很重要的数据结构，不仅是链表和数组的延申，又可以作为图的基础。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//二叉树的数据结构（c）</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">BiTNode</span> {</span></span><br><span class="line">    ElemType data;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">BiTNode</span> * <span class="title">Rchild</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">BiTNode</span> * <span class="title">Lchild</span>;</span></span><br><span class="line">} BiTNode;</span><br></pre></td></tr></table></figure>
+<p>二叉树又细分为很多类型：</p>
+<ol type="1">
+<li>二叉排序(搜索/查询)树
+<ul>
+<li>特点：左子树上所有结点的值均比根节点小，右子树上所有结点的值均被根节点大</li>
+</ul></li>
+<li>完全二叉树
+<ul>
+<li>特点：只有最下面的两层结点度小于2，并且最下面一层的结点都集中在该层最左边的若干位置的二叉树。</li>
+</ul></li>
+<li>满二叉树
+<ul>
+<li>特点：所有结点（叶结点除外）的度都是2，满二叉树一定是完全二叉树，反之不一定</li>
+</ul></li>
+<li>平衡二叉树（AVL）
+<ul>
+<li>特点：树的左右子树的高度差不能超过1</li>
+<li>应用：二叉树在插入元素时，如果随便插入，很可能<code>偏</code>的很厉害，最特殊的情况：每次都插到左子树，最终使其发展为链表，从而影响二叉树的查询效率</li>
+</ul></li>
+<li>红黑树：
+<ul>
+<li>特点：含有红黑结点并能自平衡的二叉查找树</li>
+</ul></li>
+<li>哈夫曼树：
+<ul>
+<li>特点：又称最优二叉树，是一种带权路径长度最短的二叉树，所谓树的带权路径长度，就是树中所有的叶结点的权值乘上其到根结点的路径长度</li>
+</ul></li>
+<li>B树：
+<ul>
+<li>特点：B树属于多叉树又名平衡多路查找树（查找路径不止两个）</li>
+<li>应用：数据库的索引技术多使用该数据结构</li>
+</ul></li>
+<li>B+树：
+<ul>
+<li>特点：是在B树的基础上又一次的改进，其主要对两个方面进行了提升，一方面是查询的稳定性，另外一方面是在数据排序方面更友好。</li>
+</ul></li>
+<li>...</li>
+</ol>
+<blockquote>
+<p>上述内容暂时写的十分笼统，主要是先有个大致概念，后面再展开详细学习...</p>
+</blockquote>
+<h1 id="heap">Heap</h1>
+<blockquote>
+<p>堆就是用数组实现的二叉树，所以它没有使用父指针或者子指针。因而节省了内存空间</p>
+</blockquote>
+<p>暂时搁置....</p>
+<h1 id="to-do">To do</h1>
+<ol type="1">
+<li><del>每个数据结构的定义</del></li>
+<li>每个数据结构的优势，用途</li>
+<li>每个数据结构相关的应用（OI题）
+<ul>
+<li>后续单独写篇文章补充吧...</li>
+</ul></li>
+</ol>
+<p>慢慢来....</p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/DataStructure/" rel="tag"># DataStructure</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2022/08/17/%E8%AE%B0%E5%BD%95%E4%B8%80%E6%AC%A1wordpress%E5%BB%BA%E7%AB%99%E7%BB%8F%E5%8E%86/" rel="prev" title="记录一次wordpress建站经历">
+      <i class="fa fa-chevron-left"></i> 记录一次wordpress建站经历
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2022/08/25/%E8%81%8A%E8%81%8ACommonJS%E5%92%8CEs-Module/" rel="next" title="聊聊CommonJS和Es Module">
+      聊聊CommonJS和Es Module <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+    <div class="comments" id="valine-comments"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#how-to-learn"><span class="nav-number">1.</span> <span class="nav-text">How to Learn ??</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#secret-of-memory"><span class="nav-number">2.</span> <span class="nav-text">Secret of Memory ??</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#basic-type-of-data"><span class="nav-number">3.</span> <span class="nav-text">Basic Type of Data</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#advanced-type-of-data"><span class="nav-number">4.</span> <span class="nav-text">Advanced Type of Data</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#linklist"><span class="nav-number">4.1.</span> <span class="nav-text">LinkList</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#binary-tree"><span class="nav-number">4.2.</span> <span class="nav-text">Binary tree</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#heap"><span class="nav-number">5.</span> <span class="nav-text">Heap</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#to-do"><span class="nav-number">6.</span> <span class="nav-text">To do</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Yzh2002"
+      src="http://q1.qlogo.cn/g?b=qq&nk=2039143115&s=640">
+  <p class="site-author-name" itemprop="name">Yzh2002</p>
+  <div class="site-description" itemprop="description">梦想是，开一家猫咖٩( •̀㉨•́ )و !</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">9</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/yzh-2002" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;yzh-2002" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://twitter.com/yzhou2002" title="Twitter → https:&#x2F;&#x2F;twitter.com&#x2F;yzhou2002" rel="noopener" target="_blank"><i class="fa fa-fw fa-twitter"></i>Twitter</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://leetcode.cn/u/yang-zhou-hou/" title="LeetCode → https:&#x2F;&#x2F;leetcode.cn&#x2F;u&#x2F;yang-zhou-hou&#x2F;" rel="noopener" target="_blank"><i class="fa fa-fw fa-leetcode"></i>LeetCode</a>
+      </span>
+  </div>
+
+
+
+      </div>
+      
+     <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=110 src="//music.163.com/outchain/player?type=0&id=5250295093&auto=1&height=90"></iframe>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Yzh2002</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '.languages',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[data-pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.dataset.pjax !== undefined) {
+      script.dataset.pjax = '';
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+      
+
+<script>
+  if (typeof MathJax === 'undefined') {
+    window.MathJax = {
+      loader: {
+        source: {
+          '[tex]/amsCd': '[tex]/amscd',
+          '[tex]/AMScd': '[tex]/amscd'
+        }
+      },
+      tex: {
+        inlineMath: {'[+]': [['$', '$']]},
+        tags: 'ams'
+      },
+      options: {
+        renderActions: {
+          findScript: [10, doc => {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(node => {
+              const display = !!node.type.match(/; *mode=display/);
+              const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+              const text = document.createTextNode('');
+              node.parentNode.replaceChild(text, node);
+              math.start = {node: text, delim: '', n: 0};
+              math.end = {node: text, delim: '', n: 0};
+              doc.math.push(math);
+            });
+          }, '', false],
+          insertedScript: [200, () => {
+            document.querySelectorAll('mjx-container').forEach(node => {
+              let target = node.parentNode;
+              if (target.nodeName.toLowerCase() === 'li') {
+                target.parentNode.classList.add('has-jax');
+              }
+            });
+          }, '', false]
+        }
+      }
+    };
+    (function () {
+      var script = document.createElement('script');
+      script.src = '//cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js';
+      script.defer = true;
+      document.head.appendChild(script);
+    })();
+  } else {
+    MathJax.startup.document.state(0);
+    MathJax.texReset();
+    MathJax.typeset();
+  }
+</script>
+
+    
+
+  
+
+
+<script>
+NexT.utils.loadComments(document.querySelector('#valine-comments'), () => {
+  NexT.utils.getScript('//unpkg.com/valine/dist/Valine.min.js', () => {
+    var GUEST = ['nick', 'mail', 'link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(item => {
+      return GUEST.includes(item);
+    });
+    new Valine({
+      el         : '#valine-comments',
+      verify     : false,
+      notify     : false,
+      appId      : 'o48KVackdJOEC91cPdaAcTIC-gzGzoHsz',
+      appKey     : 'FuTJOKlfxuc7t2T9CJumhzE0',
+      placeholder: "Just go go",
+      avatar     : 'mm',
+      meta       : guest,
+      pageSize   : '10' || 10,
+      visitor    : false,
+      lang       : '' || 'zh-cn',
+      path       : location.pathname,
+      recordIP   : false,
+      serverURLs : ''
+    });
+  }, window.Valine);
+});
+</script>
+
+    </div>
+</body>
+</html>
