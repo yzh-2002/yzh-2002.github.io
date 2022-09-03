@@ -188,6 +188,7 @@ social:
   #YouTube: https://youtube.com/yourname || youtube
   #Instagram: https://instagram.com/yourname || instagram
   #Skype: skype:yourname?call|chat || skype
+  LeetCode: https://leetcode.cn/u/yang-zhou-hou/ || leetcode
 
 social_icons:
   enable: true
