@@ -188,7 +188,8 @@ social:
   #YouTube: https://youtube.com/yourname || youtube
   #Instagram: https://instagram.com/yourname || instagram
   #Skype: skype:yourname?call|chat || skype
-  LeetCode: https://leetcode.cn/u/yang-zhou-hou/ || leetcode
+  LeetCode: https://leetcode.cn/u/yang-zhou-hou/ || code
+  Resume: https://www.dropbox.com/s/70nnhf4cx9fne16/%E6%9D%A8%E5%AD%90%E6%B6%B5-%E7%94%B5%E5%AD%90%E7%A7%91%E6%8A%80%E5%A4%A7%E5%AD%A6-%E5%AE%9E%E4%B9%A0%E7%AE%80%E5%8E%86%20%282%29.pdf?dl=0 || file
 
 social_icons:
   enable: true
