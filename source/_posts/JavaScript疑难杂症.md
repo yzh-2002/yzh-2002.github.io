@@ -21,6 +21,85 @@ categories:
 
 `demo.__proto__`为`Array.prototype`，而`Array.prototype.__proto__`为`Object.prototype`，再往后为null，也即原型链走到尽头。
 
+## JavaScript面向对象编程
+
+> JavaScript的面向对象，是一种基于`prototype`的面向对象。
+
+什么是基于`prototype`的面向对象呢？在原型链中我们提到过（写到这里发现漏提了...），**所有的对象都有一个原型对象，原型对象也有其原型对象**，因此就有了原型链，为了更好的理解，我们先此处存疑，接着往下看：
+
+### new干了什么？
+
+JavaScript中如何产生一个对象呢？两种方式：
+
+1. 对象字面量
+2. 构造函数实例化
+
+对象字面量不再过多介绍，这里主要说一下构造函数实例化的方式，所谓构造函数，其实就是普通的函数，但是通过`new`关键字调用：
+```javascript
+let Demo =function(name){
+    this.name =name;
+}
+
+let yzh =new Demo('yzh');
+console.log(yzh) //Demo {name:'yzh'}
+```
+
+`new`关键词做了什么呢？
+
+1. 创建一个空的JavaScript对象`{}`
+2. 为该对象添加属性`__proto__`，将其指向构造函数的原型对象
+3. 将步骤1创建的对象作为构造函数中`this`的引用
+4. 如果该函数没有返回对象（一般构造函数都不返回对象，默认返回this），就返回`this`
+
+写成代码就是：
+
+```javascript
+function newObj(fn,args){
+    let obj ={}
+    obj.__proto__ =fn.prototype;
+    fn.call(obj,...args)
+    return obj;
+}
+```
+
+为什么是基于原型的面向对象，关键就在于第二步`obj.__proto__ =fn.prototype`，（根据原型链提到的属性和方法的查询原则）不同实例对象的属性和方法都来自于同一个对象，也即构造函数的原型对象。
+
+### 继承如何实现？
+
+知晓这一点之后，再来看看基于原型如何实现继承？
+
+> 其实所谓继承：
+
+```javascript
+let Person =function(name){
+    this.name =name;
+}
+
+Person.prototype.eat =function(){
+    console.log("eating...")
+}
+
+// 实现一个学生类，继承Person
+let Student =function(name,grade){
+    Person.call(this,name); //使得实例对象拥有Person类的属性和方法
+    // Student类的属性和方法
+    this.grade =grade;
+}
+// 为了Student类可以访问Person类的原型上属性和方法，因此需要使得Student的原型对象继承Person的原型对象
+Student.prototype =Object.create(Person.prototype) 
+// 记得将constructor更改回来
+Student.prototype.constructor =Student;
+
+// 完成上述步骤之后就可以在Student的原型上再添加新方法了....
+```
+
+### class
+
+> ES6中引入了`class`关键字，虽说其只是一个语法糖，但是底层实现还是上述相关，但是使用`class`实现上述内容要比使用原型对象心智负担小很多....
+
+
+
+
 ## this指向
 
 > ECMAScript规范： 严格模式时，函数内的this绑定严格指向传入的thisArgument。非严格模式时，若传入的thisArgument不为undefined或null时，函数内的this绑定指向传入的thisArgument；为undefined或null时，函数内的this绑定指向全局的this。
@@ -149,6 +228,7 @@ console.log(this);
 这就是JavaScript如何寻找变量决定的了，首先在foo的块级作用域内看能否访问到，如果没有，就会到上层的词法环境中去寻找（通过outer指针，其指向上层的词法环境），而通过outer指针链接的词法作用域的链就称之为作用域链。
 
 注意outer指针是指向外部的作用域，而不是指向内部的，很容易理解，因为内部对外部不可见。
+
 
 ## 参考链接
 
