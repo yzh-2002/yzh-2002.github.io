@@ -129,7 +129,26 @@ cookie本身是由一个个键值对构成的，形式类似于：`Cookie:k1=v1;
 3. Secure和HttpOnly：两者无关联值，单独存在，`Secure`意味着cookie只会在加密传输中携带，`HttpOnly`则代表着浏览器除了HTTP/HTTPS请求之外不会显示cookie，也无法在客户端通过脚本获取。
 4. sameSite：Chrome51新增的属性，用于防止CSRF攻击和用户追踪，其有三个值，`strict`,`Lax`,`None`。strict完全禁止第三方cookie，lax稍稍放松，但是导航到目标网址的get请求除外（详情见参考链接），None则是关闭samesite属性。
 
-不知有没有人关注到了``
+#### session
+
+不知有没有人关注到了上面设置cookie时的`sessionToken`，它的值是一个sessionId，那么session和cookie的关系是什么？
+
+其实两者都是为了实现用户的身份认证，只不过session是在服务器生成并保存的，cookie是在浏览器中保存的，我们在访问网站时，可以通过和服务器协商产生一个cookie（但是该cookie更多的作用是用于记录信息，比如记录用户购物车的信息等等，都是明文的，特别是如果用户登录认证时采用cookie明文传输很危险，就算是购物车信息等也会暴漏个人隐私），基于此，诞生了session，也即将**这些信息统统保存在服务端**，服务端通过cookie只记录了一个sessionId（**这种方式离不开cookie的支持**）（通常存储在redis数据库中...），下次用户传输时只有sessionId，然后服务端这边解析出相应的信息，也可以个性化的返回内容...
+
+这样就一定程度的保证了安全性，可以避免不法分子拿到cookie获取个人隐私等等
+
+#### JSON Web Tokens
+
+> cookie的替代方案，可以用来替代session cookie，但是不同于cookie自动附加到每个HTTP请求的方式，JWTs必须被web应用明确指定附加到哪个HTTP请求上....
+
+### HTTP缓存
+
+> HTTP缓存分为私有缓存和共享缓存，私有缓存是绑定到特定客户端的缓存，通常是浏览器缓存。共享缓存位于客户端和服务器之间，通常需要依托于Web缓存服务器。
+
+缓存过程分析：
+
+![缓存过程](https://p.qlogo.cn/hy_personal/3e28f14aa0516842e3a9bdd65a95b6961c9c88fc03a1b1501e460918dc14c264/0.png)
+
 
 ## TO be continued
 
@@ -140,4 +159,4 @@ cookie本身是由一个个键值对构成的，形式类似于：`Cookie:k1=v1;
 2. [HTTP之cookie --wiki](https://en.wikipedia.org/wiki/HTTP_cookie)
 3. [HTTP缓存](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Caching)
 4. [Cookie 的 SameSite 属性](https://www.ruanyifeng.com/blog/2019/09/cookie-samesite.html)
-5. []()
+5. [深入理解浏览器的缓存机制](https://zhuanlan.zhihu.com/p/99340110)
