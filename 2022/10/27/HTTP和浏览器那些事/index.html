@@ -20,19 +20,20 @@
     var CONFIG = {"hostname":"yzh-2002.github.io","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","width":300,"display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="有东西被加密了, 请输入密码查看.">
+  <meta name="description" content="上个星期写了一道经典面试题，其中HTTP请求的部分基本一笔带过，主要是HTTP协议对于前端开发人员还是很重要的，可说的点非常多，结合浏览器能说的就更多了，因此单独开坑总结一下，详情见后文">
 <meta property="og:type" content="article">
-<meta property="og:title" content="随想录：聊聊生活，工作，学习">
-<meta property="og:url" content="https://yzh-2002.github.io/2022/10/12/%E9%9A%8F%E6%83%B3%E5%BD%95%EF%BC%9A%E8%81%8A%E8%81%8A%E7%94%9F%E6%B4%BB%EF%BC%8C%E5%B7%A5%E4%BD%9C%EF%BC%8C%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:title" content="HTTP和浏览器那些事~~">
+<meta property="og:url" content="https://yzh-2002.github.io/2022/10/27/HTTP%E5%92%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E9%82%A3%E4%BA%9B%E4%BA%8B/index.html">
 <meta property="og:site_name" content="Yzh2002&#39;s Blog">
-<meta property="og:description" content="有东西被加密了, 请输入密码查看.">
+<meta property="og:description" content="上个星期写了一道经典面试题，其中HTTP请求的部分基本一笔带过，主要是HTTP协议对于前端开发人员还是很重要的，可说的点非常多，结合浏览器能说的就更多了，因此单独开坑总结一下，详情见后文">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2022-10-12T14:33:40.000Z">
-<meta property="article:modified_time" content="2022-10-28T02:06:37.377Z">
+<meta property="article:published_time" content="2022-10-27T13:15:47.000Z">
+<meta property="article:modified_time" content="2022-10-28T02:06:37.373Z">
 <meta property="article:author" content="Yzh2002">
+<meta property="article:tag" content="network">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="https://yzh-2002.github.io/2022/10/12/%E9%9A%8F%E6%83%B3%E5%BD%95%EF%BC%9A%E8%81%8A%E8%81%8A%E7%94%9F%E6%B4%BB%EF%BC%8C%E5%B7%A5%E4%BD%9C%EF%BC%8C%E5%AD%A6%E4%B9%A0/">
+<link rel="canonical" href="https://yzh-2002.github.io/2022/10/27/HTTP%E5%92%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E9%82%A3%E4%BA%9B%E4%BA%8B/">
 
 
 <script id="page-configurations">
@@ -45,7 +46,7 @@
   };
 </script>
 
-  <title>随想录：聊聊生活，工作，学习 | Yzh2002's Blog</title>
+  <title>HTTP和浏览器那些事~~ | Yzh2002's Blog</title>
   
 
 
@@ -272,7 +273,7 @@ mjx-container[display="true"] + br {
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://yzh-2002.github.io/2022/10/12/%E9%9A%8F%E6%83%B3%E5%BD%95%EF%BC%9A%E8%81%8A%E8%81%8A%E7%94%9F%E6%B4%BB%EF%BC%8C%E5%B7%A5%E4%BD%9C%EF%BC%8C%E5%AD%A6%E4%B9%A0/">
+    <link itemprop="mainEntityOfPage" href="https://yzh-2002.github.io/2022/10/27/HTTP%E5%92%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E9%82%A3%E4%BA%9B%E4%BA%8B/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="http://q1.qlogo.cn/g?b=qq&nk=2039143115&s=640">
@@ -285,7 +286,7 @@ mjx-container[display="true"] + br {
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          随想录：聊聊生活，工作，学习
+          HTTP和浏览器那些事~~
         </h1>
 
         <div class="post-meta">
@@ -295,7 +296,7 @@ mjx-container[display="true"] + br {
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-10-12 22:33:40" itemprop="dateCreated datePublished" datetime="2022-10-12T22:33:40+08:00">2022-10-12</time>
+              <time title="创建时间：2022-10-27 21:15:47" itemprop="dateCreated datePublished" datetime="2022-10-27T21:15:47+08:00">2022-10-27</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
@@ -310,7 +311,7 @@ mjx-container[display="true"] + br {
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E4%B8%AA%E4%BA%BA%E6%88%90%E9%95%BF/" itemprop="url" rel="index"><span itemprop="name">个人成长</span></a>
+                  <a href="/categories/develop/" itemprop="url" rel="index"><span itemprop="name">develop</span></a>
                 </span>
             </span>
 
@@ -323,8 +324,8 @@ mjx-container[display="true"] + br {
       </span>
       <span class="post-meta-item-text">Valine：</span>
     
-    <a title="valine" href="/2022/10/12/%E9%9A%8F%E6%83%B3%E5%BD%95%EF%BC%9A%E8%81%8A%E8%81%8A%E7%94%9F%E6%B4%BB%EF%BC%8C%E5%B7%A5%E4%BD%9C%EF%BC%8C%E5%AD%A6%E4%B9%A0/#valine-comments" itemprop="discussionUrl">
-      <span class="post-comments-count valine-comment-count" data-xid="/2022/10/12/%E9%9A%8F%E6%83%B3%E5%BD%95%EF%BC%9A%E8%81%8A%E8%81%8A%E7%94%9F%E6%B4%BB%EF%BC%8C%E5%B7%A5%E4%BD%9C%EF%BC%8C%E5%AD%A6%E4%B9%A0/" itemprop="commentCount"></span>
+    <a title="valine" href="/2022/10/27/HTTP%E5%92%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E9%82%A3%E4%BA%9B%E4%BA%8B/#valine-comments" itemprop="discussionUrl">
+      <span class="post-comments-count valine-comment-count" data-xid="/2022/10/27/HTTP%E5%92%8C%E6%B5%8F%E8%A7%88%E5%99%A8%E9%82%A3%E4%BA%9B%E4%BA%8B/" itemprop="commentCount"></span>
     </a>
   </span>
   
@@ -334,14 +335,14 @@ mjx-container[display="true"] + br {
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>1.2k</span>
+              <span>3.1k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>1 分钟</span>
+              <span>3 分钟</span>
             </span>
 
         </div>
@@ -353,22 +354,94 @@ mjx-container[display="true"] + br {
     <div class="post-body" itemprop="articleBody">
 
       
-        <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="抱歉, 这个密码看着不太对, 请再试试." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="08f6b93ec5fbdda191b4001434d305d1801bd0f50783413e794f7fcabd6b815a">2e5d613fcc86fc2d2d932ae73a276d10ee02d610db83b39561c60b04ce791cca15172a937a41009dc69df3f7687e094c5aa6e1e139e974d3aaba7c2e6e520d99264a55b91c779b90f24339be13de2591c42c516ec6eebdb3c68a82c1d44c41453e95020a88e0dd40e43228bdf1c14d5416377dcdb628e61ce174a63c1f59f4b29830b39a63c2cf0aea3f91615b29d87b22e33278e650c1307e4571301ded4816a1dadcaac08a7db6bf71548242668445a6324d84ab414c7faae657e8c06fcbb5f284ce63cc712b243fcbc02f4979f82e05043b5d708d0774657eed646ae4a07830a120fb4877e7604c9b2191edfeb762192f74aaca7f2f10135e3fe4934036675acaa2c4c71d1b4db321aa62feb693712757352b9a14da80bc53556865eaf1f3a2494177e5d05db3a244e734f212c8759f9789052d6fc8a7794585ca2b8d04652947b8eb5b45bd77dffd498f19b6b299fa880c24bbd107b77e0e0cd4cdc2602e9b9de0b8861c2e399be7e3481ee0ed9051309ad7d8050c7efb1cd01f825489122d8759986df0dcc8cba18b49a018f99025d369a1c42e089efdca3d11ba877b9c87a8e86a91822130491468d1d9e25e598e417f3896dbfac42e5d48af2a891e84b3996e030693b11a78d1ccb07cf0220fd56b150d94d5a5b2bf983a2c12feb6a469d8a15766c4989ab24b1b7bd0e2ce56455112aca99495e9c4d519f98b94d764fe0f819f903ff1a861950bd28128edc73b2ec5058ebd2fff5f3466ee96292978affb14dfd9d8efd8755cd9e5de89f8029a190181cbde9c4ab62cfb5dde35cb20782f07a239f4ce9ede3e8f9e4183ffd1f77baa81dd32ffab7fb4bacbdb0f2c7573a1dceea3308319aac88adbc7b4ed90a7fb38a54bd2d405c5bf662756a59356f3f644be3b2227eeb459118411d9614385d31d3382dca587173f0ceb5eaeb893af99307f131a90e5e42ce0ccdce07b85b1ce1c2de17a0cb3da14fc6f0ae65bcd8b82f61128b29469f1b3b8d25995968cdad04e12f26d942fe0725e30abf1803913a6a9c7615e404c8616e8fef45174dcfa6022b0aad2872c9fee9204a57c72dbb46144dc0f70b9a49280723f68f022be681c0067122cc5be7c7c316e8b08efd3ffc750b39c72b5c9b88eca25073d617ffd926ca4d27549def97a24b9c8c1ae0bff68455185a2d2e80fb785af8c5ee5f05ca13e2590c933690b7677f357c76fa9fe148890a891eb855e6c6518b95790f1733ee6267b9c1265cc28c5561126be85e5545844d0b4999beac3fe8904894794150ab05aa6a9b3f59bf73dc84fe9a0e7c3e64b57dfde3ee006473d7bb12d24ee9c69ddecf894715e03c9f1242067218cfe445254023a2f90c14b0c4e54945e2f6fe81a20edff7a3e388f53eb2a21b4fe5f5f5f5dcfea5f48bfb1b93f086bff102d15760fcf44224ee3cd1b76f2e8303ee6925e3fc0f285ddd93daf1a260bdf39885a5cc393e9f060e8a89d3c52ee042fe081c37f98627cbc7e8c05cfa52307a939fbdd9c4e46c0bece4d4a5c7c58340bf3f261050329fea67889dc7f336359fe6a272648d110af4a5f63dff2e919c0b9ee08f43011cea3fcb5ca0a7f74a709d6d51705dc8eaaefe192a50454e1d3c718cb2f9daea398e2e3efea7c7bc6d2b55864d2a01c358bf0ef3174942b2bfb5ae38b44265a84c9e0a6154fd72a98606fdaab157c3f141e3a86db49d642f3d3df1a1c4077932455f2b14bd39e6b2abf08ee9560bef50a963450e6a737fc45dc3f476c9423d782666b33415cdb7a4233a7e9d2e03940301877fa1c83a172c4c4a613027527fe97e0ff905b072272bb3b66dbc6042604f7f79c45611e6fa3249676850e81e2218e09085ffe6aeef2846b895bf7c189acdd6e00dcdfa04a44cf5d134e710483a116d85d3a8933547db52d94e1c527e91a6391efd16085f2999250c21356de844ec36f8a576513b75aec171655789881b974463dca21f8c21b17a6c3d71d905ee06c7f10d0bfe4097c098904f8ef6a4cae14a9d3f7d63f6a4d67dc99a7a7dde6b0b96d8193836b23cea7999155ed9b0f83ab38eb86a3fa779419663d112602af4e09df627f4a8f51003cf37bae1334653b981bd172ce7750c4f841238230800a216eb3ab9ebcf58cbb5e4e1c834bed0eb03189fa51e34d0ad7d2fe276d7e63abac7f20b8973cb5937be78e2b339294868160ba62e719a83a86a28fe4e96f23d3211884b8543b04567a4fc63563f6b56f80e520052bbbdae5ea70d20708ff1aca1c15a651d6cc1160749f61821c112a9e80d081a907d9c72e6f528742e3a2575d622ca37b283f380f27322e196d6c29828d5b9ed13172c5947c95addf9689e0997aa5678beeca42ed8d0efd10f1b62b5f760ae5b4c142f91af74f33bf617239209ca124f9e29208f35f01ff44e8656f2b0e06d66a22b55a4864c4f2cda45872b7cc8df7b80c56dc41028c292ced89edb2bc9aa69bebe03025640d944d20237514d655fdf55da859aec2a3ab0bb6c5e60cb104430e3cd2b179f369df26104730f9cbb77291682f1a2665ce27925ee244d3c8ee47a2fae19f712cc27742202c8494e2089da82d3931f4f0f833dee4d8471580d80ad66819a87cbbfd6987cdf2072dc4cefa99a75ef584610bf83a9b8b29d565f465ec76667166fcc90c15474c4fc35216816b79ffcc0217e70719c6bb28124f5bc32f58c342219f872e37d0528c98f3fbfbb39310ec6780ff0a17cc9a109be6e8c001d989d50053e61b944ea2aa56aca831edf671500f6290678861f34f299a926602b3e6ed967488c3103ddd9317089bcc0116b4f604ba67208a101ba5efa5bcd8b33bd9531c3c5d661e88a0361384fa57fa62517fc44423fe82fe25110081d2d9e6582d723fc310e8febeed3f25d51c7d830db0964ff0238983d0deb004d3f0df62f350832a3baf5a6bd5b39970b86f43a2b27c8cf56a9f4c6ec8477767523567473673af0fa0dc62cbd9f1d991f1d38174127fad5a07cd4ca78985162d99ce0a7fff68081bbd5481db7fcc003d6bf2896b6a98dbe809bdb2e1bf8e0ac1626ce497a824a4eb1038c388c40b4a481cfa3ae06749a48ccd7a33421cbfde29988747876e1eba75945fd85de728b3608f831e3277c34bf4a2137c0880a75fd07bdfac9018972e2c479933c30211b8e50a949ddc639720b8ac453e69ae8f7278c6fb09c279643b639fb72b9d32e3252820a8e38f04c9e6f869642019dc8cf49e70cc7c3c5329ac667287f252617e6d49d8430729f03bee550f1faef7d9aaccc14b0260f8078173f5fba0c310e76b20b90fe6a3a27f2aa87980fc0011f53702a0b02de0ae29130c012445513c734eb1554a8c8f8c2d2944e6a3977228afd1decafbdfd5ae3202154b8be52010fdb0fae521ff4f0f53869bb2d1dcc7a62c067db3a99e58b8abd01ed04d01a17d49a080b31b8b9d57e513f29e23d3ab6ef73da6a22482c80778e17f52e1a1c23685bb292f3f550aa45c69d5e94eb74fffd7f421f75135b6322010cfad27d33dea99bba073ca9b36a3d14c169e3570bb9d47e2258e9cc6dbf2339d1f5999620bdcbf976a1177fbb2c1b19405552f4b6204652708531660b2ed4ce4b46d8eea6ec47d944ebf920663d8d97b86123a96cdcd1befc1bfb840a8d5c0aed1a84977beeeb57bdb6423a106f043de6b8281e21c2ceedb10708a240f46c0b6ae5a32abb8023bb7c544a39ec1e087e8bec32fccb5c7b4ee2340df4f1b97b29bb01775bcd07f7fa260bdb063bcb53bfd0ba85e5775f3e44d024c6399ac960e77cfa65fad2eadde03458ac27a75f9b66d84c0e054975adb10752f4c8b0c057c1490f973b3a1e6941afc401b2ab1b6a3e5b97a390ac09b9c65ed4bda5baeb24116eac44df50e346c35896489157d59c4fe1be4cbf497fe71b757610a4a4dd52965d753fd4269c466445c7c4d79230cd0217408a091b4c195a28c39ab6dc43dd68d0209ceaba6744888fbfdb2ce32bd9c0dfae19c6e7c1065e6b6e383d5581c95b466e766a515499c439ec87a763cce74838ac12467a33d28f2e21f0f8d41443079f3419cdb641a8c2cfc8efd42bceac2c183d8925ae50a03a15240a7da43147acb080be381593d22aee420d61777676beaf783ca441698325bdf0673d0dab392ba31fcb0d25bf8d773d527396334b0e589ecbcc96554629ee40a803c62e0912c7028486d410840beb1c669fed920c1b81eef5daee3213c805f647eca2dee667453a8aca0300212319c73cd5df6bd5df2078077c131c5e473e373009ee0a3d2cab3ef336a34f105ba6ffa3e15e1fe06e6f56744cb5374538b8352c82903a4a1d396f9bf1f2c393d5538397fedc7faaf98848b22d7ca607cc3e31865a0488b70f085ab33926e0034ca3db0eb073674ab744bcf902199b814b16fd284fba64cb627c949179024b1e8897e22f986ad17f81ecaa7666294fd5e530b74b2c2daea91e5c2ce74dba39f6999152dd6ca9f5edceef64dc46ab0118c917415c4525df901cc1af8b958b2a26f6c38b69f3bd07d7f260c1abc5303c81c2ffd455a89c74b606dc380ef1b7da09f368804f2eab430c8c4c76f203b6046989c35fbfe3a8bb511082daeb8a898cdf0688af2c0fd90b3eb17511b428cc84db57b4fe0caaa92fe04d23b0df3af02aa2a650956d4a1aaf056295671f684d77d80cae46b6ac9389342c4fb9ce7c5f91055a49009ed1b1a06bb089dbe63a5f86b2570c74aee40ed6060cbe4446a02b3f63b2dbc1f3efeb7f55b8a61c1fdf0c6dc5189673264f5be547442e1677da66ebd607ea300e0f4b6f3f43ebfcbf28b5452e18ba1ed3638474e714d7c5c8f5ef2330d554d3edd514bad8fb01920138905883bfad31a398ca4d0a32404022c43f591844c4c130d1901d047f5f27f79552f7de75ec5dfa0bc7388722637b8ce2c8ba00a06494f0048dec87103e05d7ca80ac226f43f2bd72e486adb5504969b9d97ee0a02cf5eab1c4d6e945c501156b168bc5e469c7bb11644cc77f09c1ac472552ef54b854eb978186652664c46bd4d0a3e23a85c8674cc9c45fb40fb0238a424e5213e260ee80349dfb2d6f901b529f7fd672d1d4aad750a50e6b290831da9a449c1ddcdce8c9f19e4a6299ad457f01b61eb321f7061a5d09ec1366c47d1e890ea871ca5247775ac0fa52374afac4f923ddb14fbb626f3a09eaf7370f9e0ab00c7165f05c363dfa1dde38a53cf0d54d9508e3563e641854f21f09bc57af84d9880bbc408ff0e0f2603f70dfdc7a7db1e256acf8d3172db8c492cfbdd9678492ec470d1c92a5f70c4cb524b00617be183ee72280757ceb9e1bbb169d257d48ffd78a65d9077481a13c797d879228652f142f755d80e506bcbfa32e12f1ecb38adcd1e0ced8fbc53e6e8acfbb0f68e5877750aa5cb65aa7b771c3b766784c8319cff7e7be141a6e54eae01f34fc31db1c2f7f57b3047883b0c6bd3650135d68af8680649fb4478742b22614b2a05375af4f4f7bfa68227ae9a36b0630098f3f13ebb5d115cf37220688a8db3a584c469db6be737f4eaa3c1a40dc530e4ea17b9047c781c8c216c73e3e3b5572322985ab752dc69ec0aa42a813d5c9dd949ad4d4fe99040a26c5cb4336ff9773c65cb7b3ffc093d40233380d257e76ed7990e6bbf2587279a11c45995113227d315b9188b68bc252ce7dedc608eecded892333ca84b59cb91998dad63e0f1c1f7787dbface6b706df2023f0c246a232cf1334b3271dc1001d0a7b4cbc7986387648f10c181a6b113a20fb9fafc12eefbfdebc6890727feb961bfed73eef5400699ced3f173ffbe5af00d0b79900c95e6611373de6c78a4b</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-xray">
-      <input class="hbe hbe-input-field hbe-input-field-xray" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-xray" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-xray">您好, 这里需要密码.</span>
-      </label>
-      <svg class="hbe hbe-graphic hbe-graphic-xray" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
-        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
-        <path d="M0,2.5c0,0,298.666,0,399.333,0C448.336,2.5,513.994,13,597,13c77.327,0,135-10.5,200.999-10.5c95.996,0,402.001,0,402.001,0"></path>
-      </svg>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
+        <p>上个星期写了<code>一道经典面试题</code>，其中HTTP请求的部分基本一笔带过，主要是HTTP协议对于前端开发人员还是很重要的，可说的点非常多，结合浏览器能说的就更多了，因此单独开坑总结一下，详情见后文</p>
+<span id="more"></span>
+<h2 id="http协议">HTTP协议</h2>
+<blockquote>
+<p>HTTP协议，超文本传输协议。定义了客户端和服务端进行报文交互的方式以及报文的结构。</p>
+</blockquote>
+<p>HTTP是一个无状态协议，也即HTTP服务器不会保存关于客户端的任何信息。（先记着，后面有相关内容...）</p>
+<p>HTTP协议是基于TCP协议的，因此客户端和服务端传输HTTP报文之前需要先建立TCP连接，每个请求/响应对经过一个单独的TCP连接发送（然后服务端就断开TCP连接，客户端下次发送报文需要重新建立TCP连接）这种属于非持续连接。所有的请求和响应均经相同的TCP连接发送，这种属于持续连接。<strong>目前HTTP默认使用持续连接</strong>（但是也可配置为非持续连接）。</p>
+<p>非持续连接的缺点： 1. 为每一个请求的对象建立和维护一个全新的连接，每一个这样的连接，在客户端和服务器中都要分配TCP缓冲区和保持TCP变量，这给Web服务器带来了严重的负担。 2. 每一个对象经受两倍RTT的交付时延（一个RTT用于建立TCP连接，另一个用于请求和接收对象）</p>
+<h3 id="http报文">HTTP报文</h3>
+<blockquote>
+<p>HTTP报文是由ASCII文本构成的。</p>
+</blockquote>
+<h4 id="http-请求报文">HTTP 请求报文</h4>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">GET /XXX/Index.html HTTP/1.1</span><br><span class="line">Host: yzh2002.cn  #注解(不属于报文，只是解释含义)：请求对象所在主机</span><br><span class="line">Connection: close #告知服务器无需采用持续连接</span><br><span class="line">User-agent: Chrome/106.0.0.0</span><br><span class="line">Accept-language: zh-CN</span><br><span class="line"></span><br><span class="line"># 注解：剩下的部分为实体（和首部行之间有一个换行回车....）</span><br></pre></td></tr></table></figure>
+<p>HTTP请求报文的第一行叫做<code>请求行</code>（三个字段构成：方法字段，URL字段和HTTP版本字段），其后继的行叫做<code>首部行</code>。</p>
+<p>其中HTTP方法包括：<code>GET</code>,<code>POST</code>,<code>HEAD</code>,<code>PUT</code>,<code>DELETE</code>。</p>
+<ol type="1">
+<li>GET方法：实体为空</li>
+<li>POST方法：</li>
+<li>HEAD方法：类似于GET方法，服务器收到HEAD请求的报文时，将会用一个HTTP报文进行响应，但是并不返回请求对象（通常用于调试跟踪...）</li>
+<li>PUT方法：常与Web发行工具（Xshell之类的？？）联合使用，允许用户上传对象到指定的Web服务器上指定的路径（目录）（FTTP协议的区别？？）</li>
+<li>DELETE方法：允许用户或应用程序删除Web服务器上的对象</li>
+</ol>
+<h4 id="http响应报文">HTTP响应报文</h4>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.1 200 OK</span><br><span class="line">Connection: close</span><br><span class="line">Date: Thu, 27 Oct 2022 14:04:09 GMT</span><br><span class="line">Server: Apache/2.2.3 (CentOS)</span><br><span class="line">Last-Modefied: Thu, 27 Oct 2022 14:04:09 GMT #注解：后续讲到代理服务器会涉及...</span><br><span class="line">Content-Length: 6821</span><br><span class="line">Content-Type: text/html #注解：MIME类型...</span><br><span class="line"></span><br><span class="line">(data,data,data,data....)</span><br></pre></td></tr></table></figure>
+<p>HTTP响应报文第一行为初始状态行（协议版本字段，状态码和相应状态信息），然后是首部行，再下面就是实体数据。</p>
+<p>常见状态码及相关短语：</p>
+<ol type="1">
+<li>200 OK：请求成功，信息在返回的响应报文中</li>
+<li>301 Moved Permanently</li>
+<li>302 Moved Temporarily
+<ul>
+<li>两者的共同点：浏览器在拿到服务器返回的此状态码的报文后会自动跳转到另一个新的URL（从响应的Location获取）</li>
+<li>不同点：301表示旧地址A的资源已经被永久移除，搜索引擎在抓取新内容的同时也会将旧网址交换为重定向后的网址</li>
+<li>302表示旧地址A的资源仍然可访问，重定向只是临时从A到B，搜索引擎会抓取新的内容而保存旧的网址（这个保存和更改是操作的什么？收藏夹？？）</li>
+</ul></li>
+<li>304 ：命中缓存（后续HTTP缓存部分会涉及...）</li>
+<li>4xx:客户端错误，请求不合法
+<ul>
+<li>400 Bad Request：请求不合法</li>
+<li>403：拒绝请求</li>
+<li>404： 客户端访问的页面不存在</li>
+</ul></li>
+<li>5xx：服务端错误，不能处理合法请求
+<ul>
+<li>500：服务器内部错误</li>
+<li>503：服务不可用</li>
+</ul></li>
+</ol>
+<h3 id="cookie">cookie</h3>
+<blockquote>
+<p>前面说过HTTP协议是无状态的，这一定程度上简化了服务器的设计，让其能够好的处理数以千计的TCP连接的高性能Web服务器。然后对于一个Web应用来说，通常希望能够识别用户，一方面是因为服务器希望限制用户访问，另一方面因为其希望内容和用户身份联系起来（推出一些定制化服务？？比如VIP....），为此HTTP使用了cookie。</p>
+</blockquote>
+<p>cookie技术组成：</p>
+<ol type="1">
+<li>HTTP响应报文的cookie首部行</li>
+<li>HTTP请求报文的cookie首部行</li>
+<li>用户端系统保留一个cookie文件，并由浏览器进行管理</li>
+<li>服务器的一个后端数据库</li>
+</ol>
+<p>下面我们以本博客网站的访客为例，说明一下<code>cookie</code>的处理过程：</p>
+<ol type="1">
+<li>浏览器发送第一个请求，请求<code>yzh2002.cn</code>站点的首页 <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GET /index.html HTTP/1.1</span><br><span class="line">Host: www.yzh2002.cn</span><br></pre></td></tr></table></figure></li>
+<li>服务器接收请求报文之后，返回响应，同时设置<code>cookie</code> <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.0 200 OK</span><br><span class="line">Content-type: text/html</span><br><span class="line">Set-Cookie: theme=light</span><br><span class="line">Set-Cookie: sessionToken=YzhLOVEMT13=; Expires=Wed, 09 Jun 2021 10:18:14 GMT</span><br></pre></td></tr></table></figure></li>
+<li>浏览器会保存服务端设置的<code>cookie</code>，并在下次请求时携带这些cookie <figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">GET /about.html HTTP/1.1</span><br><span class="line">Host: www.yzh2002.cn</span><br><span class="line">Cookie: theme=light; sessionToken=YzhLOVEMT13=</span><br><span class="line">…</span><br></pre></td></tr></table></figure></li>
+</ol>
+<p>通过这种方式服务器就知道这个请求和上个请求是同一个用户发送的。</p>
+<h4 id="cookie属性">cookie属性</h4>
+<p>cookie本身是由一个个键值对构成的，形式类似于：<code>Cookie:k1=v1;k2=v2;......</code></p>
+<p>其中属性可以自定义，也有很多默认的属性：</p>
+<ol type="1">
+<li>Domain和Path：定义了cookie的范围，本质上是告诉cookie属于哪个站点，为了安全考虑，cookie只能在当前资源的顶级域名或者子级域名上设置，不能再其他域名和对应的子级域名上设置（浏览器跨域问题会涉及...），如果这两个属性没有被服务端指定，那么默认是当前请求资源的domain（<strong>不包括子级域名</strong>）和path，如果设置了domain（则会<strong>包含子级域名</strong>）</li>
+<li>Expires和Max-Age：Expires属性定义了一个指定的日期和时间，到此时间浏览器将会删掉cookie。Max-Age则是设置cookie的有效期，以相对于浏览器接收到cookie之后的秒数计算。如果这两者均没有设置，那么这是一个<code>session cookie</code>，即当浏览器关闭之后该cookie被删除（不同于H5中SessionStorage，其和窗口相关，当窗口关闭时被销毁，<code>session cookie</code>是和浏览器相关）</li>
+<li>Secure和HttpOnly：两者无关联值，单独存在，<code>Secure</code>意味着cookie只会在加密传输中携带，<code>HttpOnly</code>则代表着浏览器除了HTTP/HTTPS请求之外不会显示cookie，也无法在客户端通过脚本获取。</li>
+<li>sameSite：Chrome51新增的属性，用于防止CSRF攻击和用户追踪，其有三个值，<code>strict</code>,<code>Lax</code>,<code>None</code>。strict完全禁止第三方cookie，lax稍稍放松，但是导航到目标网址的get请求除外（详情见参考链接），None则是关闭samesite属性。</li>
+</ol>
+<p>不知有没有人关注到了``</p>
+<h2 id="to-be-continued">TO be continued</h2>
+<h2 id="参考链接">参考链接</h2>
+<ol type="1">
+<li><a href="">计算机网络自顶向下方法</a></li>
+<li><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/HTTP_cookie">HTTP之cookie --wiki</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Caching">HTTP缓存</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2019/09/cookie-samesite.html">Cookie 的 SameSite 属性</a></li>
+<li><a href=""></a></li>
+</ol>
+
     </div>
 
     
@@ -376,6 +449,9 @@ mjx-container[display="true"] + br {
     
 
       <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/network/" rel="tag"># network</a>
+          </div>
 
         
 
@@ -383,13 +459,10 @@ mjx-container[display="true"] + br {
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2022/08/29/%E8%81%8A%E8%81%8AREST%E5%92%8CGraphQL/" rel="prev" title="聊聊REST和GraphQL">
-      <i class="fa fa-chevron-left"></i> 聊聊REST和GraphQL
+    <a href="/2022/10/27/JavaScript%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/" rel="prev" title="JavaScript疑难杂症">
+      <i class="fa fa-chevron-left"></i> JavaScript疑难杂症
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2022/10/21/%E4%B8%80%E9%81%93%E7%BB%8F%E5%85%B8%E9%9D%A2%E8%AF%95%E9%A2%98/" rel="next" title="一道经典面试题">
-      一道经典面试题 <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -449,6 +522,7 @@ mjx-container[display="true"] + br {
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#http%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.</span> <span class="nav-text">HTTP协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#http%E6%8A%A5%E6%96%87"><span class="nav-number">1.1.</span> <span class="nav-text">HTTP报文</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#http-%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87"><span class="nav-number">1.1.1.</span> <span class="nav-text">HTTP 请求报文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#http%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87"><span class="nav-number">1.1.2.</span> <span class="nav-text">HTTP响应报文</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cookie"><span class="nav-number">1.2.</span> <span class="nav-text">cookie</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cookie%E5%B1%9E%E6%80%A7"><span class="nav-number">1.2.1.</span> <span class="nav-text">cookie属性</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#to-be-continued"><span class="nav-number">2.</span> <span class="nav-text">TO be continued</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">3.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
