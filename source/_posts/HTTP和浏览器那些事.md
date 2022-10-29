@@ -238,13 +238,15 @@ function test(ip) {
 
 于是我们就知道了，callback是指定前端需要运行的函数，而data则实现了跨域获取后端数据。
 
-但是jsonp存在很多安全问题：最明显的就是后台并没有做身份认证，导致任何前台都可以发送jsonp请求，若请求中存在敏感信息则会发生信息泄漏。防御方法有：referer过滤或者增加一个随机token（类似于CSRF的防御方法，后续单独介绍时再细讲）
-
-
-
-
+但是jsonp存在很多安全问题：最明显的就是后台并没有做身份认证（产生疑问：通过script发出的请求会携带cookie吗？），导致任何前台都可以发送jsonp请求，若请求中存在敏感信息则会发生信息泄漏。防御方法有：referer过滤或者增加一个随机token（类似于CSRF的防御方法，后续单独介绍时再细讲）
 
 #### CORS
+
+> CORS是跨域资源分享的缩写，是W3C标准，是跨域ajax请求的根本解决办法，相比于jsonp只能发GET请求，cors允许任何类型的请求。
+
+cors需要浏览器和服务器同时支持，目前，所有浏览器均支持该功能，整个cors通信过程，都是浏览器自动完成的，对于开发者而言，cors通信与同源的ajax通信没有差别，浏览器一旦发现ajax请求跨源，就会自动添加一些附加的头信息，有时还会多出一次附加的请求，因此，实现cors的关键是服务器，只要服务器实现了cors接口，就可以跨源通信。
+
+
 
 ## TO be continued
 
@@ -257,3 +259,4 @@ function test(ip) {
 4. [Cookie 的 SameSite 属性](https://www.ruanyifeng.com/blog/2019/09/cookie-samesite.html)
 5. [深入理解浏览器的缓存机制](https://zhuanlan.zhihu.com/p/99340110)
 6. [浏览器同源策略 --阮一峰](https://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html)
+7. [跨域资源共享 CORS 详解 --阮一峰](https://www.ruanyifeng.com/blog/2016/04/cors.html)
