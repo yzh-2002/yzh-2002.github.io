@@ -191,10 +191,60 @@ cookie本身是由一个个键值对构成的，形式类似于：`Cookie:k1=v1;
 
 ## 浏览器相关
 
-### 同源策略&跨域问题
+### 同源策略
+
+> 浏览器安全的基石就是“同源政策”
+
+所谓同源，指的是**协议，域名和端口**三者均相同。同源策略限制了不同源之间如何进行资源交互，是用于隔离潜在恶意文件的重要安全机制。如果没有同源策略，不同源的数据和资源（例如：cookie，DOM，localStorage等）就能相互随意访问，那就没有隐私和安全（cookie中保存着用户的私人信息，特别是很多cookie还和登录状态有关）可言。
+
+随着互联网的发展，“同源政策”越来越严格，目前，如果非同源，以下三种行为受到限制：
+
+1. cookie，localstorage无法读取
+2. DOM无法获得
+3. ajax请求不能发送
+
+除此之外，其他的是不受同源策略限制的，比如我们开发网页时引入的cdn资源，img图片，script标签（这个也被用于jsonp的实现，见下文），
+
+虽然限制很必要，但是有时候会导致一些合理的用途收到影响，因此，我们也需要知道如何规避这些限制。（这里主要说明如何规避第三种情况，可以说是最常见的情况，也是最普遍的需求）
+
+### 跨域问题解决方案
+
+#### nginx反向代理
+
+#### JSONP
+
+> jsonp是服务器与客户端跨源通信的常用方法，最大的特点就是简单适用，老式浏览器全部支持，**服务器改造非常小**
+
+其实现就是利用`script`标签不受同源策略限制的特点，通过动态插入`script`标签，这个js文件载入成功之后会执行我们在url参数中指定的函数，并把我们需要的json数据返回。
+
+```javascript
+function addScriptTag(src) {
+  var script = document.createElement('script');
+  script.setAttribute("type","text/javascript");
+  script.src = src;
+  document.body.appendChild(script);
+}
+
+window.onload = function () {
+  addScriptTag('http://example.com/ip?callback=test&data=ip');
+}
+
+function test(ip) {
+  console.log('Your public IP address is: ' + ip);
+};
+```
+
+上面通过`script`标签，我们向`http://example.com/ip?callback=test&data=ip`发起了请求，并附带上了callback和data两个参数，由于被`script`包裹，所以最终返回值是一段JavaScript代码，故后端就可以返回`test(ip)`，然后前端就会尝试执行这个内容。
+
+于是我们就知道了，callback是指定前端需要运行的函数，而data则实现了跨域获取后端数据。
+
+但是jsonp存在很多安全问题：最明显的就是后台并没有做身份认证，导致任何前台都可以发送jsonp请求，若请求中存在敏感信息则会发生信息泄漏。防御方法有：referer过滤或者增加一个随机token（类似于CSRF的防御方法，后续单独介绍时再细讲）
 
 
 
+
+
+#### CORS
 
 ## TO be continued
 
@@ -206,3 +256,4 @@ cookie本身是由一个个键值对构成的，形式类似于：`Cookie:k1=v1;
 3. [HTTP缓存](https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Caching)
 4. [Cookie 的 SameSite 属性](https://www.ruanyifeng.com/blog/2019/09/cookie-samesite.html)
 5. [深入理解浏览器的缓存机制](https://zhuanlan.zhihu.com/p/99340110)
+6. [浏览器同源策略 --阮一峰](https://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html)
