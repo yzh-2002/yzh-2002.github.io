@@ -101,15 +101,15 @@ collections:
     name: pages
     delete: false
     files:
-      - name: 404-index.md
-        label: '404'
-        file: source/404/index.md
-        editor:
-          preview: true
-        fields: *ref_0
       - name: categories-index.md
         label: categories
         file: source/categories/index.md
+        editor:
+          preview: true
+        fields: *ref_0
+      - name: 404-index.md
+        label: '404'
+        file: source/404/index.md
         editor:
           preview: true
         fields: *ref_0

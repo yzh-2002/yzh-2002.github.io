@@ -32,10 +32,8 @@
 <meta property="og:image" content="https://p.qlogo.cn/hy_personal/3e28f14aa05168421a27c81c3aad18564ca54013556577d4f6a0c1f7873c0859/0.png">
 <meta property="og:image" content="https://p.qlogo.cn/hy_personal/3e28f14aa05168421a27c81c3aad1856878ad49d62f43bdc8b9bf768bad206bc/0.png">
 <meta property="og:image" content="https://p.qlogo.cn/hy_personal/3e28f14aa05168421a27c81c3aad1856496a454d740eee4bd4bb9a0070fe34b1/0.png">
-<meta property="og:image" content="https://p.qlogo.cn/hy_personal/3e28f14aa05168421a27c81c3aad1856246b9392d2f1b100b800fc2634bbc1c8/0.png">
-<meta property="og:image" content="https://p.qlogo.cn/hy_personal/3e28f14aa05168421a27c81c3aad1856e15e8f4132de4b964856d4d7ea77ee0e/0.png">
 <meta property="article:published_time" content="2022-08-25T12:07:06.000Z">
-<meta property="article:modified_time" content="2022-10-31T13:55:31.483Z">
+<meta property="article:modified_time" content="2022-11-01T05:15:11.140Z">
 <meta property="article:author" content="Yzh2002">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
@@ -311,7 +309,7 @@ mjx-container[display="true"] + br {
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-10-31 21:55:31" itemprop="dateModified" datetime="2022-10-31T21:55:31+08:00">2022-10-31</time>
+                <time title="修改时间：2022-11-01 13:15:11" itemprop="dateModified" datetime="2022-11-01T13:15:11+08:00">2022-11-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -343,14 +341,14 @@ mjx-container[display="true"] + br {
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>3.8k</span>
+              <span>3.9k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
                 <i class="fa fa-clock-o"></i>
               </span>
                 <span class="post-meta-item-text">阅读时长 &asymp;</span>
-              <span>3 分钟</span>
+              <span>4 分钟</span>
             </span>
 
         </div>
@@ -394,6 +392,9 @@ mjx-container[display="true"] + br {
 <p>希望你能从技术的用途出发去理解技术，没必要上来就原理原理的。微积分是为了解决体积计算问题而出现的，矩阵也是为了求解线性方程才诞生的。高大上的数学尚且如此，对于编程语言来说，它们的特性更几乎必定是为解决某个具体问题而设计的。所以不管对于 this 还是什么别的特性，作为使用者，还是先搞明白它的使用场景吧 :)</p>
 </blockquote>
 <h2 id="es-module-vs-commonjs">ES Module vs CommonJS</h2>
+<blockquote>
+<p>[2022-11-01补充：]这些天在学习webpack，回顾前端打包方案的黑暗历史时又看到了CommonJS模块化的介绍，感觉自己的记忆已经有点模糊，加之当初总结这篇文章时，并没有细究很多东西，所以难免存在问题，因此对文章进行了大的改动。</p>
+</blockquote>
 <p>两者之间的区别，阮一峰已经总结过了</p>
 <ol type="1">
 <li>CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用。</li>
@@ -406,58 +407,51 @@ mjx-container[display="true"] + br {
 <p>A “simple”, synchronous require() was never in the cards for ES, because ES has to work in the browser. Loading a module may involve fetching code off the internet, which can’t be done synchronously.</p>
 </blockquote>
 <p>CommonJS一直是nodejs的模块化规范，而nodejs一般跑在服务器上，不需要考虑依赖文件的获取问题，因为文件基本都在本地，花费的时间无非就是磁盘读取时间，相比于跑在浏览器上的代码，依赖文件很可能要通过网络获取，这个过程就相比前者就慢了好几个数量级，因此需要采用异步（AMD（已淘汰）诞生的原因无外乎这个...）以避免JS主线程的阻塞。</p>
-<p>编译时就处理依赖关系一定程度上也可以节省时间（总比运行到那再去获取依赖文件要快....），当然编译时处理还有其他诸多好处，这里就不一一列举了（<del>其他好处我也不晓得，感知的不是很清楚，类似方便预处理之类的？？</del>）</p>
 <h2 id="how-es-module-work">How ES Module work？</h2>
 <blockquote>
 <p>下面就谈谈ES Module的解析流程</p>
 </blockquote>
 <p>以下面代码为例：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"root"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"module"</span> <span class="attr">src</span>=<span class="string">"main.js"</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>编译阶段需要经历三个步骤：</p>
+<p>经历三个步骤：</p>
 <ol type="1">
-<li>Construction — find, download, and parse all of the files into module records.</li>
-<li>Instantiation —find boxes in memory to place all of the exported values in (but don’t fill them in with values yet). Then make both exports and imports point to those boxes in memory. This is called linking.</li>
-<li>Evaluation —run the code to fill in the boxes with the variables’ actual values.</li>
-</ol>
-<h3 id="construction">Construction</h3>
-<p>该过程由分为三部分：</p>
-<ol type="1">
-<li>找到从哪里下载包含模块的文件</li>
-<li>获取这些文件（通过网络获取或从文件系统（本地）中获取）</li>
-<li>将这些文件解析为<code>Module Record</code>
+<li>Construction：查找，下载并解析所有模块文件为<code>Module Record</code>
 <ul>
 <li><code>Module Record</code>示例：</li>
 <li><img src="https://p.qlogo.cn/hy_personal/3e28f14aa05168421a27c81c3aad185636d188556d7060c2e62d0d6ddf0a8aac/0.png" title="fig:" alt="Module Record"></li>
 </ul></li>
+<li>Instantiation: 将export的值置入内存中（<strong>此时不填充变量值</strong>），然后将exports和imports的变量都指向刚刚分配的内存空间（这样就解释了为什么ESM输出的是值的引用）</li>
+<li>Evaluation：执行代码为内存中变量赋值（所以模块中最好不要有effect？？）</li>
 </ol>
-<p>如上例所示，当浏览器解析到一个类型为module的脚本文件时，会以异步的当时获取该文件（module类型的js脚本相当于添加了async），然后解析该文件内容，生成一个<code>Module Record</code>，其中记录了它依赖哪些模块，并依赖相应模块中的哪些变量。</p>
-<p>然后就会去获取它所依赖的文件，将它们解析为<code>Module Record</code>，过程如下： <img src="https://p.qlogo.cn/hy_personal/3e28f14aa05168421a27c81c3aad18563eb50baeb0eb5453b5722b34229b73a1/0.png" alt="解析流程"></p>
+<h3 id="construction">Construction</h3>
+<p>该过程由分为三部分：</p>
+<ol type="1">
+<li>通过解析模块来查明从哪里获取模块文件</li>
+<li>获取文件（通过<strong>网络获取或从文件系统（本地）</strong>中获取）</li>
+<li>将文件解析为<code>Module Record</code></li>
+</ol>
+<p>如上例所示，当浏览器解析到一个类型为module的脚本文件时，就会去异步加载该文件（所谓异步加载：即等到整个页面渲染完，再执行模块脚本（<strong>模块文件的下载和获取工作交由后台完成</strong>，不会阻塞页面渲染）），等到文件下载完成之后再去解析<code>Module Record</code>，然后寻找依赖，然后再交由后台去下载，一层一层的完成，并最终构建出来一张模块依赖图。</p>
+<figure>
+<img src="https://p.qlogo.cn/hy_personal/3e28f14aa05168421a27c81c3aad18563eb50baeb0eb5453b5722b34229b73a1/0.png" alt="解析流程"><figcaption aria-hidden="true">解析流程</figcaption>
+</figure>
+<p>这其实就是ESM和CommonJS之前的区别之一了，由于网络下载文件通常很消耗时间，所以<strong>ESM模块代码的执行和下载是分开的</strong>（也就是所谓的异步执行），也即解析到Module文件时，浏览器不着急执行它，而是后台下载相关依赖文件，然后等到完成下载之后，再去执行该文件。而CommonJS则是等待其下载并执行完之后再往下走（也就是同步加载）。</p>
+<p>同时这也是为什么ESM的模块标识符不能存在变量，而CommonJS可以存在变量的原因，因为ESM的解析是静态的（静态解析交由谁完成还需要查询资料），而CommonJS文件直接下载并执行（非静态解析）。</p>
+<h4 id="动态导入import">动态导入<code>import()</code></h4>
+<p>那么在ESM中，如何实现根据不同的场景导入不同的模块这一需求呢？答案就是<code>import()</code>。具体原理还需要再查询相关资料...</p>
 <h4 id="module-map">Module Map</h4>
 <blockquote>
 <p><code>Module Map</code>的设计在ES Module中十分重要。</p>
 </blockquote>
 <p>每当浏览器获取模块依赖文件时，就会被记录在Module Map中，例如： <img src="https://p.qlogo.cn/hy_personal/3e28f14aa05168421a27c81c3aad18564ca54013556577d4f6a0c1f7873c0859/0.png" alt="Module Map"></p>
-<p>这样如果有其他模块依赖同一个文件，浏览器会先去Module Map查看是否存在，如果正在获取，就直接跳过该文件获取下面的文件。除了减少请求次数，Module Map还具有缓存的功能。如下图： <img src="https://p.qlogo.cn/hy_personal/3e28f14aa05168421a27c81c3aad1856878ad49d62f43bdc8b9bf768bad206bc/0.png" alt="Module Map Cache"></p>
+<p>这样如果有其他模块依赖同一个文件，浏览器会先去Module Map查看是否存在，如果正在获取，就直接跳过该文件获取下面的文件。除了减少请求次数，Module Map还具有缓存（缓存Module Record）的功能。如下图： <img src="https://p.qlogo.cn/hy_personal/3e28f14aa05168421a27c81c3aad1856878ad49d62f43bdc8b9bf768bad206bc/0.png" alt="Module Map Cache"></p>
 <p>这个设计对于ES Module处理循环依赖大有作用（后面再说）。</p>
 <h3 id="instantiation">Instantiation</h3>
-<p>在这一步，js引擎将会创建一个模块环境记录，用于管理<code>Module Record</code>中的变量，然后将内存空间中的变量地址与相应模块的变量建立连接（浏览器将会对依赖图以深度优先后序遍历的方式处理各个<code>Module Record</code>），如下图所示： <img src="https://p.qlogo.cn/hy_personal/3e28f14aa05168421a27c81c3aad1856496a454d740eee4bd4bb9a0070fe34b1/0.png"></p>
+<p>js引擎将会创建一个模块环境记录，用于管理<code>Module Record</code>中的变量，JavaScript引擎会为export出的变量分配内存，然后在模块的环境记录中保存内存地址和export的变量的关联，此时这些内存地址都没有初始化的值，然后JavaScript引擎再将import与export的变量指向相同的地址空间（但是ESM规定导入变量的模块不能修改导入变量的引用（但是对于引用类型，可以修改其值）），这与CommonJS不同，在CommonJS中，导入对象是导出对象的值的拷贝。</p>
+<p>如下图所示： <img src="https://p.qlogo.cn/hy_personal/3e28f14aa05168421a27c81c3aad1856496a454d740eee4bd4bb9a0070fe34b1/0.png"></p>
 <p>这也解释了为什么ES6模块输出的是值的引用。</p>
 <h3 id="evaluation">Evaluation</h3>
 <p>最后就是对各个模块依赖的变量进行赋值，js引擎通过执行<strong>顶层作用域</strong>的代码来实现该步骤，值得注意的是，这会带来一些副作用，比如你的模块中有如下代码： <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">"test"</span>);</span><br></pre></td></tr></table></figure> 这些函数会在其依赖的模块中也执行一遍，当然例子算是温和的了，比较严重的副作用就是在模块中修改导出的值，又可能会导致同一个模块导出的值，在不同的模块中最终表现结果不一致。（不过<code>Module Map</code>的存在帮我们解决了这个问题）</p>
-<h2 id="how-commonjs-work">How CommonJS work？</h2>
-<blockquote>
-<p>下文大多为个人理解，可能存在错误，欢迎指正（笔者在查阅相关资料后会进行修改补充）</p>
-</blockquote>
-<p>CommonJS由于是运行时加载，因此不会像ES Module一样事先构造出依赖图。</p>
-<p>它会将模块化的文件</p>
-<p><img src="https://p.qlogo.cn/hy_personal/3e28f14aa05168421a27c81c3aad1856246b9392d2f1b100b800fc2634bbc1c8/0.png"></p>
-<figure>
-<img src="https://p.qlogo.cn/hy_personal/3e28f14aa05168421a27c81c3aad1856e15e8f4132de4b964856d4d7ea77ee0e/0.png" alt="demo"><figcaption aria-hidden="true">demo</figcaption>
-</figure>
-<p>如图所示，上图是CommonJS循环依赖的例子，这个过程简单分析一下：</p>
-<p>main.js运行过程中遇到了<code>require('/counter.js')</code>，转而去加载counter.js，</p>
 <h2 id="to-be-continued">To be Continued</h2>
-<p>先吃饭，吃完再找时间补充....</p>
 <h2 id="参考资料">参考资料</h2>
 <ol type="1">
 <li><a target="_blank" rel="noopener" href="https://es6.ruanyifeng.com/#docs/module-loader">Module的加载实现--阮一峰</a></li>
@@ -549,7 +543,7 @@ mjx-container[display="true"] + br {
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#a-stupid-bug"><span class="nav-number">1.</span> <span class="nav-text">A stupid bug</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#es-module-vs-commonjs"><span class="nav-number">2.</span> <span class="nav-text">ES Module vs CommonJS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#how-es-module-work"><span class="nav-number">3.</span> <span class="nav-text">How ES Module work？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#construction"><span class="nav-number">3.1.</span> <span class="nav-text">Construction</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#module-map"><span class="nav-number">3.1.1.</span> <span class="nav-text">Module Map</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#instantiation"><span class="nav-number">3.2.</span> <span class="nav-text">Instantiation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#evaluation"><span class="nav-number">3.3.</span> <span class="nav-text">Evaluation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#how-commonjs-work"><span class="nav-number">4.</span> <span class="nav-text">How CommonJS work？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#to-be-continued"><span class="nav-number">5.</span> <span class="nav-text">To be Continued</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">6.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#a-stupid-bug"><span class="nav-number">1.</span> <span class="nav-text">A stupid bug</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#es-module-vs-commonjs"><span class="nav-number">2.</span> <span class="nav-text">ES Module vs CommonJS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#how-es-module-work"><span class="nav-number">3.</span> <span class="nav-text">How ES Module work？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#construction"><span class="nav-number">3.1.</span> <span class="nav-text">Construction</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8A%A8%E6%80%81%E5%AF%BC%E5%85%A5import"><span class="nav-number">3.1.1.</span> <span class="nav-text">动态导入import()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#module-map"><span class="nav-number">3.1.2.</span> <span class="nav-text">Module Map</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#instantiation"><span class="nav-number">3.2.</span> <span class="nav-text">Instantiation</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#evaluation"><span class="nav-number">3.3.</span> <span class="nav-text">Evaluation</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#to-be-continued"><span class="nav-number">4.</span> <span class="nav-text">To be Continued</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">5.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -631,7 +625,7 @@ mjx-container[display="true"] + br {
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">42k</span>
+    <span title="站点总字数">43k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
