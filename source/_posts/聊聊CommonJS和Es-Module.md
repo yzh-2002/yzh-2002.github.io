@@ -48,6 +48,8 @@ ok，那么关键就在于如何让模块(2)在模块(3)之间执行，因为req
 
 ## ES Module vs CommonJS
 
+> [2022-11-01补充：]这些天在学习webpack，回顾前端打包方案的黑暗历史时又看到了CommonJS模块化的介绍，感觉自己的记忆已经有点模糊，加之当初总结这篇文章时，并没有细究很多东西，所以难免存在问题，因此对文章进行了大的改动。
+
 两者之间的区别，阮一峰已经总结过了
 
 1. CommonJS 模块输出的是一个值的拷贝，ES6 模块输出的是值的引用。
@@ -61,7 +63,6 @@ ok，那么关键就在于如何让模块(2)在模块(3)之间执行，因为req
 
 CommonJS一直是nodejs的模块化规范，而nodejs一般跑在服务器上，不需要考虑依赖文件的获取问题，因为文件基本都在本地，花费的时间无非就是磁盘读取时间，相比于跑在浏览器上的代码，依赖文件很可能要通过网络获取，这个过程就相比前者就慢了好几个数量级，因此需要采用异步（AMD（已淘汰）诞生的原因无外乎这个...）以避免JS主线程的阻塞。
 
-编译时就处理依赖关系一定程度上也可以节省时间（总比运行到那再去获取依赖文件要快....），当然编译时处理还有其他诸多好处，这里就不一一列举了（~~其他好处我也不晓得，感知的不是很清楚，类似方便预处理之类的？？~~）
 
 ## How ES Module work？
 
@@ -75,26 +76,34 @@ CommonJS一直是nodejs的模块化规范，而nodejs一般跑在服务器上，
     <script type="module" src="main.js"></script>
 </body>
 ```
+经历三个步骤：
 
-编译阶段需要经历三个步骤：
-
-1. Construction — find, download, and parse all of the files into module records.
-2. Instantiation —find boxes in memory to place all of the exported values in (but don’t fill them in with values yet). Then make both exports and imports point to those boxes in memory. This is called linking.
-3. Evaluation —run the code to fill in the boxes with the variables’ actual values.
-
-### Construction
-该过程由分为三部分：
-
-1. 找到从哪里下载包含模块的文件
-2. 获取这些文件（通过网络获取或从文件系统（本地）中获取）
-3. 将这些文件解析为`Module Record`
+1. Construction：查找，下载并解析所有模块文件为`Module Record`
     - `Module Record`示例：
     - ![Module Record](https://p.qlogo.cn/hy_personal/3e28f14aa05168421a27c81c3aad185636d188556d7060c2e62d0d6ddf0a8aac/0.png)
+2. Instantiation: 将export的值置入内存中（**此时不填充变量值**），然后将exports和imports的变量都指向刚刚分配的内存空间（这样就解释了为什么ESM输出的是值的引用）
+3. Evaluation：执行代码为内存中变量赋值（所以模块中最好不要有effect？？）
 
-如上例所示，当浏览器解析到一个类型为module的脚本文件时，会以异步的当时获取该文件（module类型的js脚本相当于添加了async），然后解析该文件内容，生成一个`Module Record`，其中记录了它依赖哪些模块，并依赖相应模块中的哪些变量。
 
-然后就会去获取它所依赖的文件，将它们解析为`Module Record`，过程如下：
+### Construction
+
+该过程由分为三部分：
+
+1. 通过解析模块来查明从哪里获取模块文件
+2. 获取文件（通过**网络获取或从文件系统（本地）**中获取）
+3. 将文件解析为`Module Record`
+    
+如上例所示，当浏览器解析到一个类型为module的脚本文件时，就会去异步加载该文件（所谓异步加载：即等到整个页面渲染完，再执行模块脚本（**模块文件的下载和获取工作交由后台完成**，不会阻塞页面渲染）），等到文件下载完成之后再去解析`Module Record`，然后寻找依赖，然后再交由后台去下载，一层一层的完成，并最终构建出来一张模块依赖图。
+
 ![解析流程](https://p.qlogo.cn/hy_personal/3e28f14aa05168421a27c81c3aad18563eb50baeb0eb5453b5722b34229b73a1/0.png)
+
+这其实就是ESM和CommonJS之前的区别之一了，由于网络下载文件通常很消耗时间，所以**ESM模块代码的执行和下载是分开的**（也就是所谓的异步执行），也即解析到Module文件时，浏览器不着急执行它，而是后台下载相关依赖文件，然后等到完成下载之后，再去执行该文件。而CommonJS则是等待其下载并执行完之后再往下走（也就是同步加载）。
+
+同时这也是为什么ESM的模块标识符不能存在变量，而CommonJS可以存在变量的原因，因为ESM的解析是静态的（静态解析交由谁完成还需要查询资料），而CommonJS文件直接下载并执行（非静态解析）。
+
+#### 动态导入`import()`
+
+那么在ESM中，如何实现根据不同的场景导入不同的模块这一需求呢？答案就是`import()`。具体原理还需要再查询相关资料...
 
 #### Module Map
 
@@ -103,14 +112,16 @@ CommonJS一直是nodejs的模块化规范，而nodejs一般跑在服务器上，
 每当浏览器获取模块依赖文件时，就会被记录在Module Map中，例如：
 ![Module Map](https://p.qlogo.cn/hy_personal/3e28f14aa05168421a27c81c3aad18564ca54013556577d4f6a0c1f7873c0859/0.png)
 
-这样如果有其他模块依赖同一个文件，浏览器会先去Module Map查看是否存在，如果正在获取，就直接跳过该文件获取下面的文件。除了减少请求次数，Module Map还具有缓存的功能。如下图：
+这样如果有其他模块依赖同一个文件，浏览器会先去Module Map查看是否存在，如果正在获取，就直接跳过该文件获取下面的文件。除了减少请求次数，Module Map还具有缓存（缓存Module Record）的功能。如下图：
 ![Module Map Cache](https://p.qlogo.cn/hy_personal/3e28f14aa05168421a27c81c3aad1856878ad49d62f43bdc8b9bf768bad206bc/0.png)
 
 这个设计对于ES Module处理循环依赖大有作用（后面再说）。
 
 ### Instantiation
 
-在这一步，js引擎将会创建一个模块环境记录，用于管理`Module Record`中的变量，然后将内存空间中的变量地址与相应模块的变量建立连接（浏览器将会对依赖图以深度优先后序遍历的方式处理各个`Module Record`），如下图所示：
+js引擎将会创建一个模块环境记录，用于管理`Module Record`中的变量，JavaScript引擎会为export出的变量分配内存，然后在模块的环境记录中保存内存地址和export的变量的关联，此时这些内存地址都没有初始化的值，然后JavaScript引擎再将import与export的变量指向相同的地址空间（但是ESM规定导入变量的模块不能修改导入变量的引用（但是对于引用类型，可以修改其值）），这与CommonJS不同，在CommonJS中，导入对象是导出对象的值的拷贝。
+
+如下图所示：
 ![](https://p.qlogo.cn/hy_personal/3e28f14aa05168421a27c81c3aad1856496a454d740eee4bd4bb9a0070fe34b1/0.png)
 
 这也解释了为什么ES6模块输出的是值的引用。
@@ -123,24 +134,8 @@ console.log("test");
 ```
 这些函数会在其依赖的模块中也执行一遍，当然例子算是温和的了，比较严重的副作用就是在模块中修改导出的值，又可能会导致同一个模块导出的值，在不同的模块中最终表现结果不一致。（不过`Module Map`的存在帮我们解决了这个问题）
 
-## How CommonJS work？
-> 下文大多为个人理解，可能存在错误，欢迎指正（笔者在查阅相关资料后会进行修改补充） 
-
-CommonJS由于是运行时加载，因此不会像ES Module一样事先构造出依赖图。
-
-它会将模块化的文件
-
-![](https://p.qlogo.cn/hy_personal/3e28f14aa05168421a27c81c3aad1856246b9392d2f1b100b800fc2634bbc1c8/0.png)
-
-
-![demo](https://p.qlogo.cn/hy_personal/3e28f14aa05168421a27c81c3aad1856e15e8f4132de4b964856d4d7ea77ee0e/0.png)
-
-如图所示，上图是CommonJS循环依赖的例子，这个过程简单分析一下：
-
-main.js运行过程中遇到了`require('/counter.js')`，转而去加载counter.js，
 
 ## To be Continued
-先吃饭，吃完再找时间补充....
 
 ## 参考资料
 
