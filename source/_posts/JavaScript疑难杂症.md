@@ -231,13 +231,78 @@ console.log(this);
 
 ## Promise
 
+> 具体背景不再介绍，这里主要介绍一下其用法
 
+ES6中规定，`Promise`是一个构造函数，用来生成`Promise`实例。
+```javascript
+const promise =new Promise((resolve,reject)=>{
+    if (/*异步操作成功*/){
+        resolve(value);
+    }else{
+        reject(err);
+    }
+})
+
+promise.then((value)=>{
+    //fulfilled
+}).catch((err)=>{
+    //failure
+})
+```
+
+`Promise`构造函数接收一个函数作为参数，该参数的两个函数分别为`resolve`和`reject`。
+
+其中`resolve`是一个回调函数，其参数为异步操作成功的结果。`reject`也是一个回调函数，其参数为异步操作失败的结果。（对于这句话的理解还可以是`resolve`改变异步操作的状态为fulfilled后会触发相应的回调函数...）
+
+## 闭包
+
+> 闭包是JavaScript中最强大的特性之一。
+
+JavaScript允许函数嵌套，并且内部函数可以访问定义在外部函数中的所有变量和函数，以及外部函数能访问的所有变量和函数。但是，外部函数不能访问定义在内部函数中的变量和函数，此外，由于内部函数可以访问外部函数的作用域，因此当内部函数生存周期大于外部函数时，外部函数中定义的变量和函数的生存周期将比内部函数执行时间长，当内部函数以某种方式被任何一个外部函数作用域访问了，一个闭包就产生了。
+
+上面的话有点绕，简单来说：外部函数的词法作用域在执行之后应该销毁，但是由于内部函数作为值返回出去，导致这些值得以保存，同时无法直接访问，只能通过返回的内部函数来访问，这个内部函数就是闭包。**所谓`闭`，指的是封闭外部状态，当外部状态的作用域失效时，还能留一份在内部状态中。**
+
+```javascript
+let test =function(name){
+    let closure =function(){
+        return name;
+    }
+    return closure;
+}
+let name =test('yzh');
+name(); //yzh
+```
+### 闭包应用
+
+> 待补充....
+
+1. 模拟块级作用域
+
+> 感觉更多是在使用函数作用域的特性，而不是闭包的一些特性（回头再想一想...）
+```javascript
+for(var i=0;i<10;i++){
+    setTimeout(()=>{
+        console.log(i) 
+    },1000*i)
+} //最终打印10个10
+
+for(var i=0;i<10;i++){
+    (function(j){
+        setTimeout(()=>{
+            console.log(j)
+        },1000)
+    })(i)
+}
+```
+
+## Event Loop
 
 
 
 ## 参考链接
 
 1. [原型链，变量提升与覆盖，this指向一网打尽](https://juejin.cn/post/7025595497431695391)
-2. 
-
+2. [ES6 入门](https://es6.ruanyifeng.com/)
+3. [函数闭包 --MDN](https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Functions#%E9%97%AD%E5%8C%85)
+4. []()
 
