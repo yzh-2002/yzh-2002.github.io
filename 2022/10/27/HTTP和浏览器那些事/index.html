@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://p.qlogo.cn/hy_personal/3e28f14aa0516842a04ef48ec3f1e01c133f473a3e08549512b791d265332951/0.png">
 <meta property="og:image" content="https://p.qlogo.cn/hy_personal/3e28f14aa0516842de586b88f69bd73313540114f6351d1eb07bea2efb4c6132/0.png">
 <meta property="article:published_time" content="2022-10-27T13:15:47.000Z">
-<meta property="article:modified_time" content="2022-11-01T05:15:11.136Z">
+<meta property="article:modified_time" content="2022-11-03T13:01:06.104Z">
 <meta property="article:author" content="Yzh2002">
 <meta property="article:tag" content="network">
 <meta name="twitter:card" content="summary">
@@ -307,7 +307,7 @@ mjx-container[display="true"] + br {
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-01 13:15:11" itemprop="dateModified" datetime="2022-11-01T13:15:11+08:00">2022-11-01</time>
+                <time title="修改时间：2022-11-03 21:01:06" itemprop="dateModified" datetime="2022-11-03T21:01:06+08:00">2022-11-03</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -339,7 +339,7 @@ mjx-container[display="true"] + br {
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>7.2k</span>
+              <span>8.2k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -477,6 +477,24 @@ mjx-container[display="true"] + br {
 <p>协商缓存通过设置两种HTTP Header实现：Last-Modified和ETag（也就是上面提到的缓存标识）。</p>
 <p>所谓ETag，响应头字段，用于标识请求资源的版本（通常需要后端通过相关算法生成，例如hash值或者MD5值），浏览器在向服务器发送请求时会带上<code>If-None-Match</code>字段， 来询问服务器该版本是否仍然可用。如果服务器发现该版本仍然是最新的， 就可以返回 304 状态码指示 UA 继续使用缓存。</p>
 <p>与 Etag 类似，Last-Modified HTTP 响应头也用来标识资源的有效性。 不同的是<strong>使用修改时间而不是实体标签</strong>。对应的请求头字段为<code>If-Modified-Since</code>。</p>
+<h3 id="http2.03.0">HTTP2.0/3.0</h3>
+<blockquote>
+<p>上面讲的基本都是基于HTTP1.1版本的，下面看一下HTTP2.0和HTTP3.0有哪些不同？</p>
+</blockquote>
+<p>HTTP1.1和HTTP2.0的最大的区别就是二进制框架层，前者把所有请求和响应作为纯文本，后者使用二进制框架层把所有消息封装为二进制，且仍然保持HTTP语法，消息的转换让HTTP2能够尝试HTTP1.1所不能的传输方式。</p>
+<blockquote>
+<p>此处有必要说明一下二进制和纯文本之间的区别，两者其实并无本质区别，只是编码形式不同，文字背后还是0和1，只是采用一种编码方式（UTF-8,GBK....）使得人们能够看懂而已...</p>
+</blockquote>
+<h4 id="队头阻塞问题">队头阻塞问题</h4>
+<p>这里就不得不提一下HTTP1.1的流水线和队头阻塞问题了：HTTP1.1允许客户端通过同一连接发送多个请求，但是当一个队头的请求不能收到响应的资源时，他将会阻塞后面的请求，这就是队头阻塞问题，虽然添加并行的TCP连接（针对域名的，因此可以通过域名切片增加并行TCP连接数量加快请求资源的速度）能减轻这个问题，但是TCP连接数量是有限的，且每个新的连接需要额外的资源。</p>
+<p>HTTP2如何解决这个问题的呢？</p>
+<p>HTTP2的数据报分为<strong>多个帧，并且给每个帧打上流的ID</strong>去避免依次响应的问题，对方接收到帧之后根据ID拼接出流，这样就可以做到乱序响应从而避免请求时的队首阻塞问题（但需要注意的是：HTTP2只是解决了应用层面的队首阻塞，传输层的队首阻塞并没有解决，也即如果产生丢包现象，就需要等待重新发包，阻塞后续传输（TCP的滑动窗口只能增强抗干扰的能力，并没有根本解决这个问题。））</p>
+<p>所谓HTTP2的多路复用，即通信双方都可以给对方发送二进制帧，这种二进制帧的双向传输的序列，也称之为流（stream），HTTP2用流在一个TCP连接上来进行多个数据帧的通信，称之为多路复用。</p>
+<p>HTTP2还新增了服务端推送的能力，服务器已经不再是完全被动的接收数据，响应请求，他也能新建stream来给客户端发送消息，当TCP建立连接之后，比如浏览器请求一个HTML文件，服务器就可以在返回HTML文件的基础上，将HTML引用的其他资源文件一并返回给客户端，减少客户端的等待。</p>
+<p>同时HTTP2还使用HPACK算法压缩首部内容（这对于携带cookie的大量HTTP请求来说还是很客观的性能优化....）</p>
+<h4 id="http3.0">HTTP3.0</h4>
+<p>为了解决HTTP2中仍然存在的TCP队头阻塞问题，HTTP3不再基于TCP建立，而是基于Google提出的基于UDP实现的开源协议QUIC实现。</p>
+<p>后续查阅更多资料后在进行补充....</p>
 <h2 id="浏览器相关">浏览器相关</h2>
 <h3 id="同源策略">同源策略</h3>
 <blockquote>
@@ -539,6 +557,7 @@ mjx-container[display="true"] + br {
 <li><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2016/04/same-origin-policy.html">浏览器同源策略 --阮一峰</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.ruanyifeng.com/blog/2016/04/cors.html">跨域资源共享 CORS 详解 --阮一峰</a></li>
 <li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Learn/JavaScript/Building_blocks/Events">事件介绍</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/63fe1bf5d445">详细分析http2 和http1.1 区别</a></li>
 </ol>
 
     </div>
@@ -621,7 +640,7 @@ mjx-container[display="true"] + br {
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#http%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.</span> <span class="nav-text">HTTP协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#http%E6%8A%A5%E6%96%87"><span class="nav-number">1.1.</span> <span class="nav-text">HTTP报文</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#http-%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87"><span class="nav-number">1.1.1.</span> <span class="nav-text">HTTP 请求报文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#http%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87"><span class="nav-number">1.1.2.</span> <span class="nav-text">HTTP响应报文</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cookie"><span class="nav-number">1.2.</span> <span class="nav-text">cookie</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cookie%E5%B1%9E%E6%80%A7"><span class="nav-number">1.2.1.</span> <span class="nav-text">cookie属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#session"><span class="nav-number">1.2.2.</span> <span class="nav-text">session</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#json-web-tokens"><span class="nav-number">1.2.3.</span> <span class="nav-text">JSON Web Tokens</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#http%E7%BC%93%E5%AD%98"><span class="nav-number">1.3.</span> <span class="nav-text">HTTP缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%BA%E7%BC%93%E5%AD%98"><span class="nav-number">1.3.1.</span> <span class="nav-text">强缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98"><span class="nav-number">1.3.2.</span> <span class="nav-text">协商缓存</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9B%B8%E5%85%B3"><span class="nav-number">2.</span> <span class="nav-text">浏览器相关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5"><span class="nav-number">2.1.</span> <span class="nav-text">同源策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">2.2.</span> <span class="nav-text">跨域问题解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86"><span class="nav-number">2.2.1.</span> <span class="nav-text">nginx反向代理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#jsonp"><span class="nav-number">2.2.2.</span> <span class="nav-text">JSONP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cors"><span class="nav-number">2.2.3.</span> <span class="nav-text">CORS</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dom%E4%BA%8B%E4%BB%B6%E6%B5%81"><span class="nav-number">2.3.</span> <span class="nav-text">DOM事件流</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#dom%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.3.1.</span> <span class="nav-text">DOM事件模型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#to-be-continued"><span class="nav-number">3.</span> <span class="nav-text">TO be continued</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">4.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#http%E5%8D%8F%E8%AE%AE"><span class="nav-number">1.</span> <span class="nav-text">HTTP协议</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#http%E6%8A%A5%E6%96%87"><span class="nav-number">1.1.</span> <span class="nav-text">HTTP报文</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#http-%E8%AF%B7%E6%B1%82%E6%8A%A5%E6%96%87"><span class="nav-number">1.1.1.</span> <span class="nav-text">HTTP 请求报文</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#http%E5%93%8D%E5%BA%94%E6%8A%A5%E6%96%87"><span class="nav-number">1.1.2.</span> <span class="nav-text">HTTP响应报文</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cookie"><span class="nav-number">1.2.</span> <span class="nav-text">cookie</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cookie%E5%B1%9E%E6%80%A7"><span class="nav-number">1.2.1.</span> <span class="nav-text">cookie属性</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#session"><span class="nav-number">1.2.2.</span> <span class="nav-text">session</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#json-web-tokens"><span class="nav-number">1.2.3.</span> <span class="nav-text">JSON Web Tokens</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#http%E7%BC%93%E5%AD%98"><span class="nav-number">1.3.</span> <span class="nav-text">HTTP缓存</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%BC%BA%E7%BC%93%E5%AD%98"><span class="nav-number">1.3.1.</span> <span class="nav-text">强缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98"><span class="nav-number">1.3.2.</span> <span class="nav-text">协商缓存</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#http2.03.0"><span class="nav-number">1.4.</span> <span class="nav-text">HTTP2.0&#x2F;3.0</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%98%9F%E5%A4%B4%E9%98%BB%E5%A1%9E%E9%97%AE%E9%A2%98"><span class="nav-number">1.4.1.</span> <span class="nav-text">队头阻塞问题</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#http3.0"><span class="nav-number">1.4.2.</span> <span class="nav-text">HTTP3.0</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9B%B8%E5%85%B3"><span class="nav-number">2.</span> <span class="nav-text">浏览器相关</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%90%8C%E6%BA%90%E7%AD%96%E7%95%A5"><span class="nav-number">2.1.</span> <span class="nav-text">同源策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%B7%A8%E5%9F%9F%E9%97%AE%E9%A2%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="nav-number">2.2.</span> <span class="nav-text">跨域问题解决方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#nginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86"><span class="nav-number">2.2.1.</span> <span class="nav-text">nginx反向代理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#jsonp"><span class="nav-number">2.2.2.</span> <span class="nav-text">JSONP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#cors"><span class="nav-number">2.2.3.</span> <span class="nav-text">CORS</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#dom%E4%BA%8B%E4%BB%B6%E6%B5%81"><span class="nav-number">2.3.</span> <span class="nav-text">DOM事件流</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#dom%E4%BA%8B%E4%BB%B6%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.3.1.</span> <span class="nav-text">DOM事件模型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#to-be-continued"><span class="nav-number">3.</span> <span class="nav-text">TO be continued</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="nav-number">4.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -703,13 +722,13 @@ mjx-container[display="true"] + br {
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">43k</span>
+    <span title="站点总字数">45k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">39 分钟</span>
+    <span title="站点阅读时长">41 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
