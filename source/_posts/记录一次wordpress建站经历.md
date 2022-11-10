@@ -13,7 +13,8 @@ categories:
 <!--more-->
 
 # 初遇 Docker
-![为什么用docker？？](https://p.qlogo.cn/hy_personal/3e28f14aa051684246f1880463f96828ede812c43ca3df848ad3ff84f9b337d9/0.png)
+
+![为什么使用docker？](https://raw.githubusercontent.com/yzh-2002/img-hosting/main/blog/202211102251016.png)
 
 上一篇博客提过，21年暑假搭建个人博客时，由于对linux不熟悉，所以就使用宝塔面板一键安装LNMP环境，有一说一，确实好用，对于小白特别友好。
 
@@ -31,10 +32,10 @@ categories:
 - 安装wsl2
     - [安装过程](https://docs.microsoft.com/zh-cn/windows/wsl/install)
     - 验证是否安装成功：
-    - ![wsl2是否安装成功](https://p.qlogo.cn/hy_personal/3e28f14aa051684246f1880463f96828f61d88719a65cf83a94dceebe0877a6e/0.png)
+    - ![wsl2是否安装成功](https://raw.githubusercontent.com/yzh-2002/img-hosting/main/blog/202211102253961.png)
 - 安装Docker Desktop
     - 前面都可行的话，这一步我没有遇到问题：
-    - ![Docker安装成功的话](https://p.qlogo.cn/hy_personal/3e28f14aa0516842b97c6e325e363a68efb4c5a3656e44b80af71b1e13fb590a/0.pnghttps://p.qlogo.cn/hy_personal/3e28f14aa0516842b97c6e325e363a68efb4c5a3656e44b80af71b1e13fb590a/0.png)
+    - ![docker安装成功的话](https://raw.githubusercontent.com/yzh-2002/img-hosting/main/blog/202211102254117.png)
 
 ## Docker知识补充
 > docker的出现解决了软件开发部署过程中的环境一致性问题（docker的应用场景应该不止这些，但是笔者目前接触有限，仅从这方面谈一谈...）
@@ -67,6 +68,7 @@ Docker利用了linux的namespace隔离技术为基础，通过**共享Linux内�
 因此在CentOS上运行基于Ubuntu镜像的容器时, 容器使用了**CentOS主机的内核以及Ubuntu镜像**, Ubuntu镜像中安装了Ubuntu的各种软件。
 
 ### Docker 基本概念
+
 Docker最重要的两个概念：镜像（Image）和容器（Container），其中Image是多层存储，每一层是在前一层的基础上进行的修改；而容器同样也是多层存储，是在以镜像为基础层，**在其基础上加一层作为容器运行时的存储层。**
 
 以nginx为例：
@@ -87,13 +89,14 @@ docker diff
 
 每当一个docker容器运行时，会生成一个sha-256值（前6位就是container ID），然后在宿主机的/var/lib/docker目录下的container文件夹下会生成一个与container ID相同名字的文件夹，此文件夹就是该容器运行的数据所在
 
-![docker容器根目录](https://p.qlogo.cn/hy_personal/3e28f14aa051684281e9349d20d9f45552eba43a556e5f1dc37cce007d01abe7/0.png)
+![docker根目录](https://raw.githubusercontent.com/yzh-2002/img-hosting/main/blog/202211102256349.png)
 
 可以看到熟悉的目录结构
 
 ---
 
 下面讲讲数据卷？
+
 > (个人理解)一方面是实现数据的持久性存储（~~便于其他容器共享和重用这一点由于使用经验较少还没感受到~~），另一方面就是便于运维人员操作容器内的文件，操作数据卷等价于操作容器内被挂载的文件（不需要进入容器内部更改数据文件了）
 
 常见的是两种方式：
@@ -120,22 +123,30 @@ docker run -d -P \
 nginx
 ```
 ### Docker 容器网络
+
 > 自己尝试部署WordPress时，容器互联还在使用`--link`命令，师兄提醒我这已经过时了，于是就学习了通过docker的容器网络来连接多个容器....
 
 Docker是通过Docker Network来实现容器之间互相访问的，它是一个虚拟网，可以通过bridge组建或overlay实现，通过`docker network ls`可以查看宿主机当前运行的docker网络
-![docker network](https://p.qlogo.cn/hy_personal/3e28f14aa05168428b211a36cb44028539af13ac0bb3d31fe6ae22f4d9b27120/0.png)
+
+![docker network](https://raw.githubusercontent.com/yzh-2002/img-hosting/main/blog/202211102257326.png)
+
 
 如图所示，有三大网络模式，分别是bridge，host和none，除此之外还有一个自定义的网络wp，下面主要介绍一下bridge模式（默认模式）
 
 在宿主机上执行`ip address`
-![ip address](https://p.qlogo.cn/hy_personal/3e28f14aa05168428b211a36cb4402852092e5429ca85182a6d6bb9bd0ecf726/0.png)
+
+![ip address](https://raw.githubusercontent.com/yzh-2002/img-hosting/main/blog/202211102258871.png)
+
 
 可以看到docker0的网络，默认通过该网络实现宿主机与docker容器之间的网络通信，结构图如下：
-![Docker Network结构图](https://p.qlogo.cn/hy_personal/3e28f14aa05168428b211a36cb4402852d89dca432dda835e532e642bc3cac35/0.png)
+
+![docker network结构图](https://raw.githubusercontent.com/yzh-2002/img-hosting/main/blog/202211102259618.png)
 
 
 进入nginx容器，查看hosts文件，可以看到该服务的内网IP，在宿主机上测试，可以通信
-![ping](https://p.qlogo.cn/hy_personal/3e28f14aa05168428b211a36cb4402858fcdb44a4fc7421d41dcf9276826ff92/0.png)
+
+![](https://raw.githubusercontent.com/yzh-2002/img-hosting/main/blog/202211102302226.png)
+
 
 但是值得注意的是，**宿主机的网络上一个名为`br-66d0daa...`的网络**，是我们自定义的bridge类型的网络，我们在宿主机上运行的docker服务会连接到该网桥上，看上图下面的几个veth对也可看出...
 
@@ -157,10 +168,12 @@ Docker是通过Docker Network来实现容器之间互相访问的，它是一个
 ```shell
 docker network inspect wp #wp为自定义网桥名称
 ```
-![docker containers IP](https://p.qlogo.cn/hy_personal/3e28f14aa0516842533164f8e26a595961ea8e77e9502daad85cb5088470cb40/0.png)
+![](https://raw.githubusercontent.com/yzh-2002/img-hosting/main/blog/202211102303354.png)
 
 进入wordpress容器测试能否ping通nginx：
-![](https://p.qlogo.cn/hy_personal/3e28f14aa0516842533164f8e26a59599ef1540126622a98932a5d274f0e8dd5/0.png)
+
+![ping nginx](https://raw.githubusercontent.com/yzh-2002/img-hosting/main/blog/202211102300359.png)
+
 
 
 ## 部署WordPress
@@ -203,7 +216,7 @@ mysql
 
 # 再遇 Nginx
 
-![接着忙喽...](https://p.qlogo.cn/hy_personal/3e28f14aa051684246f1880463f96828d049fded43e92ff606ccb734c4897e66/0.png)
+![](https://raw.githubusercontent.com/yzh-2002/img-hosting/main/blog/202211102303959.png)
 
 学习半天docker，部署好之后，又被师兄发现一大堆问题，想要解决这些问题，就要使用另一个工具----nginx（~~之前为了解决跨域问题使用nginx做了反向代理，但还没有系统学习过...~~）
 
