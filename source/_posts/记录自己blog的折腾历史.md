@@ -31,7 +31,8 @@ comments: true
 我当时这样想的，既然要放到网上，当然希望能有更多人看到，然后能对我写的东西进行指点以促进自己进步，但是个人博客的浏览量实在不高，平均每篇文章阅读量只有100左右，
 更是基本没有评论，这就违背了我放到网上的初衷，于是决定转战社区，遂进了掘金的坑。
 
-![掘金主页](https://pic.rmb.bdstatic.com/bjh/5595a5b0e1b6c5fa5193c14302220db8.png)
+![掘金主页](https://raw.githubusercontent.com/yzh-2002/img-hosting/main/blog/202211102248313.png)
+
 
 但是有一说一，没发几篇，好像就五篇，最近的一篇已经三个月之前了，至于原因呢？很简单，上学期专业课好多，自己又参加了好几个比赛（谈到比赛就有点难受了，两个省三，一个省一进国赛，但于自己而言没什么实质性的提升，反而浪费了很多技术沉淀的时间），同时这学期游戏也没少打，森林，七日杀，累计时长超过120小时，还有后来的恐鬼症，（王者，金铲铲这些大大小小更是不用说了）,就这样压根没想起来写博客的事情....
 
@@ -82,7 +83,7 @@ jobs:
 
 hexo源码文件放在main分支下，打包文件部署在gh-pages分支下，看到小火箭的那一刻还是挺激动的....
 
-![gh-pages部署成功](https://p.qlogo.cn/hy_personal/3e28f14aa0516842e32b495dab92b6a70dc687e59076828827b37a176dd393e4/0.png)
+![gh-pages部署成功](https://raw.githubusercontent.com/yzh-2002/img-hosting/main/blog/202211102245664.png)
 
 # Hexo(netlify)
 > 听说Netlify静态资源托管平台挺不错的，就又把博客扔到这上面了，换了个域名，配置了HTTPS访问....
@@ -91,9 +92,12 @@ netlify有自己的workflow，它监听hexo博客所在的github仓库，每当�
 
 这次学聪明了，买了个看起来还是蛮正经的一个域名`yzh2002.cn`
 
-![netlify部署](https://p.qlogo.cn/hy_personal/3e28f14aa0516842e32b495dab92b6a729fcb20f610258918e019a4c40a0d004/0.png)
+
+![netlify部署](https://raw.githubusercontent.com/yzh-2002/img-hosting/main/blog/202211102249255.png)
 
 # 鸣谢
 > 该个人博客文章的所有图片均使用[映画图床](imgs.top)
+
+【2022-11-10更新】 映画图床的图片加了防盗链，难受，只能把图片迁移到github上的图床了....
 
 （~~本来想自己使用github做图床呢，但是感觉好麻烦~~....）
