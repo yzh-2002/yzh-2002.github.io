@@ -27,14 +27,14 @@
 <meta property="og:site_name" content="Yzh2002&#39;s Blog">
 <meta property="og:description" content="其实本人对算法没什么兴趣，但是担心这学期面试中遭不住气宗面试官的追问（心里没点B树怎么敢投简历） 于是就打算先回顾一下大一下学期学的数据结构，为以后的各种算法打好基础... 图文无关（此OI非彼OI...）">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://p.qlogo.cn/hy_personal/3e28f14aa051684234e587586c362197fb59b624be421e77a1cf210262f1d932/0.png">
-<meta property="og:image" content="https://p.qlogo.cn/hy_personal/3e28f14aa0516842f0cc93bc32821a4c369c9448aa18876f04ef74a933feed9d/0.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yzh-2002/img-hosting/main/blog/202211102304830.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yzh-2002/img-hosting/main/blog/202211102305534.png">
 <meta property="article:published_time" content="2022-08-20T10:17:00.000Z">
-<meta property="article:modified_time" content="2022-11-10T15:04:35.772Z">
+<meta property="article:modified_time" content="2022-11-10T15:13:21.345Z">
 <meta property="article:author" content="Yzh2002">
 <meta property="article:tag" content="DataStructure">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://p.qlogo.cn/hy_personal/3e28f14aa051684234e587586c362197fb59b624be421e77a1cf210262f1d932/0.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/yzh-2002/img-hosting/main/blog/202211102304830.png">
 
 <link rel="canonical" href="https://yzh-2002.github.io/2022/08/20/%E5%A4%8D%E4%B9%A0%EF%BC%88%C3%97%EF%BC%89%E9%A2%84%E4%B9%A0%EF%BC%88%E2%88%9A%EF%BC%89%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/">
 
@@ -306,7 +306,7 @@ mjx-container[display="true"] + br {
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-10 23:04:35" itemprop="dateModified" datetime="2022-11-10T23:04:35+08:00">2022-11-10</time>
+                <time title="修改时间：2022-11-10 23:13:21" itemprop="dateModified" datetime="2022-11-10T23:13:21+08:00">2022-11-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -338,7 +338,7 @@ mjx-container[display="true"] + br {
                 <i class="fa fa-file-word-o"></i>
               </span>
                 <span class="post-meta-item-text">本文字数：</span>
-              <span>5.9k</span>
+              <span>5.8k</span>
             </span>
             <span class="post-meta-item" title="阅读时长">
               <span class="post-meta-item-icon">
@@ -359,7 +359,7 @@ mjx-container[display="true"] + br {
       
         <p>其实本人对算法没什么兴趣，但是担心这学期面试中遭不住<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/65560694/answer/2234746955">气宗面试官</a>的追问（<del>心里没点B树怎么敢投简历</del>）</p>
 <p>于是就打算先回顾一下大一下学期学的数据结构，为以后的各种算法打好基础...</p>
-<p>图文无关（此OI非彼OI...） <img src="https://p.qlogo.cn/hy_personal/3e28f14aa051684234e587586c362197fb59b624be421e77a1cf210262f1d932/0.png" alt="OI"></p>
+<p>图文无关（此OI非彼OI...） <img src="https://raw.githubusercontent.com/yzh-2002/img-hosting/main/blog/202211102304830.png" alt="OI"></p>
 <span id="more"></span>
 <h1 id="how-to-learn">How to Learn ??</h1>
 <blockquote>
@@ -373,9 +373,7 @@ mjx-container[display="true"] + br {
 </blockquote>
 <p>当我们要运行写好的代码时（先链接编译为可执行的二进制文件过程就不说了...），操作系统会create一个进程，并在内存中为其分配相应的空间。</p>
 <p>进程由三部分组成：PCB，数据段和程序段。</p>
-<figure>
-<img src="https://p.qlogo.cn/hy_personal/3e28f14aa0516842f0cc93bc32821a4c369c9448aa18876f04ef74a933feed9d/0.png" alt="数据段和程序段"><figcaption aria-hidden="true">数据段和程序段</figcaption>
-</figure>
+<p><img src="https://raw.githubusercontent.com/yzh-2002/img-hosting/main/blog/202211102305534.png"></p>
 <p>其中PCB是一个存储在内核空间的<code>task_struct</code>结构体。</p>
 <p>我们平时写代码时，代码段内声明的变量会存放在进程的程序段地址内，其中已经声明了的放在程序段的Data段内，未声明的会放到BSS段内（执行之前会被内核初始化为0或null）</p>
 <p>而代码运行过程中产生的变量等会被存放到数据段，数据段又分为stack和heap两段区域，其中：</p>
@@ -680,7 +678,7 @@ mjx-container[display="true"] + br {
       <i class="fa fa-area-chart"></i>
     </span>
       <span class="post-meta-item-text">站点总字数：</span>
-    <span title="站点总字数">46k</span>
+    <span title="站点总字数">45k</span>
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="fa fa-coffee"></i>
