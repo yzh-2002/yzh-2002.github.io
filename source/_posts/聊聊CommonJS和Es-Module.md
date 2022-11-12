@@ -80,7 +80,7 @@ CommonJS一直是nodejs的模块化规范，而nodejs一般跑在服务器上，
 
 1. Construction：查找，下载并解析所有模块文件为`Module Record`
     - `Module Record`示例：
-    - ![Module Record](https://p.qlogo.cn/hy_personal/3e28f14aa05168421a27c81c3aad185636d188556d7060c2e62d0d6ddf0a8aac/0.png)
+    - ![](https://raw.githubusercontent.com/yzh-2002/img-hosting/main/blog/202211102306411.png)
 2. Instantiation: 将export的值置入内存中（**此时不填充变量值**），然后将exports和imports的变量都指向刚刚分配的内存空间（这样就解释了为什么ESM输出的是值的引用）
 3. Evaluation：执行代码为内存中变量赋值（所以模块中最好不要有effect？？）
 
