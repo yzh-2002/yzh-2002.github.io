@@ -147,7 +147,7 @@ cookie本身是由一个个键值对构成的，形式类似于：`Cookie:k1=v1;
 
 缓存过程分析：
 
-![缓存过程](https://p.qlogo.cn/hy_personal/3e28f14aa0516842e3a9bdd65a95b6961c9c88fc03a1b1501e460918dc14c264/0.png)
+![](https://raw.githubusercontent.com/yzh-2002/img-hosting/main/blog/202211232222252.png)
 
 由上图可知：
 
@@ -160,7 +160,7 @@ cookie本身是由一个个键值对构成的，形式类似于：`Cookie:k1=v1;
 
 > 所谓强缓存，不会向服务器发起请求，直接从缓存中读取资源。可以在Chrome的Network中看到**状态码为200，并且显示(from disk cache)**，可见下图;
 
-![](https://p.qlogo.cn/hy_personal/3e28f14aa0516842a04ef48ec3f1e01c133f473a3e08549512b791d265332951/0.png)
+![](https://raw.githubusercontent.com/yzh-2002/img-hosting/main/blog/202211232223541.png)
 
 强缓存可以通过设置两种HTTP Header实现：`Expires`和`Cache-Control`
 
@@ -170,7 +170,7 @@ cookie本身是由一个个键值对构成的，形式类似于：`Cookie:k1=v1;
 
 **Cache-Control**
 
-![](https://p.qlogo.cn/hy_personal/3e28f14aa0516842de586b88f69bd73313540114f6351d1eb07bea2efb4c6132/0.png)
+![](https://raw.githubusercontent.com/yzh-2002/img-hosting/main/blog/202211232223925.png)
 
 两者区别在于：Expires 是 http1.0 的产物，Cache-Control 是 http1.1 的产物，两者同时存在的话，Cache-Control 优先级高于 Expires。
 

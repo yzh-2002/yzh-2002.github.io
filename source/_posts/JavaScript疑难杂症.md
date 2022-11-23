@@ -221,7 +221,9 @@ console.log(this);
 所谓作用域，可以通俗理解为JavaScript查找变量的范围，JavaScript的作用域在V8引擎进行词法分析的时候确定（和学编译的室友聊了一下，他认为词法分析阶段做不到，可能是解释语言和编译型语言的差异导致认知不同，也可能是我查阅的资料说错了，需要进一步求证...），也即JavaScript采用词法作用域，也称之为静态作用域。(作用域的形成：全局作用域，函数作用域，块级作用域...)
 
 如下图所示：
-![词法作用域](https://p.qlogo.cn/hy_personal/3e28f14aa0516842b4f6e067f975f63acfca7c653ab9d8c0b2ab06d68c5fec27/0.png)
+
+![](https://raw.githubusercontent.com/yzh-2002/img-hosting/main/blog/202211232221925.png)
+
 
 `foo()`函数为什么打印的是`2`，而不是`10`呢？
 

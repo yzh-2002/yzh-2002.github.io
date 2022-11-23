@@ -95,7 +95,7 @@ CommonJS一直是nodejs的模块化规范，而nodejs一般跑在服务器上，
     
 如上例所示，当浏览器解析到一个类型为module的脚本文件时，就会去异步加载该文件（所谓异步加载：即等到整个页面渲染完，再执行模块脚本（**模块文件的下载和获取工作交由后台完成**，不会阻塞页面渲染）），等到文件下载完成之后再去解析`Module Record`，然后寻找依赖，然后再交由后台去下载，一层一层的完成，并最终构建出来一张模块依赖图。
 
-![解析流程](https://p.qlogo.cn/hy_personal/3e28f14aa05168421a27c81c3aad18563eb50baeb0eb5453b5722b34229b73a1/0.png)
+![解析流程](https://raw.githubusercontent.com/yzh-2002/img-hosting/main/blog/202211232213019.png)
 
 这其实就是ESM和CommonJS之前的区别之一了，由于网络下载文件通常很消耗时间，所以**ESM模块代码的执行和下载是分开的**（也就是所谓的异步执行），也即解析到Module文件时，浏览器不着急执行它，而是后台下载相关依赖文件，然后等到完成下载之后，再去执行该文件。而CommonJS则是等待其下载并执行完之后再往下走（也就是同步加载）。
 
@@ -110,10 +110,12 @@ CommonJS一直是nodejs的模块化规范，而nodejs一般跑在服务器上，
 > `Module Map`的设计在ES Module中十分重要。
 
 每当浏览器获取模块依赖文件时，就会被记录在Module Map中，例如：
-![Module Map](https://p.qlogo.cn/hy_personal/3e28f14aa05168421a27c81c3aad18564ca54013556577d4f6a0c1f7873c0859/0.png)
+
+![Module Map](https://raw.githubusercontent.com/yzh-2002/img-hosting/main/blog/202211232213252.png)
 
 这样如果有其他模块依赖同一个文件，浏览器会先去Module Map查看是否存在，如果正在获取，就直接跳过该文件获取下面的文件。除了减少请求次数，Module Map还具有缓存（缓存Module Record）的功能。如下图：
-![Module Map Cache](https://p.qlogo.cn/hy_personal/3e28f14aa05168421a27c81c3aad1856878ad49d62f43bdc8b9bf768bad206bc/0.png)
+
+![Module Map Cache](https://raw.githubusercontent.com/yzh-2002/img-hosting/main/blog/202211232214597.png)
 
 这个设计对于ES Module处理循环依赖大有作用（后面再说）。
 
@@ -122,7 +124,8 @@ CommonJS一直是nodejs的模块化规范，而nodejs一般跑在服务器上，
 js引擎将会创建一个模块环境记录，用于管理`Module Record`中的变量，JavaScript引擎会为export出的变量分配内存，然后在模块的环境记录中保存内存地址和export的变量的关联，此时这些内存地址都没有初始化的值，然后JavaScript引擎再将import与export的变量指向相同的地址空间（但是ESM规定导入变量的模块不能修改导入变量的引用（但是对于引用类型，可以修改其值）），这与CommonJS不同，在CommonJS中，导入对象是导出对象的值的拷贝。
 
 如下图所示：
-![](https://p.qlogo.cn/hy_personal/3e28f14aa05168421a27c81c3aad1856496a454d740eee4bd4bb9a0070fe34b1/0.png)
+
+![](https://raw.githubusercontent.com/yzh-2002/img-hosting/main/blog/202211232215017.png)
 
 这也解释了为什么ES6模块输出的是值的引用。
 
