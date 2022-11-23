@@ -27,13 +27,13 @@
 <meta property="og:site_name" content="Yzh2002&#39;s Blog">
 <meta property="og:description" content="面试经常考察的JavaScript的疑难点（这几天看面经是越看越心虚...），觉得有必要总结一下，加深理解和记忆。(相关内容其实很久之前已经总结过了，但是现在还是感觉记忆有点模糊，可能是当时总结的时候太过啰嗦，所以文中的总结以简练为主，意思传递到位即可)">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://p.qlogo.cn/hy_personal/3e28f14aa0516842b4f6e067f975f63acfca7c653ab9d8c0b2ab06d68c5fec27/0.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/yzh-2002/img-hosting/main/blog/202211232221925.png">
 <meta property="article:published_time" content="2022-10-27T01:13:07.000Z">
-<meta property="article:modified_time" content="2022-11-23T08:57:32.001Z">
+<meta property="article:modified_time" content="2022-11-23T14:39:30.855Z">
 <meta property="article:author" content="Yzh2002">
 <meta property="article:tag" content="JavaScript">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://p.qlogo.cn/hy_personal/3e28f14aa0516842b4f6e067f975f63acfca7c653ab9d8c0b2ab06d68c5fec27/0.png">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/yzh-2002/img-hosting/main/blog/202211232221925.png">
 
 <link rel="canonical" href="https://yzh-2002.github.io/2022/10/27/JavaScript%E7%96%91%E9%9A%BE%E6%9D%82%E7%97%87/">
 
@@ -305,7 +305,7 @@ mjx-container[display="true"] + br {
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-11-23 16:57:32" itemprop="dateModified" datetime="2022-11-23T16:57:32+08:00">2022-11-23</time>
+                <time title="修改时间：2022-11-23 22:39:30" itemprop="dateModified" datetime="2022-11-23T22:39:30+08:00">2022-11-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -441,7 +441,8 @@ mjx-container[display="true"] + br {
 <p>上面说箭头函数时提到了作用域，下面简单说一下：</p>
 </blockquote>
 <p>所谓作用域，可以通俗理解为JavaScript查找变量的范围，JavaScript的作用域在V8引擎进行词法分析的时候确定（和学编译的室友聊了一下，他认为词法分析阶段做不到，可能是解释语言和编译型语言的差异导致认知不同，也可能是我查阅的资料说错了，需要进一步求证...），也即JavaScript采用词法作用域，也称之为静态作用域。(作用域的形成：全局作用域，函数作用域，块级作用域...)</p>
-<p>如下图所示： <img src="https://p.qlogo.cn/hy_personal/3e28f14aa0516842b4f6e067f975f63acfca7c653ab9d8c0b2ab06d68c5fec27/0.png" alt="词法作用域"></p>
+<p>如下图所示：</p>
+<p><img src="https://raw.githubusercontent.com/yzh-2002/img-hosting/main/blog/202211232221925.png"></p>
 <p><code>foo()</code>函数为什么打印的是<code>2</code>，而不是<code>10</code>呢？</p>
 <p>这就是JavaScript如何寻找变量决定的了，首先在foo的块级作用域内看能否访问到，如果没有，就会到上层的词法环境中去寻找（通过outer指针，其指向上层的词法环境），而通过outer指针链接的词法作用域的链就称之为作用域链。</p>
 <p>注意outer指针是指向外部的作用域，而不是指向内部的，很容易理解，因为内部对外部不可见。</p>
@@ -577,7 +578,7 @@ mjx-container[display="true"] + br {
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-count">9</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -649,7 +650,7 @@ mjx-container[display="true"] + br {
       <i class="fa fa-coffee"></i>
     </span>
       <span class="post-meta-item-text">站点阅读时长 &asymp;</span>
-    <span title="站点阅读时长">42 分钟</span>
+    <span title="站点阅读时长">41 分钟</span>
 </div>
   <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> 强力驱动
   </div>
